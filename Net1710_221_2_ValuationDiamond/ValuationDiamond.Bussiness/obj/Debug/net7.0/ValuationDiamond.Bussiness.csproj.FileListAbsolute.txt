@@ -1,0 +1,11 @@
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\bin\Debug\net7.0\ValuationDiamond.Bussiness.deps.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\bin\Debug\net7.0\ValuationDiamond.Bussiness.dll
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\bin\Debug\net7.0\ValuationDiamond.Bussiness.pdb
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.AssemblyInfoInputs.cache
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.AssemblyInfo.cs
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.csproj.CoreCompileInputs.cache
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.dll
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\refint\ValuationDiamond.Bussiness.dll
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ValuationDiamond.Bussiness.pdb
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Bussiness\obj\Debug\net7.0\ref\ValuationDiamond.Bussiness.dll

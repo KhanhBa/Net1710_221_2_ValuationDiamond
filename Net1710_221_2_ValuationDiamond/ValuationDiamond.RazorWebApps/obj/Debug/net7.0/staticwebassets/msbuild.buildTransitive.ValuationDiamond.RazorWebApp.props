@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\ValuationDiamond.RazorWebApp.props" />
+</Project>
