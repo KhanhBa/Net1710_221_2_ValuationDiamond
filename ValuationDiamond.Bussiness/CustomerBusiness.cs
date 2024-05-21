@@ -11,6 +11,7 @@ namespace ValuationDiamond.Business
     public interface ICusTomerBusiness
     {
         Task<IValuationDiamondResult> GetAllCustomers();
+        Task<bool> CheckCustomerIdExist(int customerId);
     }
 
     public class CustomerBusiness:ICusTomerBusiness
@@ -20,6 +21,11 @@ namespace ValuationDiamond.Business
         {
             var result = await _Dbcontext.Customers.OrderByDescending(x=>x.CustomerId).Include(x=>x.Orders).ThenInclude(x=>x.OrderDetails).ToListAsync();
             return new ValuationDiamondResult(1, "List Customer", result);
+        }
+
+        public async Task<bool> CheckCustomerIdExist(int customerId)
+        {
+            return await _Dbcontext.Customers.AnyAsync(c => c.CustomerId == customerId);
         }
     }
    
