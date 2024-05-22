@@ -1028,6 +1028,16 @@
           }
         }
       },
+      "ValuationDiamond.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
+        }
+      },
       "ValuationDiamond.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -3186,6 +3196,11 @@
         "version.txt"
       ]
     },
+    "ValuationDiamond.Common/1.0.0": {
+      "type": "project",
+      "path": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj",
+      "msbuildProject": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj"
+    },
     "ValuationDiamond.Data/1.0.0": {
       "type": "project",
       "path": "../ValuationDiamond.Data/ValuationDiamond.Data.csproj",
@@ -3194,6 +3209,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "ValuationDiamond.Common >= 1.0.0",
       "ValuationDiamond.Data >= 1.0.0"
     ]
   },
@@ -3230,6 +3246,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "D:\\Semester7-Summer2024\\PRN221\\Project\\K17221ValuationDiamond\\Source\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
+              "projectPath": "D:\\Semester7-Summer2024\\PRN221\\Project\\K17221ValuationDiamond\\Source\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
+            },
             "D:\\Semester7-Summer2024\\PRN221\\Project\\K17221ValuationDiamond\\Source\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj": {
               "projectPath": "D:\\Semester7-Summer2024\\PRN221\\Project\\K17221ValuationDiamond\\Source\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj"
             }
