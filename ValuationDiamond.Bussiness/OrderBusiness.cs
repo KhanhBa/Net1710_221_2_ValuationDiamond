@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ValuationDiamond.Data.DAO;
@@ -73,8 +74,12 @@ namespace ValuationDiamond.Business
                     return new ValuationDiamondResult(0, "Invalid CustomerID");
                 }
 
-                await _DAO.CreateAsync(order);
-                return new ValuationDiamondResult(1, "Order created successfully", order);
+                int result = await _DAO.CreateAsync(order);
+                if (result > 0)
+                {
+                    return new ValuationDiamondResult(1, "Order created successfully", order);
+                }
+                else return new ValuationDiamondResult(0, "Create fail!");
             }
             catch (Exception ex)
             {
