@@ -8,13 +8,13 @@ using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.Business
 {
-    public interface ICusTomerBusiness
+    public interface ICustomerBusiness
     {
         Task<IValuationDiamondResult> GetAllCustomers();
         Task<bool> CheckCustomerIdExist(int customerId);
     }
 
-    public class CustomerBusiness:ICusTomerBusiness
+    public class CustomerBusiness: ICustomerBusiness
     {
         private readonly Net1710_221_2_ValuationDiamondContext _Dbcontext;
         public async Task<IValuationDiamondResult> GetAllCustomers()

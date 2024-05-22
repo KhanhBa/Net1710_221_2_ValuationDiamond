@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.Business
@@ -13,20 +14,31 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> GetAllOrders();
         Task<IValuationDiamondResult> ReadOrder(int orderId);
         Task<IValuationDiamondResult> CreateOrder(Order order);
-        Task<IValuationDiamondResult> UpdateOrder(Order order);      
+        Task<IValuationDiamondResult> UpdateOrder(Order order);
         Task<IValuationDiamondResult> DeleteOrder(int orderId);
     }
 
     public class OrderBusiness : IOrderBusiness
     {
-        private readonly Net1710_221_2_ValuationDiamondContext _context;
-        private readonly ICusTomerBusiness _customerBusiness;
+        //private readonly Net1710_221_2_ValuationDiamondContext _context;
+        private readonly ICustomerBusiness _customerBusiness;
+
+        private readonly OrderDAO _DAO;
+        public OrderBusiness()
+        {
+            _DAO = new OrderDAO();
+        }
+
         public async Task<IValuationDiamondResult> GetAllOrders()
         {
             try
             {
-                var result = await _context.Orders.ToListAsync();
-                return new ValuationDiamondResult(1, "All Orders", result);
+                var orders = await _DAO.GetAllAsync();
+                if (orders == null)
+                {
+                    return new ValuationDiamondResult(0, "No orders found");
+                }
+                else return new ValuationDiamondResult(1, "All Orders", orders);
             }
             catch (Exception ex)
             {
@@ -38,7 +50,8 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var order = await _context.Orders.FindAsync(orderId);
+                //var order = await _DAO.Orders.FindAsync(orderId);
+                var order = await _DAO.GetByIdAsync(orderId);
                 if (order == null)
                 {
                     return new ValuationDiamondResult(0, "Order not found");
@@ -54,14 +67,13 @@ namespace ValuationDiamond.Business
         public async Task<IValuationDiamondResult> CreateOrder(Order order)
         {
             try
-            {     
+            {
                 if (!await _customerBusiness.CheckCustomerIdExist(order.CustomerId))
                 {
                     return new ValuationDiamondResult(0, "Invalid CustomerID");
                 }
 
-                _context.Orders.Add(order);
-                await _context.SaveChangesAsync();
+                await _DAO.CreateAsync(order);
                 return new ValuationDiamondResult(1, "Order created successfully", order);
             }
             catch (Exception ex)
@@ -74,35 +86,34 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var order = await _context.Orders.FindAsync(orderId);
+                var order = await _DAO.GetByIdAsync(orderId);
                 if (order == null)
                 {
                     return new ValuationDiamondResult(0, "Order not found");
                 }
 
-                _context.Orders.Remove(order);
-                await _context.SaveChangesAsync();
+                await _DAO.RemoveAsync(order);
                 return new ValuationDiamondResult(1, "Order removed successfully");
             }
             catch (Exception ex)
             {
                 return new ValuationDiamondResult();
             }
-        }     
+        }
 
         public async Task<IValuationDiamondResult> UpdateOrder(Order order)
         {
             try
             {
-                var o = await _context.Orders.FindAsync(order.OrderId);
-                if (o == null)
+                var exsitingOrder = await _DAO.GetByIdAsync(order.OrderId);
+                if (exsitingOrder == null)
                 {
                     return new ValuationDiamondResult(0, "Order not found");
                 }
-
-                _context.Entry(o).CurrentValues.SetValues(order);
-                await _context.SaveChangesAsync();
-                return new ValuationDiamondResult(1, "Order updated successfully", o);
+                exsitingOrder.OrderId = order.OrderId;
+                //_context.Entry(o).CurrentValues.SetValues(order);
+                await _DAO.UpdateAsync(exsitingOrder);
+                return new ValuationDiamondResult(1, "Order updated successfully", exsitingOrder);
             }
             catch (Exception ex)
             {
@@ -111,5 +122,5 @@ namespace ValuationDiamond.Business
         }
     }
 
-   
+
 }

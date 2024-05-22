@@ -8,6 +8,10 @@ namespace ValuationDiamond.Data.Models;
 
 public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 {
+    public Net1710_221_2_ValuationDiamondContext()
+    {
+    }
+
     public Net1710_221_2_ValuationDiamondContext(DbContextOptions<Net1710_221_2_ValuationDiamondContext> options)
         : base(options)
     {
