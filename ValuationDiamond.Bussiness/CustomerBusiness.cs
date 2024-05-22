@@ -34,14 +34,21 @@ namespace ValuationDiamond.Business
             }
             catch (Exception ex)
             {
-                return new ValuationDiamondResult(1, ex.Message);
+                return new ValuationDiamondResult();
             }
         }
 
         public async Task<IValuationDiamondResult> GetCustomer(string customerId)
         {
-            var customer = await GetCustomer(customerId);
-            return new ValuationDiamondResult(1, "Success", customer);
+            try
+            {
+                var customer = await GetCustomer(customerId);
+                return new ValuationDiamondResult(1, "Success", customer);
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
         }
 
         public async Task<IValuationDiamondResult> AddCustomer(Customer customer)
@@ -59,6 +66,7 @@ namespace ValuationDiamond.Business
 
         public async Task<IValuationDiamondResult> UpdateCustomer(string customerId, Customer updateCustomer)
         {
+            try { 
             var existingCustomer = await _DAO.GetByIdAsync(customerId);
             if (existingCustomer == null)
             {
@@ -69,10 +77,16 @@ namespace ValuationDiamond.Business
 
             _DAO.UpdateAsync(existingCustomer);
             return new ValuationDiamondResult(1, "Customer updated successfully", updateCustomer);
+            }
+            catch(Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
         }
 
         public async Task<IValuationDiamondResult> DeleteCustomer(string customerId)
         {
+            try { 
             var customer = await _DAO.GetByIdAsync(customerId);
             if (customer == null)
             {
@@ -82,6 +96,11 @@ namespace ValuationDiamond.Business
             _DAO.Remove(customer);
 
             return new ValuationDiamondResult(1, "Customer deleted successfully.");
+            }
+            catch( Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
         }
 
         public Task<bool> CheckCustomerIdExist(int customerId)
