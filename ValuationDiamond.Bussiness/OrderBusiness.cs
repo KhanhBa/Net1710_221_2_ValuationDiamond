@@ -20,7 +20,7 @@ namespace ValuationDiamond.Business
     public class OrderBusiness : IOrderBusiness
     {
         private readonly Net1710_221_2_ValuationDiamondContext _context;
-        private readonly ICusTomerBusiness _customerBusiness;
+        private readonly ICustomerBusiness _customerBusiness;
         public async Task<IValuationDiamondResult> GetAllOrders()
         {
             try

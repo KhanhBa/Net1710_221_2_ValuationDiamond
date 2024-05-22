@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ValuationDiamond.Data.DAO;
+﻿using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.Business
@@ -16,6 +10,7 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> AddCustomer(Customer customer);
         Task<IValuationDiamondResult> UpdateCustomer(string customerId, Customer updateCustomer);
         Task<IValuationDiamondResult> DeleteCustomer(string customerId);
+        Task<bool> CheckCustomerIdExist(int customerId);
     }
 
     public class CustomerBusiness : ICustomerBusiness
@@ -87,6 +82,11 @@ namespace ValuationDiamond.Business
             _DAO.Remove(customer);
 
             return new ValuationDiamondResult(1, "Customer deleted successfully.");
+        }
+
+        public Task<bool> CheckCustomerIdExist(int customerId)
+        {
+            throw new NotImplementedException();
         }
     }
    

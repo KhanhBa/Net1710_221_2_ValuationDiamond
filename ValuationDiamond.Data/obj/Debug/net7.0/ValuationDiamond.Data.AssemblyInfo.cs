@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ValuationDiamond.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5905126000c582e1cf8393e89cbf8b553486e1e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+403669205533d84d9dff0f1823b566c28f2eac7a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ValuationDiamond.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ValuationDiamond.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

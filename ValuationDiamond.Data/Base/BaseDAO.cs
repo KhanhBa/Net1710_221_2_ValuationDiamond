@@ -87,5 +87,4 @@ namespace ValuationDiamond.Data.Base
             return await _dbSet.FindAsync(code);
         }
     }
-
 }
