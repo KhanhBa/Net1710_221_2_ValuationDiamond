@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ValuationDiamond.Common\ValuationDiamond.Common.csproj" />
     <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
   </ItemGroup>
 
