@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ValuationDiamond.RazorWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+403669205533d84d9dff0f1823b566c28f2eac7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ab7667839c25ed206c8c9ade3e60a826abe78af")]
 [assembly: System.Reflection.AssemblyProductAttribute("ValuationDiamond.RazorWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ValuationDiamond.RazorWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
