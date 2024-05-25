@@ -116,7 +116,7 @@ namespace ValuationDiamond.Business
                 {
                     return new ValuationDiamondResult(0, "Order not found");
                 }
-                exsitingOrder.OrderId = order.OrderId;
+                exsitingOrder = order;
                 //_context.Entry(o).CurrentValues.SetValues(order);
                 await _DAO.UpdateAsync(exsitingOrder);
                 return new ValuationDiamondResult(1, "Order updated successfully", exsitingOrder);

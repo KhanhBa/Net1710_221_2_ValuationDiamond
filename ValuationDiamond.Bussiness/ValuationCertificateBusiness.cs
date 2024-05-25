@@ -75,9 +75,25 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public Task<IValuationDiamondResult> Save(ValuationCertificate valuationCertificate)
+        public async Task<IValuationDiamondResult> Save(ValuationCertificate valuationCertificate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = await _certificateDAO.GetByIdAsync(valuationCertificate.ValuationId);
+                if (obj == null)
+                {
+                    return new ValuationDiamondResult(0, "Order not found");
+                }
+                obj = valuationCertificate;
+                //_context.Entry(o).CurrentValues.SetValues(order);
+                await _certificateDAO.UpdateAsync(obj);
+                return new ValuationDiamondResult(1, "Order updated successfully",obj);
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
         }
+    }
     }
 }
