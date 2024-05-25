@@ -1028,6 +1028,16 @@
           }
         }
       },
+      "ValuationDiamond.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
+        }
+      },
       "ValuationDiamond.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -3186,6 +3196,11 @@
         "version.txt"
       ]
     },
+    "ValuationDiamond.Common/1.0.0": {
+      "type": "project",
+      "path": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj",
+      "msbuildProject": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj"
+    },
     "ValuationDiamond.Data/1.0.0": {
       "type": "project",
       "path": "../ValuationDiamond.Data/ValuationDiamond.Data.csproj",
@@ -3194,6 +3209,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "ValuationDiamond.Common >= 1.0.0",
       "ValuationDiamond.Data >= 1.0.0"
     ]
   },
@@ -3229,6 +3245,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "D:\\PRN221\\project\\NET1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
+              "projectPath": "D:\\PRN221\\project\\NET1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
+            },
             "D:\\PRN221\\project\\NET1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj": {
               "projectPath": "D:\\PRN221\\project\\NET1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj"
             }
