@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValuationDiamond.Data;
 using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
 
@@ -17,10 +18,12 @@ namespace ValuationDiamond.Business
     }
     public class ValuationCertificateBusiness:IValuationCertificateBusiness
     {
-        private readonly ValuationCertificateDAO _certificateDAO;
+        // private readonly ValuationCertificateDAO _certificateDAO;
+        private readonly UnitOfWork _unitOfWork;
         public ValuationCertificateBusiness()
         {
-            _certificateDAO = new ValuationCertificateDAO();
+         //   _certificateDAO = new ValuationCertificateDAO();
+         _unitOfWork = new UnitOfWork();
         }
 
 
@@ -28,12 +31,14 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var obj = await _certificateDAO.GetByIdAsync(ID);
+                //var obj = await _certificateDAO.GetByIdAsync(ID);
+                var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(ID);
                 if(obj == null)
                 {
                     return new ValuationDiamondResult(-1, "Can not find");
                 }
-                var flag = await _certificateDAO.RemoveAsync(obj);
+                //  var flag = await _certificateDAO.RemoveAsync(obj);
+                var flag = await _unitOfWork.CertificateRepository.RemoveAsync(obj);
                 if(flag) { return new ValuationDiamondResult(1, "Successfully"); }
                 else { return new ValuationDiamondResult(-1, "Fail"); }
             }
@@ -47,7 +52,8 @@ namespace ValuationDiamond.Business
         {
            try
            {
-                var obj = await _certificateDAO.GetAllAsync();
+                //var obj = await _certificateDAO.GetAllAsync();
+                var obj = await _unitOfWork.CertificateRepository.GetAllAsync();
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(-1, "List Null",null);
@@ -63,7 +69,8 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var obj = await _certificateDAO.CreateAsync(valuationCertificate);
+                var obj = await _unitOfWork.CertificateRepository.CreateAsync(valuationCertificate);
+            //   var obj = await _certificateDAO.CreateAsync(valuationCertificate);
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(-1, "Can not Create");
@@ -79,14 +86,16 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var obj = await _certificateDAO.GetByIdAsync(valuationCertificate.ValuationId);
+                // var obj = await _certificateDAO.GetByIdAsync(valuationCertificate.ValuationId);
+                var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(valuationCertificate.ValuationId);
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(0, "Order not found");
                 }
                 obj = valuationCertificate;
                 //_context.Entry(o).CurrentValues.SetValues(order);
-                await _certificateDAO.UpdateAsync(obj);
+               // await _certificateDAO.UpdateAsync(obj);
+                await _unitOfWork.CertificateRepository.UpdateAsync(obj);
                 return new ValuationDiamondResult(1, "Order updated successfully",obj);
             }
             catch (Exception ex)
@@ -94,6 +103,5 @@ namespace ValuationDiamond.Business
                 return new ValuationDiamondResult();
             }
         }
-    }
     }
 }

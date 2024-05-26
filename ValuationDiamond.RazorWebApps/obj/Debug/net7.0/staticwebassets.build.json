@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1CwHfc+Lvq+773TWW4hbOULIUpjoluvZgeN4xTfmiC4=",
+  "Hash": "5OA7N+ym7/NUOZQhosKRbdRjhgh5v+SCWlwqJ3i6ZtM=",
   "Source": "ValuationDiamond.RazorWebApp",
   "BasePath": "_content/ValuationDiamond.RazorWebApp",
   "Mode": "Default",
@@ -16,40 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ValuationDiamond.RazorWebApp.styles.css",
-      "SourceId": "ValuationDiamond.RazorWebApp",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/ValuationDiamond.RazorWebApp",
-      "RelativePath": "ValuationDiamond.RazorWebApp.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ValuationDiamond.RazorWebApp.styles.css"
-    },
-    {
-      "Identity": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ValuationDiamond.RazorWebApp.bundle.scp.css",
-      "SourceId": "ValuationDiamond.RazorWebApp",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/ValuationDiamond.RazorWebApp",
-      "RelativePath": "ValuationDiamond.RazorWebApp.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ValuationDiamond.RazorWebApp.bundle.scp.css"
-    },
     {
       "Identity": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\wwwroot\\css\\site.css",
       "SourceId": "ValuationDiamond.RazorWebApp",

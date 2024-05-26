@@ -1,0 +1,37 @@
+﻿@page
+@using ValuationDiamond.Business;
+@using ValuationDiamond.Data.Models;
+@model ValuationDiamond.RazorWebApp.Pages.CertificateValuationModel
+@{
+    ValuationCertificateBusiness valuationCertificateBusiness = new ValuationCertificateBusiness();
+    var list = await valuationCertificateBusiness.GetAll() ;
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Valuation ID</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Day</th>
+            <th>Description</th>
+            <th>Valuate Diamond ID</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var valuationCertificate in (List<ValuationCertificate>)list.Data)
+        {
+            <tr>
+                <td>@valuationCertificate.ValuationId</td>
+                <td>@valuationCertificate.Price</td>
+                <td>@valuationCertificate.Status</td>
+                <td>@valuationCertificate.Day</td>
+                <td>@valuationCertificate.Description</td>
+                <td>@valuationCertificate.ValuateDiamondId</td>
+                <td><a href="/ValuationCertificates/Edit/@valuationCertificate.ValuationId" class="btn btn-primary">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
