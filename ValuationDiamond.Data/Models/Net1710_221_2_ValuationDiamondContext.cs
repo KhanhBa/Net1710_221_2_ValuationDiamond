@@ -34,11 +34,9 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("data source=MSI;initial catalog=Net1710_221_2_ValuationDiamond;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("Data Source=(local);Initial Catalog=NET1710_2221_2_ValuationDiamond;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         base.OnConfiguring(optionsBuilder);
     }
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Company>(entity =>
@@ -56,7 +54,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8676AA080");
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8EBEA398A");
 
             entity.ToTable("Customer");
 
@@ -130,7 +128,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A713A42CB");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A91755318");
 
             entity.ToTable("Service");
 
@@ -144,7 +142,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB1750DB8E77");
+            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB17B0A011D2");
 
             entity.Property(e => e.Name)
                 .IsRequired()

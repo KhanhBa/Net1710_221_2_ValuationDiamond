@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ValuationDiamond.Common;
 using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
+using ValuationDiamond.Data;
 
 namespace ValuationDiamond.Business
 {
@@ -15,23 +16,25 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> DeleteByID(int ID);
         Task<IValuationDiamondResult> Create(ValuateDiamond valuateDiamond);
         Task<IValuationDiamondResult> Update(int ID, ValuateDiamond valuateDiamond);
+        Task<IValuationDiamondResult> Save(ValuateDiamond valuateDiamond);
+        Task<IValuationDiamondResult> GetById(int ID);
 
 
     }
 
     public class ValuationDiamondBusiness: IValuationDiamondBusiness
     {
-        private readonly ValuationDiamondDAO _valuationDiamondDAO;
+        private readonly UnitOfWork _unitOfWork;
         public ValuationDiamondBusiness()
         {
-            _valuationDiamondDAO = new ValuationDiamondDAO();
+            _unitOfWork = new UnitOfWork();
         }
 
         public async Task<IValuationDiamondResult> Create(ValuateDiamond valuateDiamond)
         {
             try
             {
-                var result = await _valuationDiamondDAO.CreateAsync(valuateDiamond);
+                var result = await _unitOfWork.valuationDiamondRepository.CreateAsync(valuateDiamond);
                 if (result == null)
                 {
                     return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE,Const.SUCCESS_CREATE_MSG);
@@ -48,12 +51,12 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var obj = await _valuationDiamondDAO.GetByIdAsync(ID);
+                var obj = await _unitOfWork.valuationDiamondRepository.GetByIdAsync(ID);
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
-                var flag = await _valuationDiamondDAO.RemoveAsync(obj);
+                var flag = await _unitOfWork.valuationDiamondRepository.RemoveAsync(obj);
                 if (flag) { return new ValuationDiamondResult(Const.SUCCESS_DELETE_CODE, Const.SUCCESS_DELETE_MSG); }
                 else { return new ValuationDiamondResult(Const.FAIL_DELETE_CODE, Const.FAIL_DELETE_MSG); }
             }
@@ -67,12 +70,29 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var result =await _valuationDiamondDAO.GetAllAsync();
+                var result = await _unitOfWork.valuationDiamondRepository.GetAllAsync();
                 if (result == null)
                 {
-                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG, null);
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else { return new ValuationDiamondResult(Const.SUCCESS_READ_CODE,Const.SUCCESS_READ_MSG, result); }
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
+        }
+
+        public async Task<IValuationDiamondResult> GetById(int ID)
+        {
+            try
+            {
+                var valuationDiamond = await _unitOfWork.valuationDiamondRepository.GetByIdAsync(ID);
+                if (valuationDiamond == null)
+                {
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
+                }
+                return new ValuationDiamondResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, valuationDiamond);
             }
             catch (Exception ex)
             {
@@ -80,11 +100,33 @@ namespace ValuationDiamond.Business
             }
         }
 
+        public async  Task<IValuationDiamondResult> Save(ValuateDiamond valuateDiamond)
+        {
+            try
+            {
+                //
+
+                int result = await _unitOfWork.valuationDiamondRepository.CreateAsync(valuateDiamond);
+                if (result > 0)
+                {
+                    return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
+                }
+                else
+                {
+                    return new ValuationDiamondResult(Const.FAIL_CREATE_CODE, Const.FAIL_CREATE_MSG);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult(Const.ERROR_EXCEPTION, ex.ToString());
+            }
+        }
+
         public async Task<IValuationDiamondResult> Update(int ID, ValuateDiamond valuateDiamond)
         {
             try
             {
-                var result = await _valuationDiamondDAO.GetByIdAsync(ID);
+                var result = await _unitOfWork.valuationDiamondRepository.GetByIdAsync(ID);
                 if (result == null)
                 {
                     return new ValuationDiamondResult(Const.FAIL_UPDATE_CODE, Const.FAIL_UPDATE_MSG);
@@ -95,7 +137,7 @@ namespace ValuationDiamond.Business
                 result.Price = valuateDiamond.Price;
                 result.Time = valuateDiamond.Time;
 
-               _valuationDiamondDAO.Update(result);
+                _unitOfWork.valuationDiamondRepository.Update(result);
                 return new ValuationDiamondResult(Const.SUCCESS_UPDATE_CODE,Const.SUCCESS_CREATE_MSG, result);
             }
             catch (Exception ex)

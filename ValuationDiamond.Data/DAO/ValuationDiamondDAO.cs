@@ -8,7 +8,7 @@ using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.Data.DAO
 {
-    public class ValuationDiamondDAO:BaseDAO<ValuateDiamond>
+    public class ValuationDiamondDAO:GenericRepository<ValuateDiamond>
     {
         public ValuationDiamondDAO() { }
     }

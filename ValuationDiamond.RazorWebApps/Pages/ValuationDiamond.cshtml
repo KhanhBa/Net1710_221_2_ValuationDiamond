@@ -1,0 +1,48 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ValuationDiamondModel
+@{
+    ViewData["Title"] = "Valuation Diamonds";
+    var Valuation = Model.ValuateDiamonds;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Valuation Diamonds</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-end">
+        <button type="button" class="btn btn-primary" onclick="add();">
+            Add
+        </button>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="card-title text-center">ValuateDiamondId</th>
+            <th class="card-title text-center">Price</th>
+            <th class="card-title text-center">Time</th>
+            <th class="card-title text-center">ValuationStaffName</th>
+            <th class="card-title text-center">OrderDetailId</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ValuateDiamonds)
+        {
+            <tr>
+                <td>@item.ValuateDiamondId</td>
+                <td>@item.Price</td>
+                <td>@item.Time</td>
+                <td>@item.ValuationStaffName</td>
+                <td>@item.OrderDetailId</td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
