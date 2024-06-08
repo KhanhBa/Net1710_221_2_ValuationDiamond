@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +18,14 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> DeleteByID(int ID);
         Task<IValuationDiamondResult> Create(ValuationCertificate valuationCertificate);
     }
-    public class ValuationCertificateBusiness:IValuationCertificateBusiness
+    public class ValuationCertificateBusiness : IValuationCertificateBusiness
     {
         // private readonly ValuationCertificateDAO _certificateDAO;
         private readonly UnitOfWork _unitOfWork;
         public ValuationCertificateBusiness()
         {
-         //   _certificateDAO = new ValuationCertificateDAO();
-         _unitOfWork = new UnitOfWork();
+            //   _certificateDAO = new ValuationCertificateDAO();
+            _unitOfWork ??= new UnitOfWork();
         }
 
 
@@ -33,35 +35,36 @@ namespace ValuationDiamond.Business
             {
                 //var obj = await _certificateDAO.GetByIdAsync(ID);
                 var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(ID);
-                if(obj == null)
+                if (obj == null)
                 {
                     return new ValuationDiamondResult(-1, "Can not find");
                 }
                 //  var flag = await _certificateDAO.RemoveAsync(obj);
                 var flag = await _unitOfWork.CertificateRepository.RemoveAsync(obj);
-                if(flag) { return new ValuationDiamondResult(1, "Successfully"); }
+                if (flag) { return new ValuationDiamondResult(1, "Successfully"); }
                 else { return new ValuationDiamondResult(-1, "Fail"); }
             }
             catch (Exception ex)
             {
-                return new ValuationDiamondResult(-1,ex.Message);
+                return new ValuationDiamondResult(-1, ex.Message);
             }
         }
 
         public async Task<IValuationDiamondResult> GetAll()
         {
-           try
-           {
+            try
+            {
                 //var obj = await _certificateDAO.GetAllAsync();
                 var obj = await _unitOfWork.CertificateRepository.GetAllAsync();
                 if (obj == null)
                 {
-                    return new ValuationDiamondResult(-1, "List Null",null);
+                    return new ValuationDiamondResult(-1, "List Null", null);
                 }
                 else { return new ValuationDiamondResult(1, "List Data", obj); }
-           } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                return new ValuationDiamondResult(-1,ex.Message) ;
+                return new ValuationDiamondResult(-1, ex.Message);
             }
         }
 
@@ -70,13 +73,14 @@ namespace ValuationDiamond.Business
             try
             {
                 var obj = await _unitOfWork.CertificateRepository.CreateAsync(valuationCertificate);
-            //   var obj = await _certificateDAO.CreateAsync(valuationCertificate);
+                //   var obj = await _certificateDAO.CreateAsync(valuationCertificate);
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(-1, "Can not Create");
                 }
-                return new ValuationDiamondResult(1, "Create Successfully", obj); 
-            } catch(Exception ex)
+                return new ValuationDiamondResult(1, "Create Successfully", obj);
+            }
+            catch (Exception ex)
             {
                 return new ValuationDiamondResult(-1, ex.Message);
             }
@@ -94,13 +98,33 @@ namespace ValuationDiamond.Business
                 }
                 obj = valuationCertificate;
                 //_context.Entry(o).CurrentValues.SetValues(order);
-               // await _certificateDAO.UpdateAsync(obj);
+                // await _certificateDAO.UpdateAsync(obj);
                 await _unitOfWork.CertificateRepository.UpdateAsync(obj);
-                return new ValuationDiamondResult(1, "Order updated successfully",obj);
+                return new ValuationDiamondResult(1, "Order updated successfully", obj);
             }
             catch (Exception ex)
             {
                 return new ValuationDiamondResult();
+            }
+        }
+        public async Task<IValuationDiamondResult> GetbyId(int id)
+        {
+            try
+            {
+                //var obj = await _certificateDAO.GetByIdAsync(ID);
+                var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(id);
+                if (obj == null)
+                {
+                    return new ValuationDiamondResult(-1, "Can not find");
+                }
+                else
+                {
+                    return new ValuationDiamondResult(1, "List Data", obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult(-1, ex.Message);
             }
         }
     }

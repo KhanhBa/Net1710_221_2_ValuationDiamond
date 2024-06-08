@@ -1,17 +1,3 @@
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.deps.json
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.runtimeconfig.json
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.dll
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.pdb
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.csproj.AssemblyReference.cache
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.GeneratedMSBuildEditorConfig.editorconfig
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.AssemblyInfoInputs.cache
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.AssemblyInfo.cs
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.csproj.CoreCompileInputs.cache
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.dll
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\refint\ValuationDiamond.Data.dll
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.pdb
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.genruntimeconfig.cache
-D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\ValuationDiamond.Data\obj\Debug\net7.0\ref\ValuationDiamond.Data.dll
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.deps.json
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.runtimeconfig.json
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.dll

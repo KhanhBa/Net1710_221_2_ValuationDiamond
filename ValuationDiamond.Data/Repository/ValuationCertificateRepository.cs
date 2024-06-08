@@ -11,6 +11,7 @@ namespace ValuationDiamond.Data.Repository
     public class ValuationCertificateRepository : GenericRepository<ValuationCertificate>
     {
         public ValuationCertificateRepository() { }
+        public ValuationCertificateRepository(Net1710_221_2_ValuationDiamondContext context) => _context = context;
 
     }
 }
