@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
-using Microsoft.Identity.Client;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
