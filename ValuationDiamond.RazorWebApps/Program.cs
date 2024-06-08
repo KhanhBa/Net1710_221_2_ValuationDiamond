@@ -1,3 +1,5 @@
+using ValuationDiamond.Business;
+
 namespace ValuationDiamond.RazorWebApps
 {
     public class Program
@@ -8,7 +10,8 @@ namespace ValuationDiamond.RazorWebApps
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-
+            builder.Services.AddScoped<ValuationCertificateBusiness>();
+                
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
