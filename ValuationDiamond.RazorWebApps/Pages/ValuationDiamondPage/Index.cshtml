@@ -1,0 +1,96 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].ValuationStaffName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].IsDiamond)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].DiamondType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Shape)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Carat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].Clarity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].ValuationCertificateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuateDiamond[0].OrderDetail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ValuateDiamond) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValuationStaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDiamond)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiamondType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shape)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clarity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValuationCertificateId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDetail.DetailCode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ValuateDiamondId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ValuateDiamondId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ValuateDiamondId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

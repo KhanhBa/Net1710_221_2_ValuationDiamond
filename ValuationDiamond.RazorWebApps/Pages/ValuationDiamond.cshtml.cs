@@ -24,10 +24,44 @@ namespace ValuationDiamond.RazorWebApp.Pages
             this.SaveCurrency();
         }
 
-        public void OnDelete()
+       
+
+        public void OnDelete(int diamondId) // Delete function
         {
+            if (diamondId > 0)
+            {
+                var deleteResult = _valuateBusiness.DeleteByID(diamondId);
+
+                if (deleteResult != null)
+                {
+                    this.Message = deleteResult.Result.Message;
+                }
+                else
+                {
+                    this.Message = "Error deleting diamond";
+                }
+            }
+            else
+            {
+                this.Message = "Invalid diamond ID";
+            }
         }
 
+        private void AddValuationDiamond(ValuateDiamond diamond)
+        {
+            var saveResult = _valuateBusiness.Save(diamond);
+
+            if (saveResult != null)
+            {
+                this.Message = saveResult.Result.Message;
+                // Optionally, reload the list of diamonds after successful add
+                ValuateDiamonds = this.GetCurrencies();
+            }
+            else
+            {
+                this.Message = "Error adding diamond";
+            }
+        }
 
         private List<ValuateDiamond> GetCurrencies()
         {
@@ -40,7 +74,21 @@ namespace ValuationDiamond.RazorWebApp.Pages
             }
             return new List<ValuateDiamond>();
         }
+        private void UpdateValuationDiamond(ValuateDiamond diamond)
+        {
+            var saveResult = _valuateBusiness.Update(diamond.ValuateDiamondId, diamond);
 
+            if (saveResult != null)
+            {
+                this.Message = saveResult.Result.Message;
+                // Optionally, reload the list of diamonds after successful update
+                ValuateDiamonds = this.GetCurrencies();
+            }
+            else
+            {
+                this.Message = "Error updating diamond";
+            }
+        }
         private void SaveCurrency()
         {
             var ValuationResult = _valuateBusiness.Save(this.ValuateDiamond);

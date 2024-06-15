@@ -94,7 +94,7 @@ namespace ValuDia.WpfApp.UI
             }
         }
 
-        private void ButtonCancle_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             txtID.Text = string.Empty;
             txtPrice.Text = string.Empty;

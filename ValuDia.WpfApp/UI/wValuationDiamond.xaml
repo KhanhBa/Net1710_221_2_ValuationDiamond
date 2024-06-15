@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValuDia.WpfApp.UI"
         mc:Ignorable="d"
-        Title="Valuation Diamond" Height="576" Width="1518">
+        Title="Valuation Diamond" Height="576" Width="1488">
     <Grid Margin="0,0,75,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="794*"/>
             <ColumnDefinition Width="649*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Margin="0,0,-47,0" Grid.ColumnSpan="2">
-            <GroupBox Header="Valuate Form" Margin="10">
-                <Grid Height="50">
+            <GroupBox Header="Valuate Form" Margin="10" Width="1438">
+                <Grid Height="50" Margin="0,0,41,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
@@ -44,10 +44,10 @@
             </GroupBox>
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
-                <Button x:Name="ButtonCancel" Content="Cancle" Height="30" Width="80" Click="ButtonCancle_Click"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click"/>
             </StackPanel>
             <StackPanel Height="210">
-                <DataGrid x:Name="grdValuate" AutoGenerateColumns="False" ItemsSource="{Binding ValuateDiamonds}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdValuate_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" Width="1441">
+                <DataGrid x:Name="grdValuate" AutoGenerateColumns="False" ItemsSource="{Binding ValuateDiamonds}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdValuate_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" Width="1478">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
                         <DataGridTextColumn Header="ID" Binding="{Binding Path=ValuateDiamondId}" Visibility="Visible"/>

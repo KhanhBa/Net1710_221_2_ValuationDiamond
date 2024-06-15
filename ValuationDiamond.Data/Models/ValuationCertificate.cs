@@ -7,7 +7,7 @@ namespace ValuationDiamond.Data.Models;
 
 public partial class ValuationCertificate
 {
-    public int ValuationId { get; set; }
+    public int ValuationCertificateId { get; set; }
 
     public double Price { get; set; }
 
@@ -19,5 +19,13 @@ public partial class ValuationCertificate
 
     public int ValuateDiamondId { get; set; }
 
-    public virtual ValuateDiamond ValuateDiamond { get; set; }
+    public string Sign { get; set; }
+
+    public string ManagerName { get; set; }
+
+    public string CustomerName { get; set; }
+
+    public string CustomerEmail { get; set; }
+
+    public virtual ValuateDiamond ValuationCertificateNavigation { get; set; }
 }
