@@ -18,11 +18,12 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> Update(int ID, ValuateDiamond valuateDiamond);
         Task<IValuationDiamondResult> Save(ValuateDiamond valuateDiamond);
         Task<IValuationDiamondResult> GetById(int ID);
+        Task<IValuationDiamondResult> Search(string searchTerm);
 
 
     }
 
-    public class ValuationDiamondBusiness: IValuationDiamondBusiness
+    public class ValuationDiamondBusiness : IValuationDiamondBusiness
     {
         private readonly UnitOfWork _unitOfWork;
         public ValuationDiamondBusiness()
@@ -37,7 +38,7 @@ namespace ValuationDiamond.Business
                 var result = await _unitOfWork.valuationDiamondRepository.CreateAsync(valuateDiamond);
                 if (result == null)
                 {
-                    return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE,Const.SUCCESS_CREATE_MSG);
+                    return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
                 }
                 return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG, result);
             }
@@ -62,7 +63,7 @@ namespace ValuationDiamond.Business
             }
             catch (Exception ex)
             {
-                return new ValuationDiamondResult(Const.FAIL_DELETE_CODE,Const.FAIL_DELETE_MSG);
+                return new ValuationDiamondResult(Const.FAIL_DELETE_CODE, Const.FAIL_DELETE_MSG);
             };
         }
 
@@ -75,7 +76,7 @@ namespace ValuationDiamond.Business
                 {
                     return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
-                else { return new ValuationDiamondResult(Const.SUCCESS_READ_CODE,Const.SUCCESS_READ_MSG, result); }
+                else { return new ValuationDiamondResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, result); }
             }
             catch (Exception ex)
             {
@@ -100,7 +101,7 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async  Task<IValuationDiamondResult> Save(ValuateDiamond valuateDiamond)
+        public async Task<IValuationDiamondResult> Save(ValuateDiamond valuateDiamond)
         {
             try
             {
@@ -153,7 +154,39 @@ namespace ValuationDiamond.Business
                 return new ValuationDiamondResult();
             }
         }
-    }
+        public async Task<IValuationDiamondResult> Search(string searchTerm)
+        {
+            try
+            {
+                var allDiamonds = await _unitOfWork.valuationDiamondRepository.GetAllAsync();
 
-  
+                if (allDiamonds == null || !allDiamonds.Any())
+                {
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
+                }
+
+                var filteredDiamonds = allDiamonds.Where(diamond => diamond.ValuationStaffName.Contains(searchTerm) ||
+                                                                      diamond.OrderDetailId.ToString().Contains(searchTerm) ||
+                                                                      diamond.Color.Contains(searchTerm) ||
+                                                                      diamond.Price.ToString().Contains(searchTerm) ||
+                                                                      diamond.Shape.Contains(searchTerm) ||
+                                                                      diamond.DiamondType.Contains(searchTerm) ||
+                                                                      diamond.Carat.ToString().Contains(searchTerm));
+
+                if (!filteredDiamonds.Any())
+                {
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
+                }
+
+                return new ValuationDiamondResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, filteredDiamonds.ToList());
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult(Const.FAIL_READ_CODE, Const.FAIL_READ_MSG);
+            }
+        }
+    }
 }
+
+
+

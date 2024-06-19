@@ -6,27 +6,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ValuationDiamond.Data.Models;
+using ValuationDiamond.Business;
 
 namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
 {
     public class IndexModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly IValuationDiamondBusiness _business;
 
-        public IndexModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public IndexModel()
         {
-            _context = context;
+            _business ??= new ValuationDiamondBusiness();
         }
 
-        public IList<ValuateDiamond> ValuateDiamond { get;set; } = default!;
+        public IList<ValuateDiamond> ValuateDiamond { get; set; } = default!;
+
+        [BindProperty(SupportsGet = true)]
+        public string searchString { get; set; }
 
         public async Task OnGetAsync()
         {
-            if (_context.ValuateDiamonds != null)
+            if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchString))
             {
-                ValuateDiamond = await _context.ValuateDiamonds
-                .Include(v => v.OrderDetail).ToListAsync();
+                var result = await _business.Search(searchString);
+                if (result != null && result.Status > 0 && result.Data != null)
+                {
+                    ValuateDiamond = result.Data as List<ValuateDiamond>;
+                }
             }
+            else
+            {
+                var result = await _business.GetAll();
+                if (result != null && result.Status > 0 && result.Data != null)
+                {
+                    ValuateDiamond = result.Data as List<ValuateDiamond>;
+                }
+            }
+
+
         }
     }
 }
