@@ -17,7 +17,16 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
         : base(options)
     {
     }
+    public static string GetConnectionString(string connectionStringName)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
 
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
+    }
     public virtual DbSet<Company> Companies { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
@@ -34,16 +43,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
 
-    public static string GetConnectionString(string connectionStringName)
-    {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        string connectionString = config.GetConnectionString(connectionStringName);
-        return connectionString;
-    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
@@ -240,8 +239,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.ValuationCertificateNavigation).WithOne(p => p.ValuationCertificate)
+            entity.HasOne(d => d.ValuateDiamond).WithOne(p => p.ValuationCertificate)
                 .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ValuationCertificate_ValuateDiamond1");

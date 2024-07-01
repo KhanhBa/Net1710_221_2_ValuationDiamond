@@ -3989,6 +3989,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "ValuationDiamond.Common": "1.0.0",
           "ValuationDiamond.Data": "1.0.0"
         },
         "compile": {
@@ -3996,6 +3997,16 @@
         },
         "runtime": {
           "bin/placeholder/ValuationDiamond.Business.dll": {}
+        }
+      },
+      "ValuationDiamond.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ValuationDiamond.Common.dll": {}
         }
       },
       "ValuationDiamond.Data/1.0.0": {
@@ -11587,6 +11598,11 @@
       "type": "project",
       "path": "../ValuationDiamond.Bussiness/ValuationDiamond.Business.csproj",
       "msbuildProject": "../ValuationDiamond.Bussiness/ValuationDiamond.Business.csproj"
+    },
+    "ValuationDiamond.Common/1.0.0": {
+      "type": "project",
+      "path": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj",
+      "msbuildProject": "../ValuationDiamond.Common/ValuationDiamond.Common.csproj"
     },
     "ValuationDiamond.Data/1.0.0": {
       "type": "project",

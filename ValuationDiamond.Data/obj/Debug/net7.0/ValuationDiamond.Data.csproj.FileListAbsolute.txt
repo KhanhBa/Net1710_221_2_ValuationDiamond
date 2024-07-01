@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.deps.json
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.runtimeconfig.json
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.dll
@@ -28,6 +29,8 @@ D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\obj\Debug\n
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.pdb
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\obj\Debug\net7.0\ValuationDiamond.Data.genruntimeconfig.cache
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\obj\Debug\net7.0\ref\ValuationDiamond.Data.dll
+=======
+>>>>>>> 48ca876242f680a9a18046acb81f17f6fe964638
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.deps.json
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.runtimeconfig.json
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.Data\bin\Debug\net7.0\ValuationDiamond.Data.dll

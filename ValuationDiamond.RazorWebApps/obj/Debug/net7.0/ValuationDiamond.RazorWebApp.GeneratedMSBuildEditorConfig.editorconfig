@@ -16,6 +16,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuationPage/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb25QYWdlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuationPage/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb25QYWdlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuationPage/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb25QYWdlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuationPage/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb25QYWdlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/CertificateValuationPage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2VydGlmaWNhdGVWYWx1YXRpb25QYWdlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -59,7 +87,3 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-qr3ps4ca8t

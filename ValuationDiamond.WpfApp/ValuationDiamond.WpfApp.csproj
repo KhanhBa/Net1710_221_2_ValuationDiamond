@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
-    <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
   </ItemGroup>
 
 </Project>
