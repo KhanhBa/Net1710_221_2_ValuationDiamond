@@ -1,23 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
+    <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
     <Content Remove="appsettings.json" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="appsettings.json" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18">
       <PrivateAssets>all</PrivateAssets>

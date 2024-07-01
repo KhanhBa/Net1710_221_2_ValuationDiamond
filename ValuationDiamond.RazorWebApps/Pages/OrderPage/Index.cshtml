@@ -1,0 +1,112 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.OrderPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@* <form method="get" class="form-inline mb-3">
+    <div class="input-group" style="width: 50%;">
+        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by Order Code or Staff Name" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form> *@
+
+<form method="get" class="form-inline mb-3">
+    <div class="input-group" style="width: 80%;">
+        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by Order Code or Staff Name or Customer" />
+
+        <div class="input-group-append">
+            <button type="submit" name="SearchField" value="OrderCode" class="btn btn-primary">Search Order Code</button>
+            <button type="submit" name="SearchField" value="StaffName" class="btn btn-primary">Search Staff Name</button>
+            <button type="submit" name="SearchField" value="Customer" class="btn btn-primary">Search Customer</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].PayStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Payment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].StaffName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

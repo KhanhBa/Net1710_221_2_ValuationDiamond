@@ -1,3 +1,8 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using ValuationDiamond.Data.Models;
 using ValuationDiamond.Data.Repository;
@@ -6,12 +11,24 @@ namespace ValuationDiamond.Data
 {
     public class UnitOfWork
     {
-        private ValuationCertificateRepository _certificateRepository;
         private Net1710_221_2_ValuationDiamondContext _unitOfWorkContext;
-        
-        public UnitOfWork() { 
-        _unitOfWorkContext ??= new Net1710_221_2_ValuationDiamondContext();
+
+        private OrderRepository _order;
+        public UnitOfWork() 
+        { 
+            _unitOfWorkContext ??= new Net1710_221_2_ValuationDiamondContext();
         }
+
+        public OrderRepository OrderRepository 
+        { 
+            get 
+            { 
+                return _order ??= new Repository.OrderRepository(_unitOfWorkContext); 
+            } 
+        }
+
+        private ValuationCertificateRepository _certificateRepository;
+        
 
         public ValuationCertificateRepository CertificateRepository { 
             get { 

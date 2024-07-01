@@ -1,6 +1,13 @@
 {
   "Files": [
     {
+<<<<<<< HEAD
+      "Id": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ValuationDiamond.RazorWebApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ValuationDiamond.RazorWebApp.bundle.scp.css"
+    },
+    {
+=======
+>>>>>>> 48ca876242f680a9a18046acb81f17f6fe964638
       "Id": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

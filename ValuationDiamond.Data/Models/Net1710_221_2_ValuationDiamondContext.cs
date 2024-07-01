@@ -27,8 +27,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
         string connectionString = config.GetConnectionString(connectionStringName);
         return connectionString;
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
     public virtual DbSet<Company> Companies { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
@@ -44,6 +42,9 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuateDiamond> ValuateDiamonds { get; set; }
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -152,7 +153,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A713A42CB");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A00FD4501");
 
             entity.ToTable("Service");
 
@@ -166,7 +167,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB1750DB8E77");
+            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB1775EE37D1");
 
             entity.Property(e => e.Name)
                 .IsRequired()
@@ -238,7 +239,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-
             entity.HasOne(d => d.ValuateDiamond).WithOne(p => p.ValuationCertificate)
                 .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
