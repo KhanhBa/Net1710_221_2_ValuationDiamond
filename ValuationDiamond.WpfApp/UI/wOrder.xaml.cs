@@ -114,7 +114,7 @@ namespace ValuationDiamond.WpfApp.UI
                     var order = new Order()
                     {
                         //OrderId = idTmp,
-                        PayStatus = int.Parse(txtPayStatus.Text),
+                        PayStatus = txtPayStatus.Text=="",
                         Status = txtStatus.Text,
                         Payment = txtPayment.Text,
                         Day = DateTime.Parse(txtDay.Text),
@@ -130,7 +130,7 @@ namespace ValuationDiamond.WpfApp.UI
                 {
                     var order = item.Data as Order;
                     //order.OrderId = int.Parse(txtOrderId.Text);
-                    order.PayStatus = int.Parse(txtPayStatus.Text);
+                    order.PayStatus = txtPayStatus.Text=="";
                     order.Status = txtStatus.Text;
                     order.Payment = txtPayment.Text;
                     order.Day = DateTime.Parse(txtDay.Text);
