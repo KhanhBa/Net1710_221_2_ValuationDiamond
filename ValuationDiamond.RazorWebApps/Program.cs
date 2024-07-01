@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using ValuationDiamond.Business;
+using ValuationDiamond.Data.Models;
+
 namespace ValuationDiamond.RazorWebApps
 {
     public class Program
@@ -8,6 +12,10 @@ namespace ValuationDiamond.RazorWebApps
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddScoped<IOrderBusiness, OrderBusiness>();
+            builder.Services.AddScoped<ICustomerBusiness, CustomerBusiness>();
+            //builder.Services.AddDbContext<Net1710_221_2_ValuationDiamondContext>(options =>
+                //options.UseSqlServer(builder.Configuration.GetConnectionString("Net1710_221_2_ValuationDiamondContext") ?? throw new InvalidOperationException("Connection string 'Net1710_221_2_ValuationDiamondContext' not found.")));
 
             var app = builder.Build();
 
