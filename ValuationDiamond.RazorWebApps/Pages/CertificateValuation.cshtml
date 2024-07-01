@@ -7,6 +7,11 @@
 }
 <h1>CertificateValuation Management</h1>
 
+@if (!string.IsNullOrEmpty(Model.message))
+{
+    <div class="alert alert-info">@Model.message</div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -23,13 +28,23 @@
         @foreach (var valuationCertificate in Model.cers)
         {
             <tr>
-                <td>@valuationCertificate.ValuationId</td>
+                <td>@valuationCertificate.ValuationCertificateId</td>  
                 <td>@valuationCertificate.Price</td>
                 <td>@valuationCertificate.Status</td>
-                <td>@valuationCertificate.Day</td>
+                <td>@valuationCertificate.Day.ToString("yyyy-MM-dd")</td>
                 <td>@valuationCertificate.Description</td>
                 <td>@valuationCertificate.ValuateDiamondId</td>
-                <td><button id="UpdateButton" class="btn btn-primary">Update</button></td>
+                <td>
+                    <button class="btn btn-primary update-button"
+                            data-valuation-id="@valuationCertificate.ValuationCertificateId"
+                            data-price="@valuationCertificate.Price"
+                            data-status="@valuationCertificate.Status"
+                            data-day="@valuationCertificate.Day.ToString("yyyy-MM-dd")"
+                            data-description="@valuationCertificate.Description"
+                            data-valuate-diamond-id="@valuationCertificate.ValuateDiamondId">
+                        Update
+                    </button>
+                </td>
             </tr>
         }
     </tbody>
@@ -38,30 +53,30 @@
 <div id="certificateModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>New Certificate Valuation</h2>
-        <form method="post" asp-action=",Create">
+        <h2 id="modalTitle">New Certificate Valuation</h2>
+        <form method="post" asp-page-handler="Save">
+            <input type="hidden" id="valuationId" name="NewCertificateValuation.ValuationId" asp-for="NewCertificateValuation.ValuationCertificateId">
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="Price" class="form-control" asp-for="NewCertificateValuation.Price" required>
+                <input type="number" id="price" name="NewCertificateValuation.Price" class="form-control" asp-for="NewCertificateValuation.Price" required>
             </div>
             <div class="form-group">
                 <label for="status">Status:</label>
-                <input type="text" id="status" name="Status" class="form-control" asp-for="NewCertificateValuation.Status" required>
+                <input type="text" id="status" name="NewCertificateValuation.Status" class="form-control" asp-for="NewCertificateValuation.Status" required>
             </div>
             <div class="form-group">
                 <label for="day">Day:</label>
-                <input type="date" id="day" name="Day" class="form-control" asp-for="NewCertificateValuation.Day" required>
+                <input type="date" id="day" name="NewCertificateValuation.Day" class="form-control" asp-for="NewCertificateValuation.Day" required>
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <input type="text" id="description" name="Description" class="form-control" asp-for="NewCertificateValuation.Description" required>
+                <input type="text" id="description" name="NewCertificateValuation.Description" class="form-control" asp-for="NewCertificateValuation.Description" required>
             </div>
             <div class="form-group">
                 <label for="valuateDiamondId">Valuate Diamond ID:</label>
-                <input type="number" id="valuateDiamondId" name="ValuateDiamondId" class="form-control" asp-for="NewCertificateValuation.ValuateDiamondId" required>
+                <input type="number" id="valuateDiamondId" name="NewCertificateValuation.ValuateDiamondId" class="form-control" asp-for="NewCertificateValuation.ValuateDiamondId" required>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
-            
         </form>
     </div>
 </div>
@@ -70,10 +85,19 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var modal = document.getElementById("certificateModal");
-            var btn = document.getElementById("createNewButton");
+            var createBtn = document.getElementById("createNewButton");
             var span = document.getElementsByClassName("close")[0];
+            var updateButtons = document.getElementsByClassName("update-button");
+            var modalTitle = document.getElementById("modalTitle");
 
-            btn.onclick = function () {
+            createBtn.onclick = function () {
+                modalTitle.innerText = "New Certificate Valuation";
+                document.getElementById("valuationId").value = "";
+                document.getElementById("price").value = "";
+                document.getElementById("status").value = "";
+                document.getElementById("day").value = "";
+                document.getElementById("description").value = "";
+                document.getElementById("valuateDiamondId").value = "";
                 modal.style.display = "block";
             }
 
@@ -86,6 +110,27 @@
                     modal.style.display = "none";
                 }
             }
+
+            Array.from(updateButtons).forEach(function (btn) {
+                btn.onclick = function () {
+                    var valuationId = this.getAttribute("data-valuation-id");
+                    var price = this.getAttribute("data-price");
+                    var status = this.getAttribute("data-status");
+                    var day = this.getAttribute("data-day");
+                    var description = this.getAttribute("data-description");
+                    var valuateDiamondId = this.getAttribute("data-valuate-diamond-id");
+
+                    document.getElementById("valuationId").value = valuationId;
+                    document.getElementById("price").value = price;
+                    document.getElementById("status").value = status;
+                    document.getElementById("day").value = day;
+                    document.getElementById("description").value = description;
+                    document.getElementById("valuateDiamondId").value = valuateDiamondId;
+
+                    modalTitle.innerText = "Update Certificate Valuation";
+                    modal.style.display = "block";
+                }
+            });
         });
     </script>
 }
@@ -121,8 +166,7 @@
         font-weight: bold;
     }
 
-        .close:hover,
-        .close:focus {
+        .close:hover, .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;

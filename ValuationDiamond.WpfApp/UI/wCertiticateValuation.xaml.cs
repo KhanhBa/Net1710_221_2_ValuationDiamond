@@ -85,12 +85,12 @@ namespace ValuationDiamond.WpfApp.UI
                     var item = row.Item as ValuationCertificate;
                     if (item != null)
                     {
-                        var currencyResult = await _certificateBusiness.GetbyId(item.ValuationId);
+                        var currencyResult = await _certificateBusiness.GetbyId(item.ValuationCertificateId);
 
                         if (currencyResult.Status > 0 && currencyResult.Data != null)
                         {
                             item = currencyResult.Data as ValuationCertificate;
-                            txtCertificateValuationId.Text = item.ValuationId.ToString();
+                            txtCertificateValuationId.Text = item.ValuationCertificateId.ToString();
                             txtCertificateValuationPrice.Text = item.Price.ToString();
                             txtDay.Text = item.Day.ToString();
                             txtvalueid.Text = item.ValuateDiamondId.ToString();
@@ -134,7 +134,7 @@ namespace ValuationDiamond.WpfApp.UI
                 else
                 {
                     var valuationCertificate = item.Data as ValuationCertificate;
-                    valuationCertificate.ValuationId = id;
+                    valuationCertificate.ValuationCertificateId = id;
                     valuationCertificate.Price = double.Parse(txtCertificateValuationPrice.Text);
                     valuationCertificate.Day = DateTime.Parse(txtDay.Text);
                     valuationCertificate.Status = chkIsActive.Text;
@@ -180,7 +180,7 @@ namespace ValuationDiamond.WpfApp.UI
                             txtCertificateValuationId.Text = item.ValuateDiamondId.ToString();
                             txtCertificateValuationPrice.Text = item.Price.ToString();
                             txtDay.Text = item.Day.ToString();
-                            txtvalueid.Text = item.ValuationId.ToString();
+                            txtvalueid.Text = item.ValuationCertificateId.ToString();
                             txtdes.Text = item.Description.ToString();
                             chkIsActive.Text = item.Status.ToString();
                         }

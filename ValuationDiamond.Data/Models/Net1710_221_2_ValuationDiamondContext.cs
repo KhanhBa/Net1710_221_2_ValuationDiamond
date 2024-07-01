@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ValuationDiamond.Data.Models;
 
@@ -16,7 +17,18 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
         : base(options)
     {
     }
+    public static string GetConnectionString(string connectionStringName)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
 
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
     public virtual DbSet<Company> Companies { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
@@ -32,12 +44,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuateDiamond> ValuateDiamonds { get; set; }
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("data source=MSI;initial catalog=Net1710_221_2_ValuationDiamond;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-        base.OnConfiguring(optionsBuilder);
-    }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,8 +68,9 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
             entity.Property(e => e.Address)
                 .IsRequired()
-                .HasMaxLength(1)
+                .HasMaxLength(200)
                 .IsUnicode(false);
+            entity.Property(e => e.Avatar).HasMaxLength(200);
             entity.Property(e => e.Cccd)
                 .IsRequired()
                 .HasMaxLength(255)
@@ -82,6 +89,9 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.Phone)
+                .HasMaxLength(10)
+                .IsFixedLength();
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -91,10 +101,15 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
             entity.ToTable("Order");
 
             entity.Property(e => e.Day).HasColumnType("date");
+            entity.Property(e => e.OrderCode)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.Payment)
                 .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.StaffName).HasMaxLength(255);
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -112,6 +127,13 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
             entity.ToTable("OrderDetail");
 
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.DetailCode)
+                .IsRequired()
+                .HasMaxLength(255)
+                .IsUnicode(false);
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -162,6 +184,22 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
             entity.ToTable("ValuateDiamond");
 
+            entity.Property(e => e.Carat)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Clarity)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Color)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.DiamondType)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Shape)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Time).HasColumnType("datetime");
             entity.Property(e => e.ValuationStaffName)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -175,23 +213,36 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<ValuationCertificate>(entity =>
         {
-            entity.HasKey(e => e.ValuationId).HasName("PK__Valuatio__CF17CF32C49A58ED");
+            entity.HasKey(e => e.ValuationCertificateId).HasName("PK__Valuatio__CF17CF32C49A58ED");
 
             entity.ToTable("ValuationCertificate");
 
-            entity.Property(e => e.Day).HasColumnType("date");
+            entity.Property(e => e.ValuationCertificateId).ValueGeneratedOnAdd();
+            entity.Property(e => e.CustomerEmail)
+                .HasMaxLength(50)
+                .IsFixedLength();
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(50)
+                .IsFixedLength();
+            entity.Property(e => e.Day).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.ManagerName)
+                .HasMaxLength(50)
+                .IsFixedLength();
+            entity.Property(e => e.Sign)
+                .HasMaxLength(50)
+                .IsFixedLength();
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.ValuateDiamond).WithMany(p => p.ValuationCertificates)
-                .HasForeignKey(d => d.ValuateDiamondId)
+            entity.HasOne(d => d.ValuateDiamond).WithOne(p => p.ValuationCertificate)
+                .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ValuationCertificate_ValuateDiamond");
+                .HasConstraintName("FK_ValuationCertificate_ValuateDiamond1");
         });
 
         OnModelCreatingPartial(modelBuilder);

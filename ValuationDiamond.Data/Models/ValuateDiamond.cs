@@ -9,15 +9,29 @@ public partial class ValuateDiamond
 {
     public int ValuateDiamondId { get; set; }
 
-    public double Price { get; set; }
+    public double? Price { get; set; }
 
-    public TimeSpan Time { get; set; }
+    public DateTime Time { get; set; }
 
     public string ValuationStaffName { get; set; }
 
     public int OrderDetailId { get; set; }
 
+    public bool IsDiamond { get; set; }
+
+    public string Color { get; set; }
+
+    public string DiamondType { get; set; }
+
+    public string Shape { get; set; }
+
+    public string Carat { get; set; }
+
+    public string Clarity { get; set; }
+
+    public int? ValuationCertificateId { get; set; }
+
     public virtual OrderDetail OrderDetail { get; set; }
 
-    public virtual ICollection<ValuationCertificate> ValuationCertificates { get; set; } = new List<ValuationCertificate>();
+    public virtual ValuationCertificate ValuationCertificate { get; set; }
 }
