@@ -1167,7 +1167,7 @@
       },
       "ValuationDiamond.Common/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v7.0",
         "compile": {
           "bin/placeholder/ValuationDiamond.Common.dll": {}
         },
@@ -3594,7 +3594,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net7"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -3603,7 +3603,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": "net7.0",
+          "targetAlias": "net7",
           "projectReferences": {
             "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
               "projectPath": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
@@ -3622,7 +3622,7 @@
     },
     "frameworks": {
       "net7.0": {
-        "targetAlias": "net7.0",
+        "targetAlias": "net7",
         "imports": [
           "net461",
           "net462",

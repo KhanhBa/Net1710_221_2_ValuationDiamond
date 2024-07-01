@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net7"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -31,7 +31,7 @@
         },
         "frameworks": {
           "net7.0": {
-            "targetAlias": "net7.0",
+            "targetAlias": "net7",
             "projectReferences": {
               "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
                 "projectPath": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
@@ -50,7 +50,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": "net7.0",
+          "targetAlias": "net7",
           "imports": [
             "net461",
             "net462",
@@ -89,7 +89,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -97,8 +97,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7",
             "projectReferences": {}
           }
         },
@@ -109,8 +109,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7",
           "imports": [
             "net461",
             "net462",
@@ -149,7 +149,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net7"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -158,7 +158,7 @@
         },
         "frameworks": {
           "net7.0": {
-            "targetAlias": "net7.0",
+            "targetAlias": "net7",
             "projectReferences": {}
           }
         },
@@ -170,7 +170,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": "net7.0",
+          "targetAlias": "net7",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
