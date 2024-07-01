@@ -1,0 +1,55 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ValuationCertificate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ValuationCertificate.ValuationCertificateId" />
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.Price" class="control-label"></label>
+                <input asp-for="ValuationCertificate.Price" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.Status" class="control-label"></label>
+                <input asp-for="ValuationCertificate.Status" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.Day" class="control-label"></label>
+                <input asp-for="ValuationCertificate.Day" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.Day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.Description" class="control-label"></label>
+                <input asp-for="ValuationCertificate.Description" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.ValuateDiamondId" class="control-label"></label>
+                <input asp-for="ValuationCertificate.ValuateDiamondId" class="form-control" asp-items="ViewBag.ValuateDiamondId"></input>
+                <span asp-validation-for="ValuationCertificate.ValuateDiamondId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

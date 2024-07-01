@@ -16,6 +16,7 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> Save(ValuationCertificate valuationCertificate);
         Task<IValuationDiamondResult> DeleteByID(int ID);
         Task<IValuationDiamondResult> Create(ValuationCertificate valuationCertificate);
+        Task<IValuationDiamondResult> GetbyId(int id);
     }
     public class ValuationCertificateBusiness : IValuationCertificateBusiness
     {
@@ -90,16 +91,16 @@ namespace ValuationDiamond.Business
             try
             {
                 // var obj = await _certificateDAO.GetByIdAsync(valuationCertificate.ValuationId);
-                var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(valuationCertificate.ValuationId);
-                if (obj == null)
-                {
-                    return new ValuationDiamondResult(0, "Order not found");
-                }
-                obj = valuationCertificate;
+                //var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(valuationCertificate.ValuationId);
+                //if (obj == null)
+                //{
+                //    return new ValuationDiamondResult(0, "Order not found");
+                //}
+                //obj = valuationCertificate;
                 //_context.Entry(o).CurrentValues.SetValues(order);
                 // await _certificateDAO.UpdateAsync(obj);
-                await _unitOfWork.CertificateRepository.UpdateAsync(obj);
-                return new ValuationDiamondResult(1, "Order updated successfully", obj);
+                await _unitOfWork.CertificateRepository.UpdateAsync(valuationCertificate);
+                return new ValuationDiamondResult(1, "Order updated successfully", valuationCertificate);
             }
             catch (Exception ex)
             {
@@ -110,6 +111,10 @@ namespace ValuationDiamond.Business
         {
             try
             {
+                if (id == null)
+                {
+                    return new ValuationDiamondResult(-1, "Fail");
+                }
                 //var obj = await _certificateDAO.GetByIdAsync(ID);
                 var obj = await _unitOfWork.CertificateRepository.GetByIdAsync(id);
                 if (obj == null)
