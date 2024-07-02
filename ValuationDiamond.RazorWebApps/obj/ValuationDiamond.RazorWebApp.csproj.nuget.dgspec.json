@@ -89,7 +89,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -98,7 +98,7 @@
         },
         "frameworks": {
           "net7.0": {
-            "targetAlias": "net7",
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -110,7 +110,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": "net7",
+          "targetAlias": "net7.0",
           "imports": [
             "net461",
             "net462",

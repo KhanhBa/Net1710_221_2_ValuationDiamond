@@ -30,6 +30,16 @@ D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationD
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.pdb
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.genruntimeconfig.cache
 D:\PRN221\project\NET1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ref\ValuationDiamond.RazorWebApp.dll
+<<<<<<< HEAD
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\appsettings.Development.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\appsettings.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.staticwebassets.runtime.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.exe
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.deps.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.runtimeconfig.json
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.dll
+D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.pdb
+=======
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\appsettings.Development.json
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\appsettings.json
 D:\PRN221 - Git\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.RazorWebApp.staticwebassets.runtime.json
@@ -292,6 +302,7 @@ D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\appsettings.json
 =======
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.csproj.AssemblyReference.cache
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.GeneratedMSBuildEditorConfig.editorconfig
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.AssemblyInfoInputs.cache
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.AssemblyInfo.cs
@@ -299,6 +310,8 @@ D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.RazorAssemblyInfo.cache
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.RazorAssemblyInfo.cs
+<<<<<<< HEAD
+=======
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\Pages\appsettings.Development.json
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\Pages\appsettings.json
 >>>>>>> 48ca876242f680a9a18046acb81f17f6fe964638
@@ -535,6 +548,7 @@ D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.Data.pdb
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.Common.dll
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\bin\Debug\net7.0\ValuationDiamond.Common.pdb
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\staticwebassets\msbuild.ValuationDiamond.RazorWebApp.Microsoft.AspNetCore.StaticWebAssets.props
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\staticwebassets\msbuild.build.ValuationDiamond.RazorWebApp.props
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.ValuationDiamond.RazorWebApp.props
@@ -545,7 +559,10 @@ D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\scopedcss\bundle\ValuationDiamond.RazorWebApp.styles.css
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\scopedcss\projectbundle\ValuationDiamond.RazorWebApp.bundle.scp.css
+<<<<<<< HEAD
+=======
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.csproj.CopyComplete
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.dll
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\refint\ValuationDiamond.RazorWebApp.dll
 D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\obj\Debug\net7.0\ValuationDiamond.RazorWebApp.pdb
