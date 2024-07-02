@@ -66,7 +66,7 @@ namespace ValuationDiamond.WpfApp.UI
                         Address = txtAddress.Text
                     };
 
-                    var result = await _business.UpdateCustomer(int.Parse(txtCustomerId.Text), customer);
+                    var result = await _business.UpdateCustomer(customer);
                     MessageBox.Show(result.Message, "Update");
                 }
 
