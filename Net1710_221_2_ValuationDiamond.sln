@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.RazorWebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValuationDiamond.Common", "ValuationDiamond.Common\ValuationDiamond.Common.csproj", "{84D4C364-A533-4E48-AD6E-712B2794278A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.WpfApp", "ValuationDiamond.WpfApp\ValuationDiamond.WpfApp.csproj", "{03CE824E-879E-48F2-8C38-792589290141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{84D4C364-A533-4E48-AD6E-712B2794278A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D4C364-A533-4E48-AD6E-712B2794278A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D4C364-A533-4E48-AD6E-712B2794278A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CE824E-879E-48F2-8C38-792589290141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CE824E-879E-48F2-8C38-792589290141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CE824E-879E-48F2-8C38-792589290141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CE824E-879E-48F2-8C38-792589290141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

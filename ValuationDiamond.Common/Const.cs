@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ValuationDiamond.Common
-{
-    public static class Const
+{    public static class Const
     {
         #region Error Codes
 
@@ -46,7 +45,6 @@ namespace ValuationDiamond.Common
 
         public static int WARNING_NO_DATA_CODE = 4;
         public static string WARNING_NO_DATA__MSG = "No data";
-
-        #endregion
+       #endregion
     }
 }

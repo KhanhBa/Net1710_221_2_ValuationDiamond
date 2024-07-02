@@ -9,7 +9,7 @@ public partial class Order
 {
     public int OrderId { get; set; }
 
-    public int PayStatus { get; set; }
+    public bool PayStatus { get; set; }
 
     public string Status { get; set; }
 
@@ -22,6 +22,10 @@ public partial class Order
     public double TotalAmount { get; set; }
 
     public int CustomerId { get; set; }
+
+    public string OrderCode { get; set; }
+
+    public string StaffName { get; set; }
 
     public virtual Customer Customer { get; set; }
 

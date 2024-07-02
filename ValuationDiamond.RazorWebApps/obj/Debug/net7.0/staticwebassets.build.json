@@ -1,6 +1,14 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "1CwHfc+Lvq+773TWW4hbOULIUpjoluvZgeN4xTfmiC4=",
+=======
+<<<<<<< HEAD
+  "Hash": "1CwHfc+Lvq+773TWW4hbOULIUpjoluvZgeN4xTfmiC4=",
+=======
+  "Hash": "5OA7N+ym7/NUOZQhosKRbdRjhgh5v+SCWlwqJ3i6ZtM=",
+>>>>>>> 48ca876242f680a9a18046acb81f17f6fe964638
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
   "Source": "ValuationDiamond.RazorWebApp",
   "BasePath": "_content/ValuationDiamond.RazorWebApp",
   "Mode": "Default",
@@ -17,6 +25,10 @@
   ],
   "Assets": [
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
       "Identity": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ValuationDiamond.RazorWebApp.styles.css",
       "SourceId": "ValuationDiamond.RazorWebApp",
       "SourceType": "Computed",
@@ -51,6 +63,11 @@
       "OriginalItemSpec": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ValuationDiamond.RazorWebApp.bundle.scp.css"
     },
     {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 48ca876242f680a9a18046acb81f17f6fe964638
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
       "Identity": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\wwwroot\\css\\site.css",
       "SourceId": "ValuationDiamond.RazorWebApp",
       "SourceType": "Discovered",
