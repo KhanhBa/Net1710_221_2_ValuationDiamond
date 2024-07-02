@@ -6,36 +6,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
 {
     public class EditModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly IValuationDiamondBusiness Business;
 
-        public EditModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public EditModel()
         {
-            _context = context;
+            Business ??= new ValuationDiamondBusiness();
         }
+
 
         [BindProperty]
         public ValuateDiamond ValuateDiamond { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.ValuateDiamonds == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var valuatediamond =  await _context.ValuateDiamonds.FirstOrDefaultAsync(m => m.ValuateDiamondId == id);
+            var valuatediamond =  await Business.GetById(id);
             if (valuatediamond == null)
             {
                 return NotFound();
             }
-            ValuateDiamond = valuatediamond;
-           ViewData["OrderDetailId"] = new SelectList(_context.OrderDetails, "OrderDetailId", "DetailCode");
+            ValuateDiamond = valuatediamond.Data as ValuateDiamond;
             return Page();
         }
 
@@ -48,30 +49,28 @@ namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
                 return Page();
             }
 
-            _context.Attach(ValuateDiamond).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await Business.Update(ValuateDiamond.ValuateDiamondId, ValuateDiamond);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ValuateDiamondExists(ValuateDiamond.ValuateDiamondId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                //if (!ValuateDiamondExists(ValuateDiamond.ValuateDiamondId))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                //    throw;
+                //}
             }
 
             return RedirectToPage("./Index");
         }
 
-        private bool ValuateDiamondExists(int id)
-        {
-          return (_context.ValuateDiamonds?.Any(e => e.ValuateDiamondId == id)).GetValueOrDefault();
-        }
+        //private bool ValuateDiamondExists(int id)
+        //{
+        //  return (_context.ValuateDiamonds?.Any(e => e.ValuateDiamondId == id)).GetValueOrDefault();
+        //}
     }
 }

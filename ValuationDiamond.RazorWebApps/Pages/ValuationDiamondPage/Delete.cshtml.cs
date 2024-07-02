@@ -5,30 +5,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly IValuationDiamondBusiness business;
 
-        public DeleteModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public DeleteModel()
         {
-            _context = context;
+            business ??= new ValuationDiamondBusiness();
         }
+
 
         [BindProperty]
       public ValuateDiamond ValuateDiamond { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.ValuateDiamonds == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var valuatediamond = await _context.ValuateDiamonds.FirstOrDefaultAsync(m => m.ValuateDiamondId == id);
+            var valuatediamond = await business.GetById(id);
 
             if (valuatediamond == null)
             {
@@ -36,25 +38,19 @@ namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
             }
             else 
             {
-                ValuateDiamond = valuatediamond;
+                ValuateDiamond = valuatediamond.Data as ValuateDiamond;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null || _context.ValuateDiamonds == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var valuatediamond = await _context.ValuateDiamonds.FindAsync(id);
+            var valuatediamond = await business.DeleteByID(id);
 
-            if (valuatediamond != null)
-            {
-                ValuateDiamond = valuatediamond;
-                _context.ValuateDiamonds.Remove(ValuateDiamond);
-                await _context.SaveChangesAsync();
-            }
 
             return RedirectToPage("./Index");
         }

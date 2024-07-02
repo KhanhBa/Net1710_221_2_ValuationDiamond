@@ -5,22 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
 {
     public class CreateModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly IValuationDiamondBusiness business;
 
-        public CreateModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public CreateModel()
         {
-            _context = context;
+            business ??= new ValuationDiamondBusiness();
         }
 
         public IActionResult OnGet()
         {
-        ViewData["OrderDetailId"] = new SelectList(_context.OrderDetails, "OrderDetailId", "DetailCode");
+        //ViewData["OrderDetailId"] = new SelectList(_context.OrderDetails, "OrderDetailId", "DetailCode");
             return Page();
         }
 
@@ -31,13 +32,13 @@ namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.ValuateDiamonds == null || ValuateDiamond == null)
+          if (!ModelState.IsValid )
             {
                 return Page();
             }
 
-            _context.ValuateDiamonds.Add(ValuateDiamond);
-            await _context.SaveChangesAsync();
+           
+            await business.Create(ValuateDiamond);
 
             return RedirectToPage("./Index");
         }
