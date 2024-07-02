@@ -1,4 +1,5 @@
-﻿using ValuationDiamond.Data.DAO;
+﻿using ValuationDiamond.Data;
+using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.Business
@@ -14,13 +15,21 @@ namespace ValuationDiamond.Business
 
     public class ServiceBusiness : IServiceBusiness
     {
-        private readonly ServiceDAO _DAO;
+
+        
+        private readonly UnitOfWork _unitOfWork;
+
+        public ServiceBusiness()
+        {
+            //_DAO = new CustomerDAO();
+            _unitOfWork = new UnitOfWork();
+        }
 
         public async Task<IValuationDiamondResult> GetAllService()
         {
             try
             {
-                var service = await _DAO.GetAllAsync();
+                var service = await _unitOfWork.ServiceRepository.GetAllAsync();
                 return new ValuationDiamondResult(1, "Success", service);
             }
             catch (Exception ex)
@@ -46,7 +55,7 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                await _DAO.CreateAsync(service);
+                await _unitOfWork.ServiceRepository.CreateAsync(service);
                 return new ValuationDiamondResult(1, "Service added successfully.");
             }
             catch (Exception ex)
@@ -59,7 +68,7 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var existingService = await _DAO.GetByIdAsync(serviceId);
+                var existingService = await _unitOfWork.ServiceRepository.GetByIdAsync(serviceId);
                 if (existingService == null)
                 {
                     return new ValuationDiamondResult(0, "Service not found.");
@@ -70,7 +79,7 @@ namespace ValuationDiamond.Business
                 existingService.Price = updateService.Price;
                 existingService.Decription = updateService.Decription;
 
-                _DAO.UpdateAsync(existingService);
+                _unitOfWork.ServiceRepository.UpdateAsync(existingService);
                 return new ValuationDiamondResult(1, "Service updated successfully", updateService);
             }
             catch (Exception ex)
@@ -83,13 +92,13 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                var service = await _DAO.GetByIdAsync(serviceId);
+                var service = await _unitOfWork.CustomerRepository.GetByIdAsync(serviceId);
                 if (service == null)
                 {
                     return new ValuationDiamondResult(0, "Service not found.");
                 }
 
-                _DAO.RemoveAsync(service);
+                _unitOfWork.CustomerRepository.RemoveAsync(service);
 
                 return new ValuationDiamondResult(1, "Service deleted successfully.");
             }
