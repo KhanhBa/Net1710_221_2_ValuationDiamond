@@ -1,5 +1,4 @@
-
-﻿using System.Text;
+using System.Text;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +26,12 @@ namespace ValuationDiamond.WpfApp
             InitializeComponent();
         }
 
+        private async void Open_wCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wCustomer();
+            p.Owner = this;
+            p.Show();
+        }
         private async void Open_wOrder_Click(object sender, RoutedEventArgs e)
         {
             var p = new wOrder();
@@ -44,7 +49,6 @@ namespace ValuationDiamond.WpfApp
             p.Owner = this;
             p.Show();
             this.Hide();
-
         }
     }
 }

@@ -12,12 +12,31 @@ namespace ValuationDiamond.Data
     public class UnitOfWork
     {
         private Net1710_221_2_ValuationDiamondContext _unitOfWorkContext;
+        private CustomerRepository _customer;
+        private ServiceRepository _service;
 
-        private OrderRepository _order;
-        public UnitOfWork() 
-        { 
+        public UnitOfWork()
+        {
             _unitOfWorkContext ??= new Net1710_221_2_ValuationDiamondContext();
         }
+
+        public CustomerRepository CustomerRepository
+        {
+            get
+            {
+                return _customer ??= new Repository.CustomerRepository(_unitOfWorkContext);
+            }
+        }
+
+        public ServiceRepository ServiceRepository
+        {
+            get
+            {
+                return _service ??= new Repository.ServiceRepository();
+            }
+        }
+        private OrderRepository _order;
+      
 
         public OrderRepository OrderRepository 
         { 
@@ -34,8 +53,7 @@ namespace ValuationDiamond.Data
             get { 
                 return _certificateRepository ??= new ValuationCertificateRepository(_unitOfWorkContext); 
             }
-        }
-        ////TO-DO CODE HERE/////////////////
+        }      ////TO-DO CODE HERE/////////////////
 
         #region Set transaction isolation levels
 
@@ -99,4 +117,6 @@ namespace ValuationDiamond.Data
 
         #endregion
     }
+
 }
+
