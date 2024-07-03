@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Common", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.WpfApp", "ValuationDiamond.WpfApp\ValuationDiamond.WpfApp.csproj", "{623B2887-BD59-4050-B620-6497DC13A5CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValuationDiamond.RazorWebApp", "ValuationDiamond.RazorWebApp\ValuationDiamond.RazorWebApp.csproj", "{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.RazorWebApp", "ValuationDiamond.RazorWebApp\ValuationDiamond.RazorWebApp.csproj", "{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

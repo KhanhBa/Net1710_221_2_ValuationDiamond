@@ -1,4 +1,8 @@
-﻿using System.Text;
+using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,6 +31,24 @@ namespace ValuationDiamond.WpfApp
             var p = new wCustomer();
             p.Owner = this;
             p.Show();
+        }
+        private async void Open_wOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wOrder();
+            p.Owner = this;
+            p.Show();
+            //this.Hide();
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private async void Open_wValuationCertificate_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wCertiticateValuation();
+            p.Owner = this;
+            p.Show();
+            this.Hide();
         }
     }
 }

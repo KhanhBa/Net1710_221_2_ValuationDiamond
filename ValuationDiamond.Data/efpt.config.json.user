@@ -1,3 +1,7 @@
 ﻿{
+<<<<<<< HEAD
    "UiHint": "msi\\sqlexpress01.Net1710_221_2_ValuationDiamond.dbo"
+=======
+   "UiHint": "max\\sqlmax.Net1710_221_2_ValuationDiamond.dbo"
+>>>>>>> 17b51fff39f0ef72a4c41a42f7f88699092e9dc6
 }

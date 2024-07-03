@@ -116,9 +116,14 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public Task<bool> CheckCustomerIdExist(int customerId)
+        public async Task<bool> CheckCustomerIdExist(int customerId)
         {
-            throw new NotImplementedException();
+            var customer = await _unitOfWork.CustomerRepository.GetByIdAsync(customerId);
+            if (customer == null)
+            {
+                return false;
+            }
+            else return true;
         }
 
         public async Task<IValuationDiamondResult> SaveCustomer(Customer customer)

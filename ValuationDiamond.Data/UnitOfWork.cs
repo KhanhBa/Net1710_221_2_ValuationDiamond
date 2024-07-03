@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using ValuationDiamond.Data.Models;
 using ValuationDiamond.Data.Repository;
 
@@ -34,8 +35,25 @@ namespace ValuationDiamond.Data
                 return _service ??= new Repository.ServiceRepository();
             }
         }
+        private OrderRepository _order;
+      
 
-        ////TO-DO CODE HERE/////////////////
+        public OrderRepository OrderRepository 
+        { 
+            get 
+            { 
+                return _order ??= new Repository.OrderRepository(_unitOfWorkContext); 
+            } 
+        }
+
+        private ValuationCertificateRepository _certificateRepository;
+        
+
+        public ValuationCertificateRepository CertificateRepository { 
+            get { 
+                return _certificateRepository ??= new ValuationCertificateRepository(_unitOfWorkContext); 
+            }
+        }      ////TO-DO CODE HERE/////////////////
 
         #region Set transaction isolation levels
 
@@ -99,4 +117,6 @@ namespace ValuationDiamond.Data
 
         #endregion
     }
+
 }
+
