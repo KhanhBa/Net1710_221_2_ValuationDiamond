@@ -10,5 +10,11 @@ namespace ValuationDiamond.Data.Repository
 {
     public class OrderDetailRepository :GenericRepository<OrderDetail>
     {
+        public OrderDetailRepository()
+        {
+
+        }
+
+        public OrderDetailRepository(Net1710_221_2_ValuationDiamondContext context) => _context = context;
     }
 }

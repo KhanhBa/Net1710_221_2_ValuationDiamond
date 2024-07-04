@@ -21,7 +21,7 @@ public partial class OrderDetail
     
     public string Description { get; set; }
 
-    public float EstimateLength { get; set; }
+    public double EstimateLength { get; set; }
 
     public virtual Order Order { get; set; }
 

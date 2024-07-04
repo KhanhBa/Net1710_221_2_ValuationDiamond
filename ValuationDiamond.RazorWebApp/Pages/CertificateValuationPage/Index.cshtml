@@ -1,0 +1,85 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].ValuateDiamond)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].Sign)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].ManagerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValuationCertificate[0].CustomerEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ValuationCertificate)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValuateDiamond.ValuationStaffName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sign)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ValuationCertificateId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ValuationCertificateId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ValuationCertificateId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

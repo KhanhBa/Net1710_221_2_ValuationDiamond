@@ -1,0 +1,123 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ValuationDiamondModel
+@{
+    ViewData["Title"] = "Valuation Diamonds";
+    var Valuation = Model.ValuateDiamonds;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Valuation Diamonds</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewModal">
+            Add
+        </button>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="card-title text-center">ValuateDiamondId</th>
+            <th class="card-title text-center">Price</th>
+            <th class="card-title text-center">Time</th>
+            <th class="card-title text-center">ValuationStaffName</th>
+            <th class="card-title text-center">OrderDetailId</th>
+            <th class="card-title text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ValuateDiamonds)
+        {
+            <tr>
+                <td>@item.ValuateDiamondId</td>
+                <td>@item.Price</td>
+                <td>@item.Time</td>
+                <td>@item.ValuationStaffName</td>
+                <td>@item.OrderDetailId</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteValuationDiamond(@item.ValuateDiamondId)">
+                        Delete
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateValues( '@item.Price', @item.Price, '@item.Time', @item.Time, '@item.ValuationStaffName', @item.ValuationStaffName, '@item.OrderDetailId', @item.OrderDetailId)">
+                        Update
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update Valuation Diamond</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm">
+                    <input type="hidden" id="updateDiamondId" name="Id">
+                    <div class="form-group">
+                        <label for="updateDiamondPrice">Price:</label>
+                        <input type="text" class="form-control" id="updateDiamondPrice" name="Price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDiamondTime">Time:</label>
+                        <input type="number" class="form-control" id="updateDiamondTime" name="Time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDiamondValuationStaffName">ValuationStaffName:</label>
+                        <input type="number" class="form-control" id="updateDiamondValuationStaffName" name="ValuationStaffName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDiamondOrderDetailId">OrderDetailId:</label>
+                        <input type="number" class="form-control" id="updateDiamondOrderDetailId" name="OrderDetailId" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="updateDiamond()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewModalLabel">Add New Valuation Diamond</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addNewForm">
+                    <div class="form-group">
+                        <label for="addNewDiamondPrice">Price:</label>
+                        <input type="number" class="form-control" id="addNewDiamondPrice" name="Price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addNewDiamondTime">Time:</label>
+                        <input type="text" class="form-control" id="addNewDiamondTime" name="Time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addNewDiamondValuationStaffName">Valuation Staff Name:</label>
+                        <input type="text" class="form-control" id="addNewDiamondValuationStaffName" name="ValuationStaffName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addNewDiamondOrderDetailId">Order Detail ID:</label>
+                        <input type="number" class="form-control" id="addNewDiamondOrderDetailId" name="OrderDetailId" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addDiamond()">Add New</button>
+            </div>
+        </div>
+    </div>
+</div>
+

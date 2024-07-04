@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Data", "Va
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Business", "ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj", "{171AC7DE-3F51-4DD4-ABB7-B78541D8837E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.RazorWebApp", "ValuationDiamond.RazorWebApps\ValuationDiamond.RazorWebApp.csproj", "{EB1BDFDB-7EB3-4721-A998-08BF91423368}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Common", "ValuationDiamond.Common\ValuationDiamond.Common.csproj", "{A498EDC4-9CCD-42E6-A22F-ACDC64D6A908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Common", "ValuationDiamond.Common\ValuationDiamond.Common.csproj", "{84D4C364-A533-4E48-AD6E-712B2794278A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValuationDiamond.WpfApp", "ValuationDiamond.WpfApp\ValuationDiamond.WpfApp.csproj", "{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.RazorWebApp", "ValuationDiamond.RazorWebApp\ValuationDiamond.RazorWebApp.csproj", "{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +27,18 @@ Global
 		{171AC7DE-3F51-4DD4-ABB7-B78541D8837E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{171AC7DE-3F51-4DD4-ABB7-B78541D8837E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{171AC7DE-3F51-4DD4-ABB7-B78541D8837E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB1BDFDB-7EB3-4721-A998-08BF91423368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB1BDFDB-7EB3-4721-A998-08BF91423368}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB1BDFDB-7EB3-4721-A998-08BF91423368}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB1BDFDB-7EB3-4721-A998-08BF91423368}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A498EDC4-9CCD-42E6-A22F-ACDC64D6A908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A498EDC4-9CCD-42E6-A22F-ACDC64D6A908}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A498EDC4-9CCD-42E6-A22F-ACDC64D6A908}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A498EDC4-9CCD-42E6-A22F-ACDC64D6A908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D4C364-A533-4E48-AD6E-712B2794278A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D4C364-A533-4E48-AD6E-712B2794278A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D4C364-A533-4E48-AD6E-712B2794278A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D4C364-A533-4E48-AD6E-712B2794278A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,88 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ValuateDiamond</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Time)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.ValuationStaffName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.ValuationStaffName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.IsDiamond)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.IsDiamond)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.DiamondType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.DiamondType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Shape)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Shape)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Carat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Carat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.Clarity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.Clarity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.ValuationCertificateId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.ValuationCertificateId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValuateDiamond.OrderDetail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValuateDiamond.OrderDetail.DetailCode)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ValuateDiamond.ValuateDiamondId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

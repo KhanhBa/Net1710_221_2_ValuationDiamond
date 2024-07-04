@@ -53,7 +53,7 @@ namespace ValuationDiamond.Business
                 }
                 else
                 {
-                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace ValuationDiamond.Business
 
                 if (orderDetails == null)
                 {
-                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace ValuationDiamond.Business
 
                 if (orderDetail == null)
                 {
-                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
+                    return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
                 else
                 {

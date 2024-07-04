@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using ValuationDiamond.Data.Models;
 using ValuationDiamond.Data.Repository;
 
@@ -10,16 +11,59 @@ namespace ValuationDiamond.Data
 {
     public class UnitOfWork
     {
-        private Net1710_221_2_ValuationDiamondContext _context;
+        private Net1710_221_2_ValuationDiamondContext _unitOfWorkContext;
+        private ValuationDiamondRepository _valuate;
+        private CustomerRepository _customer;
+        private ServiceRepository _service;
+        private OrderRepository _order;
+        private ValuationCertificateRepository _certificateRepository;
         private OrderDetailRepository _orderDetailRepository;
 
-        public UnitOfWork() { }
+        public UnitOfWork()
+        {
+            _unitOfWorkContext ??= new Net1710_221_2_ValuationDiamondContext();
+        }
 
+        public ValuationDiamondRepository valuationDiamondRepository
+        {
+            get
+            {
+                return _valuate ??= new Repository.ValuationDiamondRepository(_unitOfWorkContext);
+            }
+        }
+        public CustomerRepository CustomerRepository
+        {
+            get
+            {
+                return _customer ??= new Repository.CustomerRepository(_unitOfWorkContext);
+            }
+        }
+        public ServiceRepository ServiceRepository
+        {
+            get
+            {
+                return _service ??= new Repository.ServiceRepository();
+            }
+        }
+        public OrderRepository OrderRepository
+        {
+            get
+            {
+                return _order ??= new Repository.OrderRepository(_unitOfWorkContext);
+            }
+        }
+        public ValuationCertificateRepository CertificateRepository
+        {
+            get
+            {
+                return _certificateRepository ??= new ValuationCertificateRepository(_unitOfWorkContext);
+            }
+        }
         public OrderDetailRepository OrderDetailRepository
         {
             get
             {
-                return _orderDetailRepository ??= new Repository.OrderDetailRepository();
+                return _orderDetailRepository ??= new OrderDetailRepository(_unitOfWorkContext);
             }
         }
         ////TO-DO CODE HERE/////////////////
@@ -43,11 +87,11 @@ namespace ValuationDiamond.Data
             int result = -1;
 
             //System.Data.IsolationLevel.Snapshot
-            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            using (var dbContextTransaction = _unitOfWorkContext.Database.BeginTransaction())
             {
                 try
                 {
-                    result = _context.SaveChanges();
+                    result = _unitOfWorkContext.SaveChanges();
                     dbContextTransaction.Commit();
                 }
                 catch (Exception)
@@ -66,11 +110,11 @@ namespace ValuationDiamond.Data
             int result = -1;
 
             //System.Data.IsolationLevel.Snapshot
-            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            using (var dbContextTransaction = _unitOfWorkContext.Database.BeginTransaction())
             {
                 try
                 {
-                    result = await _context.SaveChangesAsync();
+                    result = await _unitOfWorkContext.SaveChangesAsync();
                     dbContextTransaction.Commit();
                 }
                 catch (Exception)

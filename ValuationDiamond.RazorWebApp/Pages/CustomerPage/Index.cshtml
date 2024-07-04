@@ -1,0 +1,114 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.CustomerPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>View Customer List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form method="get" class="form-inline mb-3">
+    <div class="input-group" style="width: 80%;">
+        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by name or cccd or email of Customer" />
+        
+        <div class="input-group-append ml-auto">
+            <button type="submit" name="SearchField" value="Name" class="btn btn-primary">Search Name</button>
+            <button type="submit" name="SearchField" value="Cccd" class="btn btn-primary">Search CCCD</button>
+            <button type="submit" name="SearchField" value="Email" class="btn btn-primary">Search Email</button>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Cccd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].DoB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Avatar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cccd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avatar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CustomerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div id="example"></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-paginator.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#example').bootstrapPaginator({
+            currentPage: 1,
+            totalPages: 10,
+            onPageChanged: function (e, oldPage, newPage) {
+                // Handle page change event if needed
+            }
+        });
+    });
+</script>
+
+

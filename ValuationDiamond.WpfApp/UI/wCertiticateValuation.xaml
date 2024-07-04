@@ -1,0 +1,76 @@
+﻿<Window x:Class="ValuationDiamond.WpfApp.UI.wCertiticateValuation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValuationDiamond.WpfApp.UI"
+        mc:Ignorable="d"
+        Title="wCertiticateValuation" Height="450" Width="835">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="CertificateValuation Form" Margin="10" Height="107">
+                <Grid Height="50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" x:Name="txtCertificateValuationId" Height="25" Text="{Binding Path=CertificateValuation.ValuationId, Mode=TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Price" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtCertificateValuationPrice" Height="25" Text="{Binding Path=CertificateValuation.Price, Mode=TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="4" Grid.Row="0" Content="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="chkIsActive" Height="25" Text="{Binding Path=CertificateValuation.Status, Mode=TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Day" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtDay" Height="25" Text="{Binding Path= CertificateValuation.Day,Mode= TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/><Label Grid.Column="6" Grid.Row="0" Content="Day" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <Label Grid.Column="2" Grid.Row="1" Content="Description" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtdes" Height="25" Text="{Binding ElementName=CertificateValuation.Description, Path=TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="4" Grid.Row="1" Content="ValuateDiamondId" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtvalueid" Height="25" Text="{Binding ElementName=CertificateValuation.ValuateDiamondId, Path=TwoWay}"  Margin="5"  Width="150" HorizontalAlignment="Left"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" RenderTransformOrigin="0.819,0.398"/>
+            </StackPanel>
+            <StackPanel Height="210">
+                <DataGrid x:Name="grdValuationCertificate" AutoGenerateColumns="False" ItemsSource="{Binding ValuationCertificates}" CanUserAddRows="False" Height="200" Margin="10" SelectionMode="Single" SelectionUnit="FullRow" MouseDoubleClick="grdCertificateValuation_MouseDouble_Click">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=ValuationId}" Visibility="Visible"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ValuationId" Binding="{Binding Path=ValuateDiamondId}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=ValuationId}" Click="grdCertificateValuation_ButtonDelete_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="50">
+                        <!--<DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=Id}" 
+                                Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                        AncestorType=Window}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>-->
+                    </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

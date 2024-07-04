@@ -8,12 +8,13 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Menu Height="30" Name="menu1" Margin="0,0,0,0" VerticalAlignment="Top" BorderThickness="2" FontSize="16" FontWeight="Bold">
-            <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
-                <MenuItem Header="OrderDetail List" IsCheckable="False" FontSize="12" Click="Open_wOrderDetail_Click">
-
-                </MenuItem>
-            </MenuItem>
-
+			<MenuItem Header="Menu" IsCheckable="False" FontSize="16">
+				<MenuItem Header="OrderDetail List" IsCheckable="False" FontSize="12" Click="Open_wOrderDetail_Click"/>
+					<MenuItem Header="Customer List" IsCheckable="False" FontSize="12" Click="Open_wCustomer_Click"/>
+					<MenuItem Header="Manage Order" IsCheckable="False" FontSize="12" Click="Open_wOrder_Click"/>
+					<MenuItem Header="Valuation Diamond" IsCheckable="False" FontSize="12" Click="Open_wValuationDiamond_Click"/>
+					<MenuItem Header="Valuation Certificate" IsCheckable="False" FontSize="12" Click="Open_wValuationCertificate_Click"/>
+			</MenuItem>
         </Menu>
     </Grid>
 </Window>
