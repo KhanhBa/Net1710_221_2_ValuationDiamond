@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-﻿using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using ValuationDiamond.Data.Models;
 using ValuationDiamond.Data.Repository;
 
@@ -15,6 +15,9 @@ namespace ValuationDiamond.Data
         private ValuationDiamondRepository _valuate;
         private CustomerRepository _customer;
         private ServiceRepository _service;
+        private OrderRepository _order;
+        private ValuationCertificateRepository _certificateRepository;
+        private OrderDetailRepository _orderDetailRepository;
 
         public UnitOfWork()
         {
@@ -28,8 +31,6 @@ namespace ValuationDiamond.Data
                 return _valuate ??= new Repository.ValuationDiamondRepository(_unitOfWorkContext);
             }
         }
-
-        ////TO-DO CODE HERE/////////////////
         public CustomerRepository CustomerRepository
         {
             get
@@ -37,7 +38,6 @@ namespace ValuationDiamond.Data
                 return _customer ??= new Repository.CustomerRepository(_unitOfWorkContext);
             }
         }
-
         public ServiceRepository ServiceRepository
         {
             get
@@ -45,25 +45,28 @@ namespace ValuationDiamond.Data
                 return _service ??= new Repository.ServiceRepository();
             }
         }
-        private OrderRepository _order;
-      
-
-        public OrderRepository OrderRepository 
-        { 
-            get 
-            { 
-                return _order ??= new Repository.OrderRepository(_unitOfWorkContext); 
-            } 
-        }
-
-        private ValuationCertificateRepository _certificateRepository;
-        
-
-        public ValuationCertificateRepository CertificateRepository { 
-            get { 
-                return _certificateRepository ??= new ValuationCertificateRepository(_unitOfWorkContext); 
+        public OrderRepository OrderRepository
+        {
+            get
+            {
+                return _order ??= new Repository.OrderRepository(_unitOfWorkContext);
             }
-        }      ////TO-DO CODE HERE/////////////////
+        }
+        public ValuationCertificateRepository CertificateRepository
+        {
+            get
+            {
+                return _certificateRepository ??= new ValuationCertificateRepository(_unitOfWorkContext);
+            }
+        }
+        public OrderDetailRepository OrderDetailRepository
+        {
+            get
+            {
+                return _orderDetailRepository ??= new OrderDetailRepository(_unitOfWorkContext);
+            }
+        }
+        ////TO-DO CODE HERE/////////////////
 
         #region Set transaction isolation levels
 
@@ -128,5 +131,3 @@ namespace ValuationDiamond.Data
         #endregion
     }
 }
-
-

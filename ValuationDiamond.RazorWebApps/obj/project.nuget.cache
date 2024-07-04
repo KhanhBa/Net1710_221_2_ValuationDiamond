@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qz2dnEimrg3PfCLhpwAAwmlJYz/OxKTZHQjkgHZGDxpEDr0iJcjT+i7RRN7f0q4u19eDxbPAKU+RPIRIKdLn7A==",
+  "dgSpecHash": "r60M9A3KxH5uaGBgmWyuZXHp3vV8iyHbsE//ECz/m55PyXza202jWgytXe39ERSdLf5VBLbrztZSZyYIRgpukw==",
   "success": true,
   "projectFilePath": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\ValuationDiamond.RazorWebApp.csproj",
   "expectedPackageFiles": [
@@ -234,5 +234,12 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

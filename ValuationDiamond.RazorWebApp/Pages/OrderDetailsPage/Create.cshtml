@@ -1,0 +1,62 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>OrderDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.ServiceId" class="control-label"></label>
+                <select asp-for="OrderDetail.ServiceId" class ="form-control" asp-items="ViewBag.ServiceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.Status" class="control-label"></label>
+                <input asp-for="OrderDetail.Status" class="form-control" />
+                <span asp-validation-for="OrderDetail.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.Price" class="control-label"></label>
+                <input asp-for="OrderDetail.Price" class="form-control" />
+                <span asp-validation-for="OrderDetail.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.OrderId" class="control-label"></label>
+                <select asp-for="OrderDetail.OrderId" class ="form-control" asp-items="ViewBag.OrderId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.DetailCode" class="control-label"></label>
+                <input asp-for="OrderDetail.DetailCode" class="form-control" />
+                <span asp-validation-for="OrderDetail.DetailCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.Description" class="control-label"></label>
+                <input asp-for="OrderDetail.Description" class="form-control" />
+                <span asp-validation-for="OrderDetail.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.EstimateLength" class="control-label"></label>
+                <input asp-for="OrderDetail.EstimateLength" class="form-control" />
+                <span asp-validation-for="OrderDetail.EstimateLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
