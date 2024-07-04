@@ -9,61 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ValuationDiamond.RazorWebApp
 build_property.RootNamespace = ValuationDiamond.RazorWebApp
-build_property.ProjectDir = D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\
+build_property.ProjectDir = D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Semester7-Summer2024\PRN221\Project\K17221ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps
+build_property.MSBuildProjectDirectory = D:\Project\Net1710_221_2_ValuationDiamond\Source\Net1710_221_2_ValuationDiamond\ValuationDiamond.RazorWebApps
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Error.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Index.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetail.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Create.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxzUGFnZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Delete.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxzUGFnZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Details.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxzUGFnZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Edit.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxzUGFnZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Index.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/OrderDetailsPage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJEZXRhaWxzUGFnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Privacy.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/_ViewImports.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/_ViewStart.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester7-Summer2024/PRN221/Project/K17221ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_Layout.cshtml]
+[D:/Project/Net1710_221_2_ValuationDiamond/Source/Net1710_221_2_ValuationDiamond/ValuationDiamond.RazorWebApps/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-qr3ps4ca8t
