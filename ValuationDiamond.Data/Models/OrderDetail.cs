@@ -17,6 +17,12 @@ public partial class OrderDetail
 
     public int OrderId { get; set; }
 
+    public string DetailCode { get; set; }
+    
+    public string Description { get; set; }
+
+    public float EstimateLength { get; set; }
+
     public virtual Order Order { get; set; }
 
     public virtual Service Service { get; set; }

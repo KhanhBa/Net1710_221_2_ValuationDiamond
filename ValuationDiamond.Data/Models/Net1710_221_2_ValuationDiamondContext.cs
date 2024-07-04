@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ValuationDiamond.Data.Models;
 
@@ -32,11 +33,20 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuateDiamond> ValuateDiamonds { get; set; }
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+    public static string GetConnectionString(string connectionStringName)
     {
-        optionsBuilder.UseSqlServer("data source=MSI;initial catalog=Net1710_221_2_ValuationDiamond;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-        base.OnConfiguring(optionsBuilder);
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
     }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
+    
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
