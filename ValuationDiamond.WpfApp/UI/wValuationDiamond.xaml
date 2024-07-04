@@ -1,0 +1,81 @@
+﻿<Window x:Class="ValuDia.WpfApp.UI.wValuationDiamond"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValuDia.WpfApp.UI"
+        mc:Ignorable="d"
+        Title="Valuation Diamond" Height="576" Width="1488">
+    <Grid Margin="0,0,75,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="794*"/>
+            <ColumnDefinition Width="649*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Margin="0,0,-47,0" Grid.ColumnSpan="2">
+            <GroupBox Header="Valuate Form" Margin="10" Width="1438">
+                <Grid Height="50" Margin="0,0,41,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtID" Height="25" Text="{Binding Path=ValuateDiamond.ValuateDiamondID, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Price" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtPrice" Height="25" Text="{Binding Path=ValuateDiamond.Price, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="4" Grid.Row="0" Content="Time" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtTime" Height="25" Text="{Binding Path=ValuateDiamond.Time, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="6" Grid.Row="0" Content="Staff Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtStaffName" Height="25" Text="{Binding Path=ValuateDiamond.ValuationStaffName, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="8" Grid.Row="0" Content="ODID" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <TextBox Grid.Column="9" Grid.Row="0" x:Name="txtODID" Height="25" Text="{Binding Path=ValuateDiamond.OrderDetailId, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click"/>
+            </StackPanel>
+            <StackPanel Height="210">
+                <DataGrid x:Name="grdValuate" AutoGenerateColumns="False" ItemsSource="{Binding ValuateDiamonds}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdValuate_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" Width="1478">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=ValuateDiamondId}" Visibility="Visible"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Staff Name" Binding="{Binding Path=ValuationStaffName}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ODID" Binding="{Binding Path=OrderDetailId}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=ValuateDiamondId}" Click="grdValuate_ButtonDelete_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--<DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=Id}"
+                                Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                        AncestorType=Window}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

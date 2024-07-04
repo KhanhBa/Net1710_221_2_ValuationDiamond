@@ -11,6 +11,7 @@
             <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
                 <MenuItem Header="Customer List" IsCheckable="False" FontSize="12" Click="Open_wCustomer_Click"/>
                 <MenuItem Header="Manage Order" IsCheckable="False" FontSize="12" Click="Open_wOrder_Click"/>
+                <MenuItem Header="Valuation Diamond" IsCheckable="False" FontSize="12" Click="Open_wValuationDiamond_Click"/>
                 <MenuItem Header="Valuation Certificate" IsCheckable="False" FontSize="12" Click="Open_wValuationCertificate_Click"/>
             </MenuItem>
         </Menu>

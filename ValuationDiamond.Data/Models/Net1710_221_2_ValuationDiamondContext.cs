@@ -40,11 +40,8 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuateDiamond> ValuateDiamonds { get; set; }
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
-
-  
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>(entity =>
@@ -139,7 +136,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00AEB822CB5");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00AA2FBC86F");
 
             entity.ToTable("Service");
 
@@ -153,7 +150,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB176ADE436C");
+            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB175DA7A53A");
 
             entity.Property(e => e.Name)
                 .IsRequired()
@@ -226,7 +223,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.HasOne(d => d.ValuateDiamond).WithOne(p => p.ValuationCertificate)
-
                 .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ValuationCertificate_ValuateDiamond1");
