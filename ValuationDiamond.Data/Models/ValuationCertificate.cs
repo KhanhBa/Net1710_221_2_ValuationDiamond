@@ -27,5 +27,5 @@ public partial class ValuationCertificate
 
     public string CustomerEmail { get; set; }
 
-    public virtual ValuateDiamond ValuationCertificateNavigation { get; set; }
+    public virtual ValuateDiamond ValuateDiamond { get; set; }
 }

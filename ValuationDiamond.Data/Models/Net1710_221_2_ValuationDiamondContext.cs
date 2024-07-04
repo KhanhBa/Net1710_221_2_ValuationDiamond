@@ -17,8 +17,15 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
         : base(options)
     {
     }
-
-    public virtual DbSet<Company> Companies { get; set; }
+    public static string GetConnectionString(string connectionStringName)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
+    }
 
     public virtual DbSet<Customer> Customers { get; set; }
 
@@ -33,33 +40,10 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
     public virtual DbSet<ValuateDiamond> ValuateDiamonds { get; set; }
 
     public virtual DbSet<ValuationCertificate> ValuationCertificates { get; set; }
-    public static string GetConnectionString(string connectionStringName)
-    {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        string connectionString = config.GetConnectionString(connectionStringName);
-        return connectionString;
-    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Company>(entity =>
-        {
-            entity.ToTable("Company");
-
-            entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
-            entity.Property(e => e.Address).HasMaxLength(100);
-            entity.Property(e => e.CompanyName)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.Description).HasMaxLength(1000);
-            entity.Property(e => e.PhoneNumber).HasMaxLength(10);
-        });
-
         modelBuilder.Entity<Customer>(entity =>
         {
             entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64D8676AA080");
@@ -238,8 +222,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.ValuationCertificateNavigation).WithOne(p => p.ValuationCertificate)
+            entity.HasOne(d => d.ValuateDiamond).WithOne(p => p.ValuationCertificate)
                 .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ValuationCertificate_ValuateDiamond1");
