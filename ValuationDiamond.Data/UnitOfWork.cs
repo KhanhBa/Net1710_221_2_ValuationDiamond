@@ -12,6 +12,7 @@ namespace ValuationDiamond.Data
     public class UnitOfWork
     {
         private Net1710_221_2_ValuationDiamondContext _unitOfWorkContext;
+        private ValuationDiamondRepository _valuate;
         private CustomerRepository _customer;
         private ServiceRepository _service;
 
@@ -20,6 +21,15 @@ namespace ValuationDiamond.Data
             _unitOfWorkContext ??= new Net1710_221_2_ValuationDiamondContext();
         }
 
+        public ValuationDiamondRepository valuationDiamondRepository
+        {
+            get
+            {
+                return _valuate ??= new Repository.ValuationDiamondRepository(_unitOfWorkContext);
+            }
+        }
+
+        ////TO-DO CODE HERE/////////////////
         public CustomerRepository CustomerRepository
         {
             get
@@ -117,6 +127,6 @@ namespace ValuationDiamond.Data
 
         #endregion
     }
-
 }
+
 

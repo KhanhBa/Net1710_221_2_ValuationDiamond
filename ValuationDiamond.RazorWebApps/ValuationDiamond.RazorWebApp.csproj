@@ -9,11 +9,16 @@
   <ItemGroup>
     <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
     <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
+<<<<<<< HEAD
+  </ItemGroup>
+
+=======
     <Content Remove="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="appsettings.json" />
   </ItemGroup>
+>>>>>>> ccc01c948dd234422eeb6692bbcf13079a222c39
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18">
       <PrivateAssets>all</PrivateAssets>

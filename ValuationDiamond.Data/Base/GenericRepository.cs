@@ -11,13 +11,10 @@ namespace ValuationDiamond.Data.Base
     public class GenericRepository<T> where T : class
     {
         protected Net1710_221_2_ValuationDiamondContext _context;
-
         public GenericRepository()
         {
 
             _context ??= new Net1710_221_2_ValuationDiamondContext();
-
-            //protected readonly DbSet<T> _dbSet;
         }
 
         #region Separating asign entity and save operators
@@ -135,6 +132,7 @@ namespace ValuationDiamond.Data.Base
             return await _context.Set<T>().FindAsync(code);
         }
     }
+}
 
 
 
@@ -253,4 +251,4 @@ namespace ValuationDiamond.Data.Base
         //{
         //    return await _dbSet.FindAsync(code);
         //}
-    }
+  

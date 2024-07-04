@@ -41,11 +41,10 @@ namespace ValuationDiamond.Common
 
         #endregion
 
+    #region Warning Code
 
-        #region Warning Code
-
-        public static int WARNING_NO_DATA_CODE = 4;
-        public static string WARNING_NO_DATA__MSG = "No data";
+    public static int WARNING_NO_DATA_CODE = 4;
+    public static string WARNING_NO_DATA_MSG = "No data";
         #endregion
     }
 }
