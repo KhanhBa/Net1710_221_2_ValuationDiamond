@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,26 +11,31 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderPage
     public class CreateModel : PageModel
     {
         private readonly IOrderBusiness orderBusiness;
+        private readonly ICustomerBusiness customerBusiness;
+
         public CreateModel()
         {
             orderBusiness ??= new OrderBusiness();
-        }
-
-        public IActionResult OnGet()
-        {
-        //ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "Address");
-            return Page();
+            customerBusiness ??= new CustomerBusiness();
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
-        public List<Customer> Options { get; set; }
+        public Order Order { get; set; } = default;
 
+        public SelectList CustomerList { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        public async Task<IActionResult> OnGetAsync()
+        {
+            var customers = await customerBusiness.GetAllCustomer();
+
+            CustomerList = new SelectList(customers.Data as List<Customer>, "CustomerId", "Name");
+
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
