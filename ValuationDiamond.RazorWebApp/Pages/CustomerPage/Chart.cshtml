@@ -1,0 +1,78 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.CustomerPage.ChartModel
+@{
+
+    <style>
+        .navbar-nav {
+            margin-left: auto;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <img src="https://i.pinimg.com/564x/94/58/c3/9458c3be86694a4aabd1b7568753f164.jpg" alt="Dashboard Logo" style="width: 60px; height: 60px; margin-right: 10px;paddingLeft:10px">
+        <a class="navbar-brand" href="#">
+            Dashboard
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/CustomerPage ">Customer</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/CustomerPage/Chart ">Chart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ServicePage">Service</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h2>Customer Status Chart</h2>
+                <canvas id="customerStatusChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('customerStatusChart').getContext('2d');
+            var chartData = @Html.Raw(Model.ChartDataJson);
+
+            var labels = chartData.map(function (item) { return item.Status; });
+            var data = chartData.map(function (item) { return item.Count; });
+
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Customer Status',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+}

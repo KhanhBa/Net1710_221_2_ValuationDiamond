@@ -18,6 +18,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
+    <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
