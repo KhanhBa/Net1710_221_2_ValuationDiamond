@@ -13,15 +13,15 @@ public partial class OrderDetail
 
     public string Status { get; set; }
 
-    public double Price { get; set; }
+    public double? Price { get; set; }
 
     public int OrderId { get; set; }
 
     public string DetailCode { get; set; }
-    
+
     public string Description { get; set; }
 
-    public double EstimateLength { get; set; }
+    public double? EstimateLength { get; set; }
 
     public virtual Order Order { get; set; }
 

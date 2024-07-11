@@ -31,64 +31,113 @@ namespace ValuationDiamond.WpfApp.UI
 
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    var item = await _business.GetById(txtOrderdetailId.Text);
+            try
+            {
+                var item = await _business.GetById(int.Parse(txtOrderDetailId.Text));
 
-            //    if (item.Data == null)
-            //    {
-            //        var orderDetail = new OrderDetail();
-            //        {
-            //            OrderDetailId = txtOrderdetailId.Text;
-            //            ServiceId = txtServiceId.Text;
-            //            Status = txtStatus.Text;
-            //            Price = txtPrice.Text;
-            //            OrderId = txtOrderId.Text;
-            //            CurrencyCode = txtCurrencyCode.Text,
-            //            CurrencyName = txtCurrencyName.Text,
-            //            NationCode = txtNationCode.Text,
-            //            IsActive = chkIsActive.IsChecked
-            //        };
+                if (item.Data == null)
+                {
+                    var orderDetail = new OrderDetail()
+                    {
+                        DetailCode = txtDetailCode.Text,
+                        EstimateLength = int.Parse(txtEstimateLength.Text),
+                        Description = txtDescription.Text,
+                        OrderId = int.Parse(txtOrderId.Text) ,
+                        Price = double.Parse(txtPrice.Text),
+                        ServiceId = int.Parse(txtServiceId.Text),
+                        Status = txtStatus.Text
+                    };
 
-            //        var result = await _business.Save(orderDetail);
-            //        MessageBox.Show(result.Message, "Save");
-            //    }
-            //    else
-            //    {
-            //        var orderDetail = item.Data as OrderDetail;
-            //        //currency.CurrencyCode = txtCurrencyCode.Text;
-            //        orderDetail.OrderDetailId = int.Parse(txtOrderdetailId.Text);
-            //        orderDetail.ServiceId = int.Parse(txtServiceId.Text);
-            //        orderDetail.Status = txtStatus.Text;
-            //        orderDetail.Price = double.Parse(txtPrice.Text) ;
-            //        orderDetail.OrderId = int.Parse(txtOrderId.Text);
+                    var result = await _business.Save(orderDetail);
+                    MessageBox.Show(result.Message, "Save");
+                }
+                else
+                {
+                    var orderDetail = new OrderDetail()
+                    {
+                        OrderDetailId = int.Parse(txtOrderDetailId.Text),
+                        Description = txtDescription.Text,
+                        DetailCode = txtDetailCode.Text,
+                        EstimateLength = double.Parse(txtEstimateLength.Text) ,
+                        OrderId = int.Parse(txtOrderId.Text),
+                        Status = txtStatus.Text,
+                        ServiceId = int.Parse(txtServiceId.Text) ,
+                        Price = double.Parse(txtPrice.Text) ,
 
-            //        var result = await _business.Update(orderDetail);
-            //        MessageBox.Show(result.Message, "Update");
-            //    }
+                    };
 
-            //    txtOrderdetailId.Text = string.Empty;
-            //    txtServiceId.Text = string.Empty;
-            //    txtPrice.Text = string.Empty;
-            //    txtStatus.Text = string.Empty;
-            //    txtOrderId.Text = string.Empty;
-            //    this.LoadGrdCurrencies();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.ToString(), "Error");
-            //}
+                    var result = await _business.Update(orderDetail);
+                    MessageBox.Show(result.Message, "Update");
+                }
+
+                ClearFields();
+                LoadGrdCurrencies();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error");
+            }
         }
 
-        private async void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
+            CreateNewCustomer();
         }
 
-        private async void grdCustomer_ButtonDelete_Click(object sender, RoutedEventArgs e)
+        private void CreateNewCustomer()
         {
+            ClearFields();
+
         }
 
-        private async void grdCustomer_MouseDouble_Click(object sender, RoutedEventArgs e)
+
+        private async void grdOrderDetail_ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int customerId = (int)btn.CommandParameter;
+
+            if (customerId > 0)
+            {
+                if (MessageBox.Show("Do you want to delete this item?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    var result = await _business.DeleteById(customerId);
+                    MessageBox.Show($"{result.Message}", "Delete");
+                    LoadGrdCurrencies();
+                }
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFields();
+        }
+
+        private async void grdOrderDetail_MouseDouble_Click(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid grd = sender as DataGrid;
+            if (grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
+            {
+                var row = grd.ItemContainerGenerator.ContainerFromItem(grd.SelectedItem) as DataGridRow;
+                if (row != null)
+                {
+                    var item = row.Item as OrderDetail;
+                    if (item != null)
+                    {
+                        txtOrderDetailId.Text = item.OrderDetailId.ToString();
+                        txtDescription.Text = item.Description;
+                        txtDetailCode.Text = item.DetailCode;
+                        txtEstimateLength.Text = item.EstimateLength.ToString();
+                        txtOrderId.Text = item.OrderId.ToString();
+                        txtStatus.Text = item.Status;
+                        txtPrice.Text = item.Price.ToString();
+                        txtServiceId.Text =item.ServiceId.ToString();
+                    
+                    }
+                }
+            }
+        }
+
+        private async void grdOrderDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             {
                 //MessageBox.Show("Double Click on Grid");
@@ -106,10 +155,13 @@ namespace ValuationDiamond.WpfApp.UI
                             if (orderDetailResult.Status > 0 && orderDetailResult.Data != null)
                             {
                                 item = orderDetailResult.Data as OrderDetail;
-                                txtOrderdetailId.Text = item.OrderDetailId.ToString();
+                                txtOrderDetailId.Text = item.OrderDetailId.ToString();
+                                txtDescription.Text = item.Description;
+                                txtDetailCode.Text = item.DetailCode;
+                                txtEstimateLength.Text = item.EstimateLength.ToString();
+                                txtPrice.Text = item.Price.ToString();
                                 txtServiceId.Text = item.ServiceId.ToString();
                                 txtStatus.Text = item.Status;
-                                txtPrice.Text = item.Price.ToString();
                                 txtOrderId.Text = item.OrderId.ToString();
 
                             }
@@ -124,12 +176,24 @@ namespace ValuationDiamond.WpfApp.UI
 
             if (result.Status > 0 && result.Data != null)
             {
-                grdCustomer.ItemsSource = result.Data as List<OrderDetail>;
+               grdOrderDetail.ItemsSource = result.Data as List<OrderDetail>;
             }
             else
             {
-                grdCustomer.ItemsSource = new List<OrderDetail>();
+                grdOrderDetail.ItemsSource = new List<OrderDetail>();
             }
+        }
+
+        private void ClearFields()
+        {
+            txtOrderDetailId.Text = string.Empty;
+            txtDescription.Text = string.Empty;
+            txtDetailCode.Text = string.Empty;
+            txtEstimateLength.Text = string.Empty;
+            txtOrderId.Text = string.Empty;
+            txtStatus.Text = string.Empty;
+            txtPrice.Text = string.Empty;
+            txtServiceId.Text= string.Empty;
         }
 
     }
