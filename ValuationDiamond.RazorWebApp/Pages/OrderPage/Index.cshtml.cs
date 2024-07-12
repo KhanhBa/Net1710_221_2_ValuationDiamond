@@ -24,44 +24,32 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderPage
         public string SearchTerm { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchField { get; set; }
+        public Pager Pager { get; set; }
 
-        //public async Task OnGetAsync()
-        //{
-        //    if (SearchTerm == null)
-        //    {
-        //        var result = await orderBusiness.GetAllOrders();
-        //        if (result != null && result.Status > 0 && result.Data != null)
-        //        {
-        //            Order = result.Data as List<Order>;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var result = await orderBusiness.SearchOrders(SearchTerm);
-        //        if (result != null && result.Status > 0 && result.Data != null)
-        //        {
-        //            Order = result.Data as List<Order>;
-        //        }
-        //    }
-        //}
-
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? pageIndex)
         {
             if (!String.IsNullOrEmpty(SearchTerm) && !String.IsNullOrEmpty(SearchField))
             {
-                var result = await orderBusiness.SearchOrders(SearchField, SearchTerm);
-                if (result != null && result.Status > 0 && result.Data != null)
+                var pageSize = 3;
+                var result = await orderBusiness.SearchOrders(SearchField, SearchTerm, pageIndex ?? 1, pageSize);
+                if (/*result != null && result.Status > 0 &&*/ result.Data != null)
                 {
                     Order = result.Data as List<Order>;
+                    Pager = new Pager(result.TotalCount, pageIndex ?? 1, pageSize);
                 }
             }
             else
             {
-                var result = await orderBusiness.GetAllOrders();
-                if (result != null && result.Status > 0 && result.Data != null)
-                {
-                    Order = result.Data as List<Order>;
-                }
+                //var result = await orderBusiness.GetAllOrders();
+                //if (result != null && result.Status > 0 && result.Data != null)
+                //{
+                //    Order = result.Data as List<Order>;
+                //}
+                var pageSize = 3; // Số lượng mục trên mỗi trang
+                var result = await orderBusiness.GetPagedOrders(pageIndex ?? 1, pageSize);
+                Order = result.Data as IList<Order>;
+
+                Pager = new Pager(result.TotalCount, pageIndex ?? 1, pageSize);
             }
         }
     }
