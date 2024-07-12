@@ -48,8 +48,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
                 return Page();
             }
             try
-            {
-                
+            { 
                 await _valuationCertificateBusiness.Save(ValuationCertificate);
             }
             catch (DbUpdateConcurrencyException)
