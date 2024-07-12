@@ -1,114 +1,129 @@
 ﻿@page
 @model ValuationDiamond.RazorWebApp.Pages.CustomerPage.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Customer List";
 }
 
-<h1>View Customer List</h1>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<form method="get" class="form-inline mb-3">
-    <div class="input-group" style="width: 80%;">
-        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by name or cccd or email of Customer" />
-        
-        <div class="input-group-append ml-auto">
-            <button type="submit" name="SearchField" value="Name" class="btn btn-primary">Search Name</button>
-            <button type="submit" name="SearchField" value="Cccd" class="btn btn-primary">Search CCCD</button>
-            <button type="submit" name="SearchField" value="Email" class="btn btn-primary">Search Email</button>
+        .pagination li {
+            margin: 0 5px;
+        }
+
+            .pagination li a {
+                color: #007bff;
+                text-decoration: none;
+                padding: 10px 15px;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                transition: background-color 0.2s;
+            }
+
+                .pagination li a:hover {
+                    background-color: #f8f9fa;
+                }
+
+            .pagination li.active a {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+            .pagination li.disabled a {
+                color: #6c757d;
+                pointer-events: none;
+            }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="https://i.pinimg.com/564x/94/58/c3/9458c3be86694a4aabd1b7568753f164.jpg" alt="Dashboard Logo" style="width: 60px; height: 60px; margin-right: 10px;">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/CustomerPage">Customer</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/CustomerPage/Chart">Chart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ServicePage">Service</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main content -->
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <h1>View Customer List</h1>
+                <p>
+                    <a asp-page="Create" class="btn btn-success">+ Create New</a>
+                </p>
+                <form method="get" class="form-inline mb-3">
+                    <div class="input-group" style="width: 40%;">
+                        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by any field" />
+                        <div class="input-group-append ml-auto">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            
+                            <th>Name</th>
+                            <th>CCCD</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Status</th>
+                            <th>DoB</th>
+                            <th>Address</th>
+                            <th>Avatar</th>
+                            <th>Phone</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Customer)
+                        {
+                            <tr>
+                                
+                                <td>@item.Name</td>
+                                <td>@item.Cccd</td>
+                                <td>@item.Email</td>
+                                <td>@item.Password</td>
+                                <td>@item.Status</td>
+                                <td>@item.DoB</td>
+                                <td>@item.Address</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.Avatar))
+                                    {
+                                        <img src="@item.Avatar" alt="Avatar" style="width: 50px; height: 50px;" />
+                                    }
+                                </td>
+                                <td>@item.Phone</td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.CustomerId"><button type="button" class="btn btn-primary">Edit</button></a> |
+                                    <a asp-page="./Details" asp-route-id="@item.CustomerId"><button type="button" class="btn btn-primary">Details</button></a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.CustomerId"><button type="button" class="btn btn-primary">Delete</button></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+               
+            </div>
         </div>
     </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Cccd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].DoB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Avatar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Phone)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Customer) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cccd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Avatar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CustomerId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-<div id="example"></div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-paginator.min.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        $('#example').bootstrapPaginator({
-            currentPage: 1,
-            totalPages: 10,
-            onPageChanged: function (e, oldPage, newPage) {
-                // Handle page change event if needed
-            }
-        });
-    });
-</script>
-
-
+</div>

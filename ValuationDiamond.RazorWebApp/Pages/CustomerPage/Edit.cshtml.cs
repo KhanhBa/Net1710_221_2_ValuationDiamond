@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
@@ -23,9 +22,12 @@ namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
         [BindProperty]
         public Customer Customer { get; set; } = default!;
 
+        [BindProperty]
+        public IFormFile AvatarFile { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
@@ -48,7 +50,20 @@ namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
                 return Page();
             }
 
-           
+            if (AvatarFile != null)
+            {
+                var fileName = Path.GetFileName(AvatarFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath)); // Ensure the directory exists
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await AvatarFile.CopyToAsync(stream);
+                }
+
+                Customer.Avatar = "/uploads/" + fileName; // Save the file path as a string
+            }
 
             try
             {
@@ -56,22 +71,25 @@ namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!CustomerExists(Customer.CustomerId))
-                //{
-                //    return NotFound();
-                //}
-                //else
-                //{
-                //    throw;
-                //}
+                // Uncomment this if you have implemented the CustomerExists method
+                // if (!CustomerExists(Customer.CustomerId))
+                // {
+                //     return NotFound();
+                // }
+                // else
+                // {
+                //     throw;
+                // }
+                throw;
             }
 
             return RedirectToPage("./Index");
         }
 
-        //private bool CustomerExists(int id)
-        //{
-        //  return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
-        //}
+        // Uncomment and implement this if necessary
+        // private bool CustomerExists(int id)
+        // {
+        //   return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
+        // }
     }
 }

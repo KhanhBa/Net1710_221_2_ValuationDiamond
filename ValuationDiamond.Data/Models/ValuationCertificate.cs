@@ -17,15 +17,15 @@ public partial class ValuationCertificate
 
     public string Description { get; set; }
 
-    public int ValuateDiamondId { get; set; }
-
     public string Sign { get; set; }
 
     public string ManagerName { get; set; }
 
     public string CustomerName { get; set; }
 
+    public int? ValuateDiamondId { get; set; }
+
     public string CustomerEmail { get; set; }
 
-    public virtual ValuateDiamond ValuationCertificateNavigation { get; set; }
+    public virtual ValuateDiamond ValuateDiamond { get; set; }
 }
