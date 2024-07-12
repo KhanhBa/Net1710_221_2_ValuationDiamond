@@ -5,26 +5,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
-    <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
-<<<<<<< HEAD
-  </ItemGroup>
-
-=======
-    <Content Remove="appsettings.json" />
-  </ItemGroup>
-  <ItemGroup>
+	
+	<ItemGroup>
+	<Content Remove="appsettings.json" />
     <None Include="appsettings.json" />
   </ItemGroup>
->>>>>>> ccc01c948dd234422eeb6692bbcf13079a222c39
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ValuationDiamond.Bussiness\ValuationDiamond.Business.csproj" />
+    <ProjectReference Include="..\ValuationDiamond.Data\ValuationDiamond.Data.csproj" />
   </ItemGroup>
 
 </Project>

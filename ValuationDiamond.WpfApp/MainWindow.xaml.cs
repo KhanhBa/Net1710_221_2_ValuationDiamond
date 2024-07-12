@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ValuationDiamond.Data.Models;
 using ValuationDiamond.WpfApp.UI;
 using ValuDia.WpfApp.UI;
 
@@ -26,6 +27,13 @@ namespace ValuationDiamond.WpfApp
         {
             InitializeComponent();
         }
+        private async void Open_wOrderDetail_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wOrderDetail();
+            p.Owner = this;
+            p.Show();
+        }
+
 
         private async void Open_wCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -57,5 +65,5 @@ namespace ValuationDiamond.WpfApp
             p.Owner = this;
             p.Show();
         }
-    }
+    } 
 }

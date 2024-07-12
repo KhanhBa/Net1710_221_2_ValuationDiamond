@@ -18,7 +18,7 @@ public partial class OrderDetail
     public int OrderId { get; set; }
 
     public string DetailCode { get; set; }
-
+    
     public string Description { get; set; }
 
     public double EstimateLength { get; set; }

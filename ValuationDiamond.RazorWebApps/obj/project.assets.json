@@ -3989,6 +3989,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
           "ValuationDiamond.Common": "1.0.0",
           "ValuationDiamond.Data": "1.0.0"
         },
@@ -4002,6 +4003,9 @@
       "ValuationDiamond.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0"
+        },
         "compile": {
           "bin/placeholder/ValuationDiamond.Common.dll": {}
         },
@@ -11640,7 +11644,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7"
+        "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -11649,7 +11653,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": "net7",
+          "targetAlias": "net7.0",
           "projectReferences": {
             "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj": {
               "projectPath": "D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj"
@@ -11668,7 +11672,7 @@
     },
     "frameworks": {
       "net7.0": {
-        "targetAlias": "net7",
+        "targetAlias": "net7.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -11703,5 +11707,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Project\\Net1710_221_2_ValuationDiamond\\Source\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.RazorWebApps\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

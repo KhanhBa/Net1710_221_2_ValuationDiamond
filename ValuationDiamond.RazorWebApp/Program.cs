@@ -1,4 +1,5 @@
 using ValuationDiamond.Business;
+using ValuationDiamond.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICustomerBusiness, CustomerBusiness>();
-
+builder.Services.AddTransient<OrderDetailBusiness>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

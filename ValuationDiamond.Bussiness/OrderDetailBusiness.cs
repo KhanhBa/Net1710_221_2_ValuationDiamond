@@ -10,34 +10,38 @@ using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Business;
 using System.Runtime.CompilerServices;
 using ValuationDiamond.Common;
+using ValuationDiamond.Data;
 
 namespace ValuationDiamond.Business
 {
     public interface IOrderDetailBusiness
     {
         Task<IValuationDiamondResult> GetAll();
-        Task<IValuationDiamondResult> GetById(string code);
+        Task<IValuationDiamondResult> GetById(int code);
         Task<IValuationDiamondResult> Save(OrderDetail orderDetail);
         Task<IValuationDiamondResult> Update(OrderDetail orderDetail);
-        Task<IValuationDiamondResult> DeleteById(string code);
+        Task<IValuationDiamondResult> DeleteById(int code);
     }
     public class OrderDetailBusiness : IOrderDetailBusiness
     {
-        private readonly OrderDetailDAO _DAO;
+        //private readonly OrderDetailDAO _DAO;
+        private readonly UnitOfWork _unitOfWork;
 
         public OrderDetailBusiness()
         {
-            _DAO = new OrderDetailDAO();
+            // _DAO = new OrderDetailDAO();
+            _unitOfWork ??= new UnitOfWork();
         }
 
-        public async Task<IValuationDiamondResult> DeleteById(string code)
+        public async Task<IValuationDiamondResult> DeleteById(int code)
         {
             try
             {
-                var currency = await _DAO.GetByIdAsync(code);
-                if (currency != null)
+                //var currency = await _DAO.GetByIdAsync(code);
+                var orderDetail = await _unitOfWork.OrderDetailRepository.GetByIdAsync(code);
+                if (orderDetail != null)
                 {
-                    var result = await _DAO.RemoveAsync(currency);
+                    var result = await _unitOfWork.OrderDetailRepository.RemoveAsync(orderDetail);
                     if (result)
                     {
                         return new ValuationDiamondResult(Const.SUCCESS_DELETE_CODE, Const.SUCCESS_DELETE_MSG);
@@ -65,7 +69,8 @@ namespace ValuationDiamond.Business
                 #region Business rule
                 #endregion
 
-                var orderDetails = await _DAO.GetAllAsync();
+                // var orderDetails = await _DAO.GetAllAsync();
+                var orderDetails = await _unitOfWork.OrderDetailRepository.GetAllAsync();
 
                 if (orderDetails == null)
                 {
@@ -82,22 +87,24 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<IValuationDiamondResult> GetById(string code)
+        public async Task<IValuationDiamondResult> GetById(int code)
         {
             try
             {
                 #region Business rule
                 #endregion
 
-                var currency = await _DAO.GetByIdAsync(code);
+                //var currency = await _DAO.GetByIdAsync(code);
 
-                if (currency == null)
+                var orderDetail = await _unitOfWork.OrderDetailRepository.GetByIdAsync(code);
+
+                if (orderDetail == null)
                 {
                     return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
                 else
                 {
-                    return new ValuationDiamondResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, currency);
+                    return new ValuationDiamondResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, orderDetail);
                 }
             }
             catch (Exception ex)
@@ -110,9 +117,11 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                //
 
-                int result = await _DAO.CreateAsync(orderDetail);
+
+                //int result = await _DAO.CreateAsync(orderDetail);
+                _unitOfWork.OrderDetailRepository.PrepareCreate(orderDetail);
+                int result = await _unitOfWork.OrderDetailRepository.SaveAsync();
                 if (result > 0)
                 {
                     return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
@@ -132,7 +141,8 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                int result = await _DAO.UpdateAsync(orderDetail);
+                //int result = await _DAO.UpdateAsync(orderDetail);
+                int result = await _unitOfWork.OrderDetailRepository.UpdateAsync(orderDetail);
                 if (result > 0)
                 {
                     return new ValuationDiamondResult(Const.SUCCESS_UPDATE_CODE, Const.SUCCESS_UPDATE_MSG);
