@@ -172,7 +172,7 @@ namespace ValuationDiamond.WpfApp.UI
                     var item = row.Item as ValuationCertificate;
                     if (item != null)
                     {
-                        var currencyResult = await _certificateBusiness.GetbyId(item.ValuateDiamondId);
+                        var currencyResult = await _certificateBusiness.GetbyId(item.ValuateDiamondId.Value);
 
                         if (currencyResult.Status > 0 && currencyResult.Data != null)
                         {
