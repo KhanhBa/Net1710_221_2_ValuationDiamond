@@ -5,36 +5,38 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 {
     public class DetailsModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly IOrderDetailBusiness _business;
 
-        public DetailsModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public DetailsModel()
         {
-            _context = context;
+            _business ??= new OrderDetailBusiness();
         }
 
-      public OrderDetail OrderDetail { get; set; } = default!; 
+        [BindProperty]
+        public OrderDetail OrderDetail { get; set; } = default!; 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.OrderDetails == null)
+            if (id == null || _business == null)
             {
                 return NotFound();
             }
 
-            var orderdetail = await _context.OrderDetails.FirstOrDefaultAsync(m => m.OrderDetailId == id);
+            var orderdetail = await _business.GetById(id);
             if (orderdetail == null)
             {
                 return NotFound();
             }
             else 
             {
-                OrderDetail = orderdetail;
+                OrderDetail = orderdetail.Data as OrderDetail;
             }
             return Page();
         }

@@ -9,10 +9,7 @@ namespace ValuationDiamond.Data.Models;
 
 public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 {
-    public Net1710_221_2_ValuationDiamondContext()
-    {
-    }
-
+    public Net1710_221_2_ValuationDiamondContext() { }
     public Net1710_221_2_ValuationDiamondContext(DbContextOptions<Net1710_221_2_ValuationDiamondContext> options)
         : base(options)
     {
@@ -27,8 +24,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
         return connectionString;
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
-
+       => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
     public virtual DbSet<Company> Companies { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
@@ -130,11 +126,9 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.DetailCode)
-                .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Status)
-                .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
@@ -151,7 +145,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A713A42CB");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A55429C0F");
 
             entity.ToTable("Service");
 
@@ -165,7 +159,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
         modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB1750DB8E77");
+            entity.HasKey(e => e.StaffId).HasName("PK__Staff__96D4AB177ABDA9BC");
 
             entity.Property(e => e.Name)
                 .IsRequired()
@@ -234,6 +228,7 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
 
             entity.HasOne(d => d.ValuateDiamond).WithMany(p => p.ValuationCertificates)
                 .HasForeignKey(d => d.ValuateDiamondId)

@@ -32,7 +32,7 @@ namespace ValuationDiamond.Data.Repository
                 var quantity = order.OrderDetails.Count();
                 var totalAmount = order.OrderDetails.Sum(x => x.Price);
                 order.Quantity = quantity;
-                order.TotalAmount = totalAmount;
+                order.TotalAmount = totalAmount.Value;
             }
 
             await _context.SaveChangesAsync();
