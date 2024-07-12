@@ -1,0 +1,41 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ServicePage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details Service</h1>
+
+<div>
+ 
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.Decription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Service.Decription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <div>
+    <a asp-page="./Edit" asp-route-id="@Model.Service?.ServiceId"><button type="button" class="btn btn-primary">Edit</button></a> |
+    </div>
+    <div>
+    <a asp-page="./Index"><button type="button" class="btn btn-primary">Back to list</button></a>
+    </div>
+</div>

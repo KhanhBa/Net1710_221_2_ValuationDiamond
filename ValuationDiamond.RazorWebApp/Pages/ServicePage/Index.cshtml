@@ -1,0 +1,128 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ServicePage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .navbar-nav {
+        margin-left: auto;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+            .pagination li a {
+                color: #007bff;
+                text-decoration: none;
+                padding: 10px 15px;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                transition: background-color 0.2s;
+            }
+
+                .pagination li a:hover {
+                    background-color: #f8f9fa;
+                }
+
+            .pagination li.active a {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+            .pagination li.disabled a {
+                color: #6c757d;
+                pointer-events: none;
+            }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <img src="https://i.pinimg.com/564x/94/58/c3/9458c3be86694a4aabd1b7568753f164.jpg" alt="Dashboard Logo" style="width: 60px; height: 60px; margin-right: 10px;paddingLeft:10px">
+    <a class="navbar-brand" >
+        Dashboard
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/CustomerPage ">Customer</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/CustomerPage/Chart ">Chart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ServicePage">Service</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<p>
+    <a asp-page="Create"><button type="button" class="btn btn-primary">Create New</button></a>
+</p>
+<form method="get" class="form-inline mb-3">
+    <div class="input-group" style="width: 40%;">
+        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by any field" />
+        <div class="input-group-append ml-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div>
+            <div class="card">
+                <div class="card-body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Decription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Service) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Decription)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ServiceId"><button type="button" class="btn btn-primary">Edit</button></a> |
+                    <a asp-page="./Details" asp-route-id="@item.ServiceId"><button type="button" class="btn btn-primary">Details</button></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ServiceId"><button type="button" class="btn btn-primary">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

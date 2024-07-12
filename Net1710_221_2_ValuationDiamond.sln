@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Business",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.Common", "ValuationDiamond.Common\ValuationDiamond.Common.csproj", "{84D4C364-A533-4E48-AD6E-712B2794278A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValuationDiamond.WpfApp", "ValuationDiamond.WpfApp\ValuationDiamond.WpfApp.csproj", "{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.WpfApp", "ValuationDiamond.WpfApp\ValuationDiamond.WpfApp.csproj", "{53BF16F1-E427-4FD0-B6F2-D33FA175E4BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuationDiamond.RazorWebApp", "ValuationDiamond.RazorWebApp\ValuationDiamond.RazorWebApp.csproj", "{9D8A19A5-610E-45C3-A6A8-0565F22FCE37}"
 EndProject

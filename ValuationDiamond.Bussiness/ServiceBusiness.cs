@@ -7,10 +7,11 @@ namespace ValuationDiamond.Business
     public interface IServiceBusiness
     {
         Task<IValuationDiamondResult> GetAllService();
-        Task<IValuationDiamondResult> GetService(string serviceId);
+        Task<IValuationDiamondResult> GetService(int serviceId);
         Task<IValuationDiamondResult> AddService(Service service);
-        Task<IValuationDiamondResult> UpdateService(string serviceId, Service service);
-        Task<IValuationDiamondResult> DeleteService(string serviceId);
+        Task<IValuationDiamondResult> UpdateService(Service updateService);
+        Task<IValuationDiamondResult> DeleteService(int serviceId);
+        Task<IValuationDiamondResult> SearchServices(string searchField, string search);
     }
 
     public class ServiceBusiness : IServiceBusiness
@@ -21,7 +22,6 @@ namespace ValuationDiamond.Business
 
         public ServiceBusiness()
         {
-            //_DAO = new CustomerDAO();
             _unitOfWork = new UnitOfWork();
         }
 
@@ -38,11 +38,11 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<IValuationDiamondResult> GetService(string serviceId)
+        public async Task<IValuationDiamondResult> GetService(int serviceId)
         {
             try
             {
-                var service = await GetService(serviceId);
+                var service = await _unitOfWork.ServiceRepository.GetByIdAsync(serviceId);
                 return new ValuationDiamondResult(1, "Success", service);
             }
             catch (Exception ex)
@@ -64,11 +64,11 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<IValuationDiamondResult> UpdateService(string serviceId, Service updateService)
+        public async Task<IValuationDiamondResult> UpdateService(Service updateService)
         {
             try
             {
-                var existingService = await _unitOfWork.ServiceRepository.GetByIdAsync(serviceId);
+                var existingService = await _unitOfWork.ServiceRepository.GetByIdAsync(updateService.ServiceId);
                 if (existingService == null)
                 {
                     return new ValuationDiamondResult(0, "Service not found.");
@@ -79,7 +79,7 @@ namespace ValuationDiamond.Business
                 existingService.Price = updateService.Price;
                 existingService.Decription = updateService.Decription;
 
-                _unitOfWork.ServiceRepository.UpdateAsync(existingService);
+                await _unitOfWork.ServiceRepository.UpdateAsync(existingService);
                 return new ValuationDiamondResult(1, "Service updated successfully", updateService);
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<IValuationDiamondResult> DeleteService(string serviceId)
+        public async Task<IValuationDiamondResult> DeleteService(int serviceId)
         {
             try
             {
@@ -101,6 +101,38 @@ namespace ValuationDiamond.Business
                 _unitOfWork.CustomerRepository.RemoveAsync(service);
 
                 return new ValuationDiamondResult(1, "Service deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult();
+            }
+        }
+
+        public async Task<IValuationDiamondResult> SearchServices(string searchField, string search)
+        {
+            try
+            {
+                var services = await _unitOfWork.ServiceRepository.GetAllAsync();
+                List<Service> list = new List<Service>();
+
+                foreach (Service c in services)
+                {
+
+                    if (searchField.Equals("Name", StringComparison.OrdinalIgnoreCase) && c.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    {
+                        list.Add(c);
+                    }
+                   
+                }
+
+                if (list == null)
+                {
+                    return new ValuationDiamondResult(0, "No customers found");
+                }
+                else
+                {
+                    return new ValuationDiamondResult(1, "All Customers", list);
+                }
             }
             catch (Exception ex)
             {
