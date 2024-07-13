@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,30 +12,35 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
     public class CreateModel : PageModel
     {
         private readonly IValuationCertificateBusiness _valuationCertificateBusiness;
+        private readonly IValuationDiamondBusiness _valuateDiamondBusiness;
 
-        public CreateModel()
+        public CreateModel(IValuationCertificateBusiness valuationCertificateBusiness, IValuationDiamondBusiness valuateDiamondBusiness)
         {
-            _valuationCertificateBusiness ??= new ValuationCertificateBusiness();
+            _valuationCertificateBusiness = valuationCertificateBusiness;
+            _valuateDiamondBusiness = valuateDiamondBusiness;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            var valuateDiamonds = (await _valuateDiamondBusiness.GetAll()).Data as List<ValuateDiamond>;
+            ViewData["ValuateDiamondId"] = new SelectList(valuateDiamonds.Select(x => x.ValuateDiamondId));
             return Page();
+          
         }
 
         [BindProperty]
-        public ValuationCertificate ValuationCertificate { get; set; } = default!;
-        
+        public ValuationCertificate ValuationCertificate { get; set; } = new ValuationCertificate();
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || (await _valuationCertificateBusiness.GetAll()) == null || ValuationCertificate == null)
+            if (!ModelState.IsValid)
             {
+                var valuateDiamonds = (await _valuateDiamondBusiness.GetAll()).Data as List<ValuateDiamond>;
+                ViewData["ValuateDiamondId"] = new SelectList(valuateDiamonds.Select(x => x.ValuateDiamondId));
                 return Page();
             }
 
-           _valuationCertificateBusiness.Create(ValuationCertificate);
+            _valuationCertificateBusiness.Create(ValuationCertificate);
             return RedirectToPage("./Index");
         }
     }

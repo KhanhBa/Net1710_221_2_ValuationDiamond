@@ -15,11 +15,10 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
     {
         private readonly IValuationCertificateBusiness _valuationCertificateBusiness;
 
-        public IndexModel()
+        public IndexModel(IValuationCertificateBusiness valuationCertificateBusiness)
         {
-           _valuationCertificateBusiness ??= new ValuationCertificateBusiness();
+            _valuationCertificateBusiness = valuationCertificateBusiness;
         }
-
 
         public IPagedList<ValuationCertificate> ValuationCertificates { get; set; } = default!;
 
@@ -34,55 +33,50 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
         [BindProperty(SupportsGet = true)]
         public double Price { get; set; }
 
-
         public async Task<IActionResult> OnGetAsync()
         {
             var result = await _valuationCertificateBusiness.GetAll();
 
-            IEnumerable<ValuationCertificate> ValuationCertificate = null;
+            IEnumerable<ValuationCertificate> valuationCertificates = new List<ValuationCertificate>();
 
             if (result != null && result.Data != null)
             {
-                ValuationCertificate = (IEnumerable<ValuationCertificate>)result.Data;
+                valuationCertificates = result.Data as List<ValuationCertificate>;
 
                 if (!string.IsNullOrEmpty(CustomerName) && string.IsNullOrEmpty(Status) && Price == 0)
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.CustomerName.Contains(CustomerName)).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.CustomerName != null && b.CustomerName.Contains(CustomerName)).ToList();
                 }
                 else if (!string.IsNullOrEmpty(Status) && string.IsNullOrEmpty(CustomerName) && Price == 0)
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.Status.Contains(Status)).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.Status != null && b.Status.Contains(Status)).ToList();
                 }
-                else if (Price!= 0 && string.IsNullOrEmpty(Status) && string.IsNullOrEmpty(CustomerName))
+                else if (Price != 0 && string.IsNullOrEmpty(Status) && string.IsNullOrEmpty(CustomerName))
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.Price==Price).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.Price == Price).ToList();
                 }
                 else if (!string.IsNullOrEmpty(CustomerName) && !string.IsNullOrEmpty(Status) && Price == 0)
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.CustomerName.Contains(CustomerName) && b.Status.Contains(Status)).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.CustomerName != null && b.CustomerName.Contains(CustomerName) && b.Status != null && b.Status.Contains(Status)).ToList();
                 }
                 else if (!string.IsNullOrEmpty(CustomerName) && Price != 0 && string.IsNullOrEmpty(Status))
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.CustomerName.Contains(CustomerName) && b.Price == Price).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.CustomerName != null && b.CustomerName.Contains(CustomerName) && b.Price == Price).ToList();
                 }
                 else if (!string.IsNullOrEmpty(Status) && Price != 0 && string.IsNullOrEmpty(CustomerName))
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.Status.Contains(Status) && b.Price == Price).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.Status != null && b.Status.Contains(Status) && b.Price == Price).ToList();
                 }
                 else if (!string.IsNullOrEmpty(Status) && Price != 0 && !string.IsNullOrEmpty(CustomerName))
                 {
-                    ValuationCertificate = ValuationCertificate.Where(b => b.Status.Contains(Status) && b.Price == Price && b.CustomerName.Contains(CustomerName)).ToList();
+                    valuationCertificates = valuationCertificates.Where(b => b.Status != null && b.Status.Contains(Status) && b.Price == Price && b.CustomerName != null && b.CustomerName.Contains(CustomerName)).ToList();
                 }
-            }
-            else
-            {
-                ValuationCertificate = Enumerable.Empty<ValuationCertificate>();
             }
 
             var pageNumber = PageNumber ?? 1;
             var pageSize = 3;
 
-            ValuationCertificates = await ValuationCertificate.ToPagedListAsync(pageNumber, pageSize);
+            ValuationCertificates = await valuationCertificates.ToPagedListAsync(pageNumber, pageSize);
 
             return Page();
         }
