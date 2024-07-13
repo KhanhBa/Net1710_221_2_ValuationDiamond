@@ -51,6 +51,18 @@ namespace ValuationDiamond.Data.Repository
                 .Take(pageSize)
                 .ToListAsync();
 
+            var ordersList = await _context.Orders.Include(x => x.OrderDetails).Include(x => x.Customer).ToListAsync();
+
+            foreach (var order in ordersList)
+            {
+                var quantity = order.OrderDetails.Count();
+                var totalAmount = order.OrderDetails.Sum(x => x.Price);
+                order.Quantity = quantity;
+                order.TotalAmount = totalAmount.Value;
+            }
+
+            await _context.SaveChangesAsync();
+
             return (orders, totalItems);
         }
 
@@ -83,6 +95,18 @@ namespace ValuationDiamond.Data.Repository
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            var ordersList = await _context.Orders.Include(x => x.OrderDetails).Include(x => x.Customer).ToListAsync();
+
+            foreach (var order in ordersList)
+            {
+                var quantity = order.OrderDetails.Count();
+                var totalAmount = order.OrderDetails.Sum(x => x.Price);
+                order.Quantity = quantity;
+                order.TotalAmount = totalAmount.Value;
+            }
+
+            await _context.SaveChangesAsync();
 
             return (orders, totalItems);
         }
