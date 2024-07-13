@@ -35,7 +35,7 @@
                 <input asp-for="Order.Day" class="form-control" />
                 <span asp-validation-for="Order.Day" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Order.Quantity" class="control-label"></label>
                 <input asp-for="Order.Quantity" class="form-control" />
                 <span asp-validation-for="Order.Quantity" class="text-danger"></span>
@@ -44,10 +44,10 @@
                 <label asp-for="Order.TotalAmount" class="control-label"></label>
                 <input asp-for="Order.TotalAmount" class="form-control" />
                 <span asp-validation-for="Order.TotalAmount" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
-                <label asp-for="Order.CustomerId" class="control-label"></label>
-                <input asp-for="Order.CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></input>
+                <label asp-for="Order.Customer" class="control-label"></label>
+                <select asp-for="Order.CustomerId" class="form-control" asp-items="@Model.CustomerList"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Order.OrderCode" class="control-label"></label>

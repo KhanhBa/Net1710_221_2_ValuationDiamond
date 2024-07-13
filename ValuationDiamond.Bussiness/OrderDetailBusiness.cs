@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Data.Models;
-using ValuationDiamond.Data.DAO;
 using ValuationDiamond.Business;
 using System.Runtime.CompilerServices;
 using ValuationDiamond.Common;

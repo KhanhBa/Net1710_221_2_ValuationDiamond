@@ -6,37 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
 namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 {
     public class EditModel : PageModel
     {
-        private readonly ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext _context;
+        private readonly OrderDetailBusiness _business;
 
-        public EditModel(ValuationDiamond.Data.Models.Net1710_221_2_ValuationDiamondContext context)
+        public EditModel()
         {
-            _context = context;
+            _business ??= new OrderDetailBusiness();
         }
 
         [BindProperty]
         public OrderDetail OrderDetail { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.OrderDetails == null)
+            if (id == null || (_business.GetAll().Result.Data) == null)
             {
                 return NotFound();
             }
 
-            var orderdetail =  await _context.OrderDetails.FirstOrDefaultAsync(m => m.OrderDetailId == id);
+            var orderdetail = await _business.GetById(id);
             if (orderdetail == null)
             {
                 return NotFound();
             }
-            OrderDetail = orderdetail;
-           ViewData["OrderId"] = new SelectList(_context.Orders, "OrderId", "Payment");
-           ViewData["ServiceId"] = new SelectList(_context.Services, "ServiceId", "ServiceId");
+            OrderDetail = orderdetail.Data as OrderDetail;
             return Page();
         }
 
@@ -49,11 +48,9 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
                 return Page();
             }
 
-            _context.Attach(OrderDetail).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _business.Save(OrderDetail);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +69,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 
         private bool OrderDetailExists(int id)
         {
-          return (_context.OrderDetails?.Any(e => e.OrderDetailId == id)).GetValueOrDefault();
+            return false;
         }
     }
 }

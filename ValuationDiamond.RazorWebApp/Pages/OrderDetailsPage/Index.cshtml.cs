@@ -19,7 +19,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
             _business = business;
         }
 
-        public IList<OrderDetail> OrderDetail { get;set; } = default!;
+        public IList<OrderDetail> OrderDetail { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

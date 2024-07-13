@@ -13,32 +13,63 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ValuationCertificate.ValuationCertificateId" />
+            <div hidden class="form-group">
+                <label asp-for="ValuationCertificate.ValuationCertificateId" class="control-label"></label>
+                <input asp-for="ValuationCertificate.ValuationCertificateId" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.ValuationCertificateId" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="ValuationCertificate.ValuateDiamondId" class="control-label"></label>
+                <input asp-for="ValuationCertificate.ValuateDiamondId" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.ValuateDiamondId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ValuationCertificate.Price" class="control-label"></label>
                 <input asp-for="ValuationCertificate.Price" class="form-control" />
                 <span asp-validation-for="ValuationCertificate.Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ValuationCertificate.Status" class="control-label"></label>
                 <input asp-for="ValuationCertificate.Status" class="form-control" />
                 <span asp-validation-for="ValuationCertificate.Status" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ValuationCertificate.Day" class="control-label"></label>
                 <input asp-for="ValuationCertificate.Day" class="form-control" />
                 <span asp-validation-for="ValuationCertificate.Day" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ValuationCertificate.Description" class="control-label"></label>
                 <input asp-for="ValuationCertificate.Description" class="form-control" />
                 <span asp-validation-for="ValuationCertificate.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ValuationCertificate.ValuateDiamondId" class="control-label"></label>
-                <input asp-for="ValuationCertificate.ValuateDiamondId" class="form-control" asp-items="ViewBag.ValuateDiamondId"></input>
-                <span asp-validation-for="ValuationCertificate.ValuateDiamondId" class="text-danger"></span>
+                <label asp-for="ValuationCertificate.Sign" class="control-label"></label>
+                <input asp-for="ValuationCertificate.Sign" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.Sign" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.ManagerName" class="control-label"></label>
+                <input asp-for="ValuationCertificate.ManagerName" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.ManagerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.CustomerName" class="control-label"></label>
+                <input asp-for="ValuationCertificate.CustomerName" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ValuationCertificate.CustomerEmail" class="control-label"></label>
+                <input asp-for="ValuationCertificate.CustomerEmail" class="form-control" />
+                <span asp-validation-for="ValuationCertificate.CustomerEmail" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -51,5 +82,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

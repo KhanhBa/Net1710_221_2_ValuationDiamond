@@ -5,71 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValuationDiamond.WpfApp.UI"
         mc:Ignorable="d"
-        Title="wOrderDetail" Height="450" Width="2000">
+        Title="wOrderDetail" Height="450" Width="1064">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <GroupBox Header="Currency Form" Margin="10" Width="1523">
-                <Grid Height="50">
+            <GroupBox Header="OrderDetail Form" Margin="10">
+                <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="OrderDetailId:" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtOrderdetailId" Height="25" Text="{Binding Path=OrderDetail.OrderDetailId, Mode=TwoWay}"  Margin="5"  Width="100" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="2" Grid.Row="0" Content="ServiceId:" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtServiceId" Height="25" Text="{Binding Path=OrderDetail.ServiceId, Mode=TwoWay}"  Margin="5"  Width="100" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="4" Grid.Row="0" Content="Status:" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtStatus" Height="25" Text="{Binding Path=OrderDetail.Status, Mode=TwoWay}"  Margin="5"  Width="100" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="6" Grid.Row="0" Content="Price:" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtPrice" Height="25" Text="{Binding Path=OrderDetail.Price, Mode=TwoWay}"  Margin="5"  Width="100" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="8" Grid.Row="0" Content="OrderId:" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="9" Grid.Row="0" x:Name="txtOrderId" Height="25" Text="{Binding Path=OrderDetail.OrderId, Mode=TwoWay}"  Margin="5"  Width="100" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="OrderDetailId:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtOrderDetailId" Height="25" Text="{Binding Path=OrderDetailId, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="2" Grid.Row="0" Content="ServiceId:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtServiceId" Height="25" Text="{Binding Path=ServiceId, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtPrice" Height="25" Text="{Binding Path=Price, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="2" Grid.Row="1" Content="OrderId:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtOrderId" Height="25" Text="{Binding Path=OrderId, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="DetailCode:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtDetailCode" Height="25" Text="{Binding Path=DetailCode, Mode=TwoWay}" Margin="5" />
+
+                    <Label Grid.Column="2" Grid.Row="2" Content="Status:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtStatus" Text="{Binding Path=Status, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="2" Grid.Row="3" Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="3" Grid.Row="3" x:Name="txtDescription" Height="25" Text="{Binding Path=Description, Mode=TwoWay}" Margin="5"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Content="EstimateLength:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="4" x:Name="txtEstimateLength" Height="25" Text="{Binding Path=EstimateLength, Mode=TwoWay}" Margin="5"/>
                 </Grid>
             </GroupBox>
-            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
-                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click"/>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+
+                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click" Margin="5"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="5"/>
             </StackPanel>
-            <StackPanel Height="210" Width="1554">
-                <DataGrid x:Name="grdCustomer" AutoGenerateColumns="False"  CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
+            <StackPanel Width="Auto" Margin="10">
+                <DataGrid x:Name="grdOrderDetail" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" MouseDoubleClick="grdOrderDetail_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
                         <DataGridTextColumn Header="OrderDetailId" Binding="{Binding Path=OrderDetailId}" Visibility="Visible"/>
-                        <DataGridTextColumn Header="ServiceId" Binding="{Binding Path=ServiceId}" Width="100"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="50"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="50"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="OrderId" Binding="{Binding Path=OrderId}" Width="50"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ServiceId" Binding="{Binding Path=ServiceId}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="OrderId" Binding="{Binding Path=OrderId}" Width="150" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="DetailCode" Binding="{Binding Path=DetailCode}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="50" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="EstimateLength" Binding="{Binding Path=EstimateLength}" Width="150" IsReadOnly="True"/>
                         <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=OrderDetailId}" Click="grdCustomer_ButtonDelete_Click"/>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=OrderDetailId}" Click="grdOrderDetail_ButtonDelete_Click"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
-                        <!--<DataGridTemplateColumn Width="50">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=Id}"
-                                Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                        AncestorType=Window}}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
-
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
