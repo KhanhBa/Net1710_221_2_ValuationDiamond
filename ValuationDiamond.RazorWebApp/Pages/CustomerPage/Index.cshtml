@@ -5,6 +5,10 @@
 }
 
 <style>
+    .navbar-nav {
+        margin-left: auto;
+    }
+
     .pagination {
         display: flex;
         justify-content: center;
@@ -80,7 +84,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            
                             <th>Name</th>
                             <th>CCCD</th>
                             <th>Email</th>
@@ -97,7 +100,6 @@
                         @foreach (var item in Model.Customer)
                         {
                             <tr>
-                                
                                 <td>@item.Name</td>
                                 <td>@item.Cccd</td>
                                 <td>@item.Email</td>
@@ -121,8 +123,31 @@
                         }
                     </tbody>
                 </table>
-
-               
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if (Model.Pager != null)
+                        {
+                            @if (Model.Pager.HasPreviousPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage - 1)" asp-route-SearchTerm="@Model.SearchTerm">Previous</a>
+                                </li>
+                            }
+                            @for (int i = 1; i <= Model.Pager.TotalPages; i++)
+                            {
+                                <li class="page-item @(Model.Pager.CurrentPage == i ? "active" : "")">
+                                    <a class="page-link" asp-route-pageIndex="@i" asp-route-SearchTerm="@Model.SearchTerm">@i</a>
+                                </li>
+                            }
+                            @if (Model.Pager.HasNextPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage + 1)" asp-route-SearchTerm="@Model.SearchTerm">Next</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

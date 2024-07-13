@@ -57,7 +57,14 @@
             @Html.DisplayNameFor(model => model.Customer.Avatar)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Customer.Avatar)
+            @if (!string.IsNullOrEmpty(Model.Customer.Avatar))
+            {
+                <img src="@Model.Customer.Avatar" alt="Avatar" style="width: 150px; height: 150px;" />
+            }
+            else
+            {
+                <span>No Avatar</span>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Customer.Phone)
