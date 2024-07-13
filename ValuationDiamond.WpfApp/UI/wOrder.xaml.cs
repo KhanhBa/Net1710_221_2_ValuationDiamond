@@ -64,7 +64,7 @@ namespace ValuationDiamond.WpfApp.UI
                         {
                             item = orderResult.Data as Order;
                             txtOrderId.Text = item.OrderId.ToString();
-                            txtPayStatus.Text = item.PayStatus.ToString();
+                            txtPayStatus.IsChecked = item.PayStatus;
                             txtStatus.Text = item.Status.ToString();
                             txtPayment.Text = item.Payment.ToString();
                             txtQuantity.Text = item.Quantity.ToString();
@@ -107,14 +107,14 @@ namespace ValuationDiamond.WpfApp.UI
                 {
                     txtOrderId.Text = "0";
                 }
-                var item = await _orderBusiness.ReadOrder(int.Parse(txtOrderId.Text));
+                //var item = await _orderBusiness.ReadOrder(int.Parse(txtOrderId.Text));
 
-                if (item.Data == null)
+                if (txtOrderId.Text == "")
                 {
                     var order = new Order()
                     {
                         //OrderId = idTmp,
-                        PayStatus = txtPayStatus.Text=="",
+                        PayStatus = txtPayStatus.IsChecked ?? false,
                         Status = txtStatus.Text,
                         Payment = txtPayment.Text,
                         Day = DateTime.Parse(txtDay.Text),
@@ -128,9 +128,10 @@ namespace ValuationDiamond.WpfApp.UI
                 }
                 else
                 {
+                    var item = await _orderBusiness.ReadOrder(int.Parse(txtOrderId.Text));
                     var order = item.Data as Order;
                     //order.OrderId = int.Parse(txtOrderId.Text);
-                    order.PayStatus = txtPayStatus.Text=="";
+                    order.PayStatus = txtPayStatus.IsChecked ?? false;
                     order.Status = txtStatus.Text;
                     order.Payment = txtPayment.Text;
                     order.Day = DateTime.Parse(txtDay.Text);
@@ -143,7 +144,7 @@ namespace ValuationDiamond.WpfApp.UI
                 }
 
                 txtOrderId.Text = string.Empty;
-                txtPayStatus.Text = string.Empty;
+                txtPayStatus.IsChecked = false;
                 txtPayment.Text = string.Empty;
                 txtStatus.Text = string.Empty;
                 txtDay.Text = string.Empty;
@@ -162,7 +163,7 @@ namespace ValuationDiamond.WpfApp.UI
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             txtOrderId.Text = string.Empty;
-            txtPayStatus.Text = string.Empty;
+            txtPayStatus.IsChecked = false;
             txtPayment.Text = string.Empty;
             txtStatus.Text = string.Empty;
             txtDay.Text = string.Empty;

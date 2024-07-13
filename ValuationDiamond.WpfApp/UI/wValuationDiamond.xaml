@@ -35,7 +35,7 @@
                     <Label Grid.Column="2" Grid.Row="0" Content="Price" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtPrice" Height="25" Text="{Binding Path=ValuateDiamond.Price, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
                     <Label Grid.Column="4" Grid.Row="0" Content="Time" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtTime" Height="25" Text="{Binding Path=ValuateDiamond.Time, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <DatePicker Grid.Column="5" Grid.Row="0" x:Name="txtTime" Height="25" Text="{Binding Path=ValuateDiamond.Time, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
                     <Label Grid.Column="6" Grid.Row="0" Content="Staff Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtStaffName" Height="25" Text="{Binding Path=ValuateDiamond.ValuationStaffName, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
                     <Label Grid.Column="8" Grid.Row="0" Content="ODID" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
