@@ -165,13 +165,16 @@ namespace ValuationDiamond.Business
                     return new ValuationDiamondResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
 
-                var filteredDiamonds = allDiamonds.Where(diamond => diamond.ValuationStaffName.Contains(searchTerm) ||
-                                                                      diamond.OrderDetailId.ToString().Contains(searchTerm) ||
-                                                                      diamond.Color.Contains(searchTerm) ||
-                                                                      diamond.Price.ToString().Contains(searchTerm) ||
-                                                                      diamond.Shape.Contains(searchTerm) ||
-                                                                      diamond.DiamondType.Contains(searchTerm) ||
-                                                                      diamond.Carat.ToString().Contains(searchTerm));
+                var filteredDiamonds = allDiamonds.Where(diamond =>
+                    (diamond.ValuationStaffName?.Contains(searchTerm) ?? false) ||
+                    (diamond.OrderDetailId != null && diamond.OrderDetailId.ToString().Contains(searchTerm)) ||
+                    (diamond.Color?.Contains(searchTerm) ?? false) ||
+                    (diamond.Price?.ToString().Contains(searchTerm) ?? false) ||
+                    (diamond.Shape?.Contains(searchTerm) ?? false) ||
+                    (diamond.DiamondType?.Contains(searchTerm) ?? false) ||
+                    (diamond.Carat?.ToString().Contains(searchTerm) ?? false)
+
+                );
 
                 if (!filteredDiamonds.Any())
                 {
@@ -185,8 +188,10 @@ namespace ValuationDiamond.Business
                 return new ValuationDiamondResult(Const.FAIL_READ_CODE, Const.FAIL_READ_MSG);
             }
         }
+
     }
 }
+
 
 
 
