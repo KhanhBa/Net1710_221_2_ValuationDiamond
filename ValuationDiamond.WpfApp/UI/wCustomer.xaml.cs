@@ -28,29 +28,30 @@ namespace ValuationDiamond.WpfApp.UI
         {
             try
             {
-                var item = await _business.GetCustomer(int.Parse(txtCustomerId.Text));
+                if (txtCustomerId.Text != "") { var item = await _business.GetCustomer(int.Parse(txtCustomerId.Text)); }
 
-                var customer = new Customer()
+                    var customer = new Customer()
+                    {
+                       
+                        Name = txtCustomerName.Text,
+                        Cccd = txtCccd.Text,
+                        Email = txtEmail.Text,
+                        Password = txtPassword.Text,
+                        Status = chkStatus.IsChecked ?? false,
+                        DoB = dpDoB.SelectedDate ?? DateTime.Now,
+                        Address = txtAddress.Text,
+                        Phone = txtPhone.Text,
+                        Avatar = txtAvatar.Text
+                    };
+                if (txtCustomerId.Text == "")
                 {
-                    CustomerId = int.Parse(txtCustomerId.Text),
-                    Name = txtCustomerName.Text,
-                    Cccd = txtCccd.Text,
-                    Email = txtEmail.Text,
-                    Password = txtPassword.Text,  
-                    Status = chkStatus.IsChecked ?? false,
-                    DoB = dpDoB.SelectedDate ?? DateTime.Now,
-                    Address = txtAddress.Text,
-                    Phone = txtPhone.Text,
-                    Avatar = txtAvatar.Text
-                };
-
-                if (item.Data == null)
-                {
+                    customer.CustomerId = 0;
                     var result = await _business.SaveCustomer(customer);
                     MessageBox.Show(result.Message, "Save");
                 }
                 else
                 {
+                    customer.CustomerId = int.Parse(txtCustomerId.Text);
                     var result = await _business.UpdateCustomer(customer);
                     MessageBox.Show(result.Message, "Update");
                 }
