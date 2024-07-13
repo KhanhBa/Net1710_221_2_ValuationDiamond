@@ -11,7 +11,10 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICustomerBusiness, CustomerBusiness>();
 builder.Services.AddTransient<OrderDetailBusiness>();
-
+builder.Services.AddScoped<IValuationDiamondBusiness, ValuationDiamondBusiness>();
+builder.Services.AddScoped<IValuationCertificateBusiness, ValuationCertificateBusiness>();
+builder.Services.AddTransient<IValuationCertificateBusiness, ValuationCertificateBusiness>();
+builder.Services.AddTransient<IValuationDiamondBusiness, ValuationDiamondBusiness>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
