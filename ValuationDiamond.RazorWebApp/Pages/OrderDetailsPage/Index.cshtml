@@ -29,10 +29,10 @@
                 @Html.DisplayNameFor(model => model.OrderDetail[0].EstimateLength)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDetail[0].Order)
+                @Html.DisplayNameFor(model => model.OrderDetail[0].OrderId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDetail[0].Service)
+                @Html.DisplayNameFor(model => model.OrderDetail[0].ServiceId)
             </th>
             <th></th>
         </tr>
@@ -56,10 +56,10 @@
                 @Html.DisplayFor(modelItem => item.EstimateLength)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Order.OrderId)
+                @Html.DisplayFor(modelItem => item.OrderId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Service.ServiceId)
+                @Html.DisplayFor(modelItem => item.ServiceId)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.OrderDetailId">Edit</a> |

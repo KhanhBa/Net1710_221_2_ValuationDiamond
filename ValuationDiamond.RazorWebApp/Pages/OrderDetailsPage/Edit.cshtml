@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="OrderDetail.OrderDetailId" />
             <div class="form-group">
                 <label asp-for="OrderDetail.ServiceId" class="control-label"></label>
-                <select asp-for="OrderDetail.ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+                <select asp-for="OrderDetail.ServiceId" class="form-control" asp-items="Model.ServiceList"></select>
                 <span asp-validation-for="OrderDetail.ServiceId" class="text-danger"></span>
             </div>
             <div class="form-group">
