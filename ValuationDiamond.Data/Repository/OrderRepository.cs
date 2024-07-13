@@ -66,26 +66,22 @@ namespace ValuationDiamond.Data.Repository
             return (orders, totalItems);
         }
 
-        public async Task<(IEnumerable<Order> Data, int TotalCount)> GetPagedSearchOrders(string searchField, string searchTerm, int pageIndex, int pageSize)
+     
+        public async Task<(IEnumerable<Order> Data, int TotalCount)> GetPagedSearchOrders(string orderCode, string staffName, string customer, int pageIndex, int pageSize)
         {
             var query = _context.Orders.Include(x => x.Customer).AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchField) && !string.IsNullOrEmpty(searchTerm))
+            if (!string.IsNullOrEmpty(orderCode))
             {
-                switch (searchField.ToLower())
-                {
-                    case "ordercode":
-                        query = query.Where(o => o.OrderCode.Contains(searchTerm));
-                        break;
-                    case "staffname":
-                        query = query.Where(o => o.StaffName.Contains(searchTerm));
-                        break;
-                    case "customer":
-                        query = query.Where(o => o.Customer.Name.Contains(searchTerm));
-                        break;
-                    default:
-                        break;
-                }
+                query = query.Where(o => o.OrderCode.Contains(orderCode));
+            }
+            if (!string.IsNullOrEmpty(staffName))
+            {
+                query = query.Where(o => o.StaffName.Contains(staffName));
+            }
+            if (!string.IsNullOrEmpty(customer))
+            {
+                query = query.Where(o => o.Customer.Name.Contains(customer));
             }
 
             var totalItems = await query.CountAsync();

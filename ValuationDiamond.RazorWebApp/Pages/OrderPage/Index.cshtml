@@ -11,26 +11,18 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@* <form method="get" class="form-inline mb-3">
-    <div class="input-group" style="width: 50%;">
-        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by Order Code or Staff Name" />
+<form method="get" class="form-inline mb-3">
+    <div class="input-group" style="width: 80%;">
+        <input type="text" id="orderCode" name="OrderCode" value="@Model.OrderCode" class="form-control" placeholder="Search by Order Code" />
+        <input type="text" id="staffName" name="StaffName" value="@Model.StaffName" class="form-control" placeholder="Search by Staff Name" />
+        <input type="text" id="customer" name="Customer" value="@Model.Customer" class="form-control" placeholder="Search by Customer" />
+
         <div class="input-group-append">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </div>
-</form> *@
-
-<form method="get" class="form-inline mb-3">
-    <div class="input-group" style="width: 80%;">
-        <input type="text" id="searchTerm" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search by Order Code or Staff Name or Customer" />
-
-        <div class="input-group-append">
-            <button type="submit" name="SearchField" value="OrderCode" class="btn btn-primary">Search Order Code</button>
-            <button type="submit" name="SearchField" value="StaffName" class="btn btn-primary">Search Staff Name</button>
-            <button type="submit" name="SearchField" value="Customer" class="btn btn-primary">Search Customer</button>
-        </div>
-    </div>
 </form>
+
 
 <table class="table">
     <thead>
@@ -116,19 +108,37 @@
         @if (Model.Pager.HasPreviousPage)
         {
             <li class="page-item">
-                <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage - 1)" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">Previous</a>
+                <a class="page-link"
+                   asp-route-pageIndex="@(Model.Pager.CurrentPage - 1)"
+                   asp-route-OrderCode="@Model.OrderCode"
+                   asp-route-StaffName="@Model.StaffName"
+                   asp-route-Customer="@Model.Customer">
+                    Previous
+                </a>
             </li>
         }
         @for (int i = 1; i <= Model.Pager.TotalPages; i++)
         {
             <li class="page-item @(Model.Pager.CurrentPage == i ? "active" : "")">
-                <a class="page-link" asp-route-pageIndex="@i" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">@i</a>
+                <a class="page-link"
+                   asp-route-pageIndex="@i"
+                   asp-route-OrderCode="@Model.OrderCode"
+                   asp-route-StaffName="@Model.StaffName"
+                   asp-route-Customer="@Model.Customer">
+                    @i
+                </a>
             </li>
         }
         @if (Model.Pager.HasNextPage)
         {
             <li class="page-item">
-                <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage + 1)" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">Next</a>
+                <a class="page-link"
+                   asp-route-pageIndex="@(Model.Pager.CurrentPage + 1)"
+                   asp-route-OrderCode="@Model.OrderCode"
+                   asp-route-StaffName="@Model.StaffName"
+                   asp-route-Customer="@Model.Customer">
+                    Next
+                </a>
             </li>
         }
     </ul>
