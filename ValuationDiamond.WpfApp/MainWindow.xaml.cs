@@ -57,7 +57,6 @@ namespace ValuationDiamond.WpfApp
             var p = new wCertiticateValuation();
             p.Owner = this;
             p.Show();
-            this.Hide();
         }
         private async void Open_wValuationDiamond_Click(object sender, RoutedEventArgs e)
         {
