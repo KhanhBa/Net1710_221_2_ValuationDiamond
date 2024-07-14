@@ -18,7 +18,8 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> CreateOrder(Order order);
         Task<IValuationDiamondResult> UpdateOrder(Order order);
         Task<IValuationDiamondResult> DeleteOrder(int orderId);
-        Task<IValuationDiamondResult> SearchOrders(string searchField, string search);
+        Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string searchField, string search, int pageIndex, int pageSize);
+        Task<(IEnumerable<Order> Data, int TotalCount)> GetPagedOrders(int pageIndex, int pageSize);
     }
 
     public class OrderBusiness : IOrderBusiness
@@ -36,12 +37,18 @@ namespace ValuationDiamond.Business
             _customerBusiness ??= new CustomerBusiness();
         }
 
+        public async Task<(IEnumerable<Order> Data, int TotalCount)> GetPagedOrders(int pageIndex, int pageSize)
+        {
+            return await _unitOfWork.OrderRepository.GetPagedOrders(pageIndex, pageSize);
+        }
+
+
         public async Task<IValuationDiamondResult> GetAllOrders()
         {
             try
             {
                 //var orders = await _DAO.GetAllAsync();
-                var orders = await _unitOfWork.OrderRepository.GetAllAsync();
+                var orders = await _unitOfWork.OrderRepository.GetAllOrders();
 
                 if (orders == null)
                 {
@@ -55,71 +62,35 @@ namespace ValuationDiamond.Business
             }
         }
 
-        //public async Task<IValuationDiamondResult> SearchOrders(string search)
-        //{
-        //    try
-        //    {
-        //        //var orders = await _DAO.GetAllAsync();
-        //        var orders = await _unitOfWork.OrderRepository.GetAllAsync();
-        //        List<Order> list = new List<Order>();
+        public async Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string searchField, string search, int pageIndex, int pageSize)
+        {         
+                //var orders = await _unitOfWork.OrderRepository.GetPagedOrders(pageIndex, pageSize);
+                //List<Order> list = new List<Order>();
 
-        //        foreach (Order o in orders)
-        //        {
-        //            if (o.OrderCode.Contains(search, StringComparison.OrdinalIgnoreCase) || 
-        //                o.StaffName.Contains(search, StringComparison.OrdinalIgnoreCase))
-        //            {
-        //                list.Add(o);
-        //            }
-        //        }
+                //foreach (Order o in orders.Data)
+                //{
+                //    if (searchField.Equals("OrderCode", StringComparison.OrdinalIgnoreCase) && o.OrderCode.Contains(search, StringComparison.OrdinalIgnoreCase))
+                //    {
+                //        list.Add(o);
+                //    }
+                //    else if (searchField.Equals("StaffName", StringComparison.OrdinalIgnoreCase) && o.StaffName.Contains(search, StringComparison.OrdinalIgnoreCase))
+                //    {
+                //        list.Add(o);
+                //    }
+                //    else if (searchField.Equals("Customer", StringComparison.OrdinalIgnoreCase) && o.Customer.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                //    {
+                //        list.Add(o);
+                //    }
+                //}
 
-        //        if (list == null)
-        //        {
-        //            return new ValuationDiamondResult(0, "No orders found");
-        //        }
-        //        else return new ValuationDiamondResult(1, "All Orders", list);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ValuationDiamondResult();
-        //    }
-        //}
+                ////if (list == null)
+                ////{
+                ////    return new ValuationDiamondResult(0, "No orders found");
+                ////}
+               
+                //return (list, orders.TotalCount);
 
-        public async Task<IValuationDiamondResult> SearchOrders(string searchField, string search)
-        {
-            try
-            {
-                var orders = await _unitOfWork.OrderRepository.GetAllAsync();
-                List<Order> list = new List<Order>();
-
-                foreach (Order o in orders)
-                {
-                    if (searchField.Equals("OrderCode", StringComparison.OrdinalIgnoreCase) && o.OrderCode.Contains(search, StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.Add(o);
-                    }
-                    else if (searchField.Equals("StaffName", StringComparison.OrdinalIgnoreCase) && o.StaffName.Contains(search, StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.Add(o);
-                    }
-                    else if (searchField.Equals("Customer", StringComparison.OrdinalIgnoreCase) && o.CustomerId.ToString().Contains(search, StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.Add(o);
-                    }
-                }
-
-                if (list == null)
-                {
-                    return new ValuationDiamondResult(0, "No orders found");
-                }
-                else
-                {
-                    return new ValuationDiamondResult(1, "All Orders", list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new ValuationDiamondResult();
-            }
+                return await _unitOfWork.OrderRepository.GetPagedSearchOrders(searchField, search, pageIndex, pageSize);           
         }
 
         public async Task<IValuationDiamondResult> ReadOrder(int orderId)
@@ -128,7 +99,7 @@ namespace ValuationDiamond.Business
             {
                 //var order = await _DAO.Orders.FindAsync(orderId);
                 //var order = await _DAO.GetByIdAsync(orderId);
-                var order = await _unitOfWork.OrderRepository.GetByIdAsync(orderId);
+                var order = await _unitOfWork.OrderRepository.GetOrderbyId(orderId);
 
                 if (order == null)
                 {
@@ -151,7 +122,7 @@ namespace ValuationDiamond.Business
                     return new ValuationDiamondResult(0, "Invalid CustomerID");
                 }
 
-                var orders = await _unitOfWork.OrderRepository.GetAllAsync();
+                var orders = await _unitOfWork.OrderRepository.GetAllOrders();
                 foreach (Order o in orders)
                 {
                     if (o.OrderCode == order.OrderCode)
@@ -161,6 +132,8 @@ namespace ValuationDiamond.Business
                 }
 
                 //int result = await _DAO.CreateAsync(order);
+                order.Quantity = 0;
+                order.TotalAmount = 0;
                 _unitOfWork.OrderRepository.PrepareCreate(order);
                 int result = await _unitOfWork.OrderRepository.SaveAsync();
 
@@ -204,7 +177,7 @@ namespace ValuationDiamond.Business
             try
             {
                 //var existingOrder = await _DAO.GetByIdAsync(order.OrderId);
-                var existingOrder = await _unitOfWork.OrderRepository.GetByIdAsync(order.OrderId);
+                var existingOrder = await _unitOfWork.OrderRepository.GetOrderbyId(order.OrderId);
 
                 if (existingOrder == null)
                 {
@@ -214,11 +187,11 @@ namespace ValuationDiamond.Business
                 existingOrder.PayStatus = order.PayStatus;
                 existingOrder.Status = order.Status;
                 existingOrder.Day = order.Day;
-                existingOrder.Quantity = order.Quantity;
-                existingOrder.TotalAmount = order.TotalAmount;
-                existingOrder.CustomerId = order.CustomerId;
+                //existingOrder.Quantity = order.Quantity;
+                //existingOrder.TotalAmount = order.TotalAmount;
+                //existingOrder.CustomerId = order.CustomerId;
                 existingOrder.Payment = order.Payment;
-                existingOrder.OrderCode = order.OrderCode;
+                //existingOrder.OrderCode = order.OrderCode;
                 existingOrder.StaffName = order.StaffName;
                 //_context.Entry(o).CurrentValues.SetValues(order);
                 //await _DAO.UpdateAsync(existingOrder);

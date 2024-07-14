@@ -14,5 +14,7 @@ namespace ValuationDiamond.Data.Repository
         {
 
         }
+
+        public ServiceRepository(Net1710_221_2_ValuationDiamondContext context) => _context = context;
     }
 }

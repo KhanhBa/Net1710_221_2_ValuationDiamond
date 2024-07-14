@@ -96,7 +96,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
             entity.ToTable("Order");
 
-            entity.Property(e => e.Day).HasColumnType("date");
             entity.Property(e => e.OrderCode)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -193,7 +192,6 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
             entity.Property(e => e.Shape)
                 .HasMaxLength(10)
                 .IsFixedLength();
-            entity.Property(e => e.Time).HasColumnType("datetime");
             entity.Property(e => e.ValuationStaffName)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -211,14 +209,12 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
 
             entity.ToTable("ValuationCertificate");
 
-            entity.Property(e => e.ValuationCertificateId).ValueGeneratedOnAdd();
             entity.Property(e => e.CustomerEmail)
                 .HasMaxLength(50)
                 .IsFixedLength();
             entity.Property(e => e.CustomerName)
                 .HasMaxLength(50)
                 .IsFixedLength();
-            entity.Property(e => e.Day).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -233,10 +229,10 @@ public partial class Net1710_221_2_ValuationDiamondContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.ValuationCertificateNavigation).WithOne(p => p.ValuationCertificate)
-                .HasForeignKey<ValuationCertificate>(d => d.ValuationCertificateId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ValuationCertificate_ValuateDiamond1");
+
+            entity.HasOne(d => d.ValuateDiamond).WithMany(p => p.ValuationCertificates)
+                .HasForeignKey(d => d.ValuateDiamondId)
+                .HasConstraintName("FK_ValuationCertificate_ValuateDiamond");
         });
 
         OnModelCreatingPartial(modelBuilder);

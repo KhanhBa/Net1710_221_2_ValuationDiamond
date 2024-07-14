@@ -14,7 +14,7 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> DeleteCustomer(int customerId);
         Task<bool> CheckCustomerIdExist(int customerId);
         Task<IValuationDiamondResult> SaveCustomer(Customer customer);
-        Task<IValuationDiamondResult> SearchCustomers(string searchField, string search);
+        Task<IValuationDiamondResult> SearchCustomers(string searchField);
     }
 
     public class CustomerBusiness : ICustomerBusiness
@@ -152,7 +152,46 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<IValuationDiamondResult> SearchCustomers(string searchField, string search)
+        //public async Task<IValuationDiamondResult> SearchCustomers(string searchField, string search)
+        //{
+        //    try
+        //    {
+        //        var customers = await _unitOfWork.CustomerRepository.GetAllAsync();
+        //        List<Customer> list = new List<Customer>();
+
+        //        foreach (Customer c in customers)
+        //        {
+
+        //            if (searchField.Equals("Name", StringComparison.OrdinalIgnoreCase) && c.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                list.Add(c);
+        //            }
+        //            else if (searchField.Equals("Cccd", StringComparison.OrdinalIgnoreCase) && c.Cccd.Contains(search, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                list.Add(c);
+        //            }
+        //            else if (searchField.Equals("Email", StringComparison.OrdinalIgnoreCase) && c.Email.Contains(search, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                list.Add(c);
+        //            }
+        //        }
+
+        //        if (list == null)
+        //        {
+        //            return new ValuationDiamondResult(0, "No customers found");
+        //        }
+        //        else
+        //        {
+        //            return new ValuationDiamondResult(1, "All Customers", list);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ValuationDiamondResult();
+        //    }
+        //}
+
+        public async Task<IValuationDiamondResult> SearchCustomers(string searchTerm)
         {
             try
             {
@@ -161,22 +200,20 @@ namespace ValuationDiamond.Business
 
                 foreach (Customer c in customers)
                 {
-                   
-                    if (searchField.Equals("Name", StringComparison.OrdinalIgnoreCase) && c.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.Add(c);
-                    }
-                    else if (searchField.Equals("Cccd", StringComparison.OrdinalIgnoreCase) && c.Cccd.Contains(search, StringComparison.OrdinalIgnoreCase))
-                    {
-                        list.Add(c);
-                    }
-                    else if (searchField.Equals("Email", StringComparison.OrdinalIgnoreCase) && c.Email.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    if ((c.Name != null && c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Cccd != null && c.Cccd.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Email != null && c.Email.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Password != null && c.Password.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Status != null && c.Status.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.DoB != null && c.DoB.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Address != null && c.Address.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                        (c.Phone != null && c.Phone.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
                     {
                         list.Add(c);
                     }
                 }
 
-                if (list == null)
+                if (list.Count == 0)
                 {
                     return new ValuationDiamondResult(0, "No customers found");
                 }
@@ -187,8 +224,11 @@ namespace ValuationDiamond.Business
             }
             catch (Exception ex)
             {
-                return new ValuationDiamondResult();
+                return new ValuationDiamondResult(0, "An error occurred while searching for customers", null);
             }
         }
+
+
+
     }
 }

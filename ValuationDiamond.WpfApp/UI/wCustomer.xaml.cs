@@ -5,12 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 
@@ -33,39 +28,30 @@ namespace ValuationDiamond.WpfApp.UI
         {
             try
             {
-                var item = await _business.GetCustomer(int.Parse(txtCustomerId.Text));
+                if (txtCustomerId.Text != "") { var item = await _business.GetCustomer(int.Parse(txtCustomerId.Text)); }
 
-                if (item.Data == null)
-                {
                     var customer = new Customer()
                     {
-                        CustomerId = int.Parse(txtCustomerId.Text),
+                       
                         Name = txtCustomerName.Text,
                         Cccd = txtCccd.Text,
                         Email = txtEmail.Text,
                         Password = txtPassword.Text,
                         Status = chkStatus.IsChecked ?? false,
                         DoB = dpDoB.SelectedDate ?? DateTime.Now,
-                        Address = txtAddress.Text
+                        Address = txtAddress.Text,
+                        Phone = txtPhone.Text,
+                        Avatar = txtAvatar.Text
                     };
-
+                if (txtCustomerId.Text == "")
+                {
+                    customer.CustomerId = 0;
                     var result = await _business.SaveCustomer(customer);
                     MessageBox.Show(result.Message, "Save");
                 }
                 else
                 {
-                    var customer = new Customer()
-                    {
-                        CustomerId = int.Parse(txtCustomerId.Text),
-                        Name = txtCustomerName.Text,
-                        Cccd = txtCccd.Text,
-                        Email = txtEmail.Text,
-                        Password = txtPassword.Text,
-                        Status = chkStatus.IsChecked ?? false,
-                        DoB = dpDoB.SelectedDate ?? DateTime.Now,
-                        Address = txtAddress.Text
-                    };
-
+                    customer.CustomerId = int.Parse(txtCustomerId.Text);
                     var result = await _business.UpdateCustomer(customer);
                     MessageBox.Show(result.Message, "Update");
                 }
@@ -100,7 +86,7 @@ namespace ValuationDiamond.WpfApp.UI
             ClearFields();
         }
 
-        private async void grdCustomer_MouseDouble_Click(object sender, MouseButtonEventArgs e)
+        private void grdCustomer_MouseDouble_Click(object sender, MouseButtonEventArgs e)
         {
             DataGrid grd = sender as DataGrid;
             if (grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
@@ -115,10 +101,12 @@ namespace ValuationDiamond.WpfApp.UI
                         txtCustomerName.Text = item.Name;
                         txtCccd.Text = item.Cccd;
                         txtEmail.Text = item.Email;
-                        txtPassword.Text = item.Password;
+                        txtPassword.Text = item.Password; 
                         chkStatus.IsChecked = item.Status;
                         dpDoB.SelectedDate = item.DoB;
                         txtAddress.Text = item.Address;
+                        txtPhone.Text = item.Phone;
+                        txtAvatar.Text = item.Avatar;
                     }
                 }
             }
@@ -148,12 +136,8 @@ namespace ValuationDiamond.WpfApp.UI
             chkStatus.IsChecked = false;
             dpDoB.SelectedDate = null;
             txtAddress.Text = string.Empty;
+            txtPhone.Text = string.Empty;
+            txtAvatar.Text = string.Empty;
         }
     }
 }
-
-
-
-
-
-

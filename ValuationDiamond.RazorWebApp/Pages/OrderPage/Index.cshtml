@@ -93,7 +93,7 @@
                 @Html.DisplayFor(modelItem => item.TotalAmount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
+                @Html.DisplayFor(modelItem => item.Customer.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderCode)
@@ -110,3 +110,26 @@
 }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @if (Model.Pager.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage - 1)" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">Previous</a>
+            </li>
+        }
+        @for (int i = 1; i <= Model.Pager.TotalPages; i++)
+        {
+            <li class="page-item @(Model.Pager.CurrentPage == i ? "active" : "")">
+                <a class="page-link" asp-route-pageIndex="@i" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">@i</a>
+            </li>
+        }
+        @if (Model.Pager.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-route-pageIndex="@(Model.Pager.CurrentPage + 1)" asp-route-SearchTerm="@Model.SearchTerm" asp-route-SearchField="@Model.SearchField">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

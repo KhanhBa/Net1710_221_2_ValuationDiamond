@@ -13,16 +13,21 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
     public class CreateModel : PageModel
     {
         private readonly IOrderDetailBusiness _business;
+        private readonly IServiceBusiness _serviceBusiness;
+        private readonly IOrderBusiness _orderBusiness;
 
         public CreateModel()
         {
             _business ??= new OrderDetailBusiness();
+            _serviceBusiness = new ServiceBusiness();
+            _orderBusiness = new OrderBusiness();
         }
 
         public IActionResult OnGet()
         {
-        //ViewData["OrderId"] = new SelectList(, "OrderId", "OrderCode");
-        //ViewData["ServiceId"] = new SelectList(, "ServiceId", "ServiceId");
+            ViewData["ServiceId"] = new SelectList(_serviceBusiness.GetAllService().Result.Data as List<Service>, "ServiceId", "ServiceId");
+            ViewData["OrderId"] = new SelectList(_orderBusiness.GetAllOrders().Result.Data as List<Order>, "OrderId", "OrderId");
+            //ViewData["OrderId"] = new SelectList(, "OrderId", "OrderCode");
             return Page();
         }
 

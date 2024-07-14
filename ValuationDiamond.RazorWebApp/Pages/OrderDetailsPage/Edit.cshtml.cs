@@ -17,17 +17,17 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
     {
         private readonly IOrderDetailBusiness _business;
         private readonly IServiceBusiness _serviceBusiness;
+        private readonly IOrderBusiness _orderBusiness;
 
         public EditModel()
         {
             _business ??= new OrderDetailBusiness();
+            _serviceBusiness ??= new ServiceBusiness();
+            _orderBusiness ??= new OrderBusiness();
         }
 
         [BindProperty]
         public OrderDetail OrderDetail { get; set; } = default!;
-
-        [BindProperty]
-        public List<SelectListItem> ServiceList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -36,15 +36,16 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
                 return NotFound();
             }
 
+            ViewData["ServiceId"] = new SelectList(_serviceBusiness.GetAllService().Result.Data as List<Service>, "ServiceId", "ServiceId");
+            ViewData["OrderId"] = new SelectList(_orderBusiness.GetAllOrders().Result.Data as List<Order>, "OrderId", "OrderId");
+
             var orderdetail = await _business.GetById(id);
-            var serviceList = await _serviceBusiness.GetAllService();
            
             if (orderdetail == null)
             {
                 return NotFound();
             }
             OrderDetail = orderdetail.Data as OrderDetail;
-            ServiceList = serviceList.Data as List<SelectListItem>;
         
             return Page();
         }
@@ -60,7 +61,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 
             try
             {
-                await _business.Save(OrderDetail);
+                await _business.Update(OrderDetail);
             }
             catch (DbUpdateConcurrencyException)
             {

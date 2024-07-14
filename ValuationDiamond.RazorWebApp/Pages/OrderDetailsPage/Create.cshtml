@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="OrderDetail.ServiceId" class="control-label"></label>
-                <select asp-for="OrderDetail.ServiceId" class ="form-control" asp-items="ViewBag.ServiceId"></select>
+                <select asp-for="OrderDetail.ServiceId" class="form-control" asp-items="@(ViewData["ServiceId"] as SelectList)"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Status" class="control-label"></label>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.OrderId" class="control-label"></label>
-                <select asp-for="OrderDetail.OrderId" class ="form-control" asp-items="ViewBag.OrderId"></select>
+                <select asp-for="OrderDetail.OrderId" class="form-control" asp-items="@(ViewData["OrderId"] as SelectList)"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.DetailCode" class="control-label"></label>

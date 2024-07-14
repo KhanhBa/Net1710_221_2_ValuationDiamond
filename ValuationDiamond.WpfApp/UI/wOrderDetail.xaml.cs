@@ -33,9 +33,8 @@ namespace ValuationDiamond.WpfApp.UI
         {
             try
             {
-                var item = await _business.GetById(int.Parse(txtOrderDetailId.Text));
-
-                if (item.Data == null)
+                
+                if (txtOrderDetailId.Text == "")
                 {
                     var orderDetail = new OrderDetail()
                     {
@@ -53,19 +52,15 @@ namespace ValuationDiamond.WpfApp.UI
                 }
                 else
                 {
-                    var orderDetail = new OrderDetail()
-                    {
-                        OrderDetailId = int.Parse(txtOrderDetailId.Text),
-                        Description = txtDescription.Text,
-                        DetailCode = txtDetailCode.Text,
-                        EstimateLength = double.Parse(txtEstimateLength.Text) ,
-                        OrderId = int.Parse(txtOrderId.Text),
-                        Status = txtStatus.Text,
-                        ServiceId = int.Parse(txtServiceId.Text) ,
-                        Price = double.Parse(txtPrice.Text) ,
 
-                    };
-
+                    var orderDetail = (OrderDetail)(await _business.GetById(int.Parse(txtOrderDetailId.Text))).Data;
+                    orderDetail.Description = txtDescription.Text;
+                    orderDetail.DetailCode = txtDetailCode.Text;
+                    orderDetail.EstimateLength = double.Parse(txtEstimateLength.Text);
+                    orderDetail.OrderId = int.Parse(txtOrderId.Text);
+                    orderDetail.Status = txtStatus.Text;
+                    orderDetail.ServiceId = int.Parse(txtServiceId.Text);
+                    orderDetail.Price = double.Parse(txtPrice.Text);
                     var result = await _business.Update(orderDetail);
                     MessageBox.Show(result.Message, "Update");
                 }

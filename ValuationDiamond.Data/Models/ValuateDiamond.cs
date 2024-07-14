@@ -29,9 +29,7 @@ public partial class ValuateDiamond
 
     public string Clarity { get; set; }
 
-    public int? ValuationCertificateId { get; set; }
-
     public virtual OrderDetail OrderDetail { get; set; }
 
-    public virtual ValuationCertificate ValuationCertificate { get; set; }
+    public virtual ICollection<ValuationCertificate> ValuationCertificates { get; set; } = new List<ValuationCertificate>();
 }

@@ -1,13 +1,17 @@
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICustomerBusiness, CustomerBusiness>();
 builder.Services.AddTransient<OrderDetailBusiness>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

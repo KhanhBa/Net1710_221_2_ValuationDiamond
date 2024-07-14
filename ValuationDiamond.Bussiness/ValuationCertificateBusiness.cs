@@ -55,7 +55,7 @@ namespace ValuationDiamond.Business
             try
             {
                 //var obj = await _certificateDAO.GetAllAsync();
-                var obj = await _unitOfWork.CertificateRepository.GetAllAsync();
+                var obj = await _unitOfWork.CertificateRepository.GetListValuationCertificate();
                 if (obj == null)
                 {
                     return new ValuationDiamondResult(-1, "List Null", null);

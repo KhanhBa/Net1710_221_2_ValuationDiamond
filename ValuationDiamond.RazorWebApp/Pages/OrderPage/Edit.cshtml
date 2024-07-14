@@ -38,18 +38,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Order.Quantity" class="control-label"></label>
-                <input asp-for="Order.Quantity" class="form-control" />
+                <input asp-for="Order.Quantity" class="form-control" readonly="true" />
                 <span asp-validation-for="Order.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Order.TotalAmount" class="control-label"></label>
-                <input asp-for="Order.TotalAmount" class="form-control" />
+                <input asp-for="Order.TotalAmount" class="form-control" readonly="true" />
                 <span asp-validation-for="Order.TotalAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Order.CustomerId" class="control-label"></label>
-                <input asp-for="Order.CustomerId" class="form-control" asp-items="ViewBag.CustomerId" readonly="true"></input>
-                <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
+                <label asp-for="Order.Customer" class="control-label"></label>
+                <input asp-for="Order.Customer.Name" class="form-control" asp-items="ViewBag.CustomerName" readonly="true"></input>
+                <span asp-validation-for="Order.Customer.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Order.OrderCode" class="control-label"></label>
