@@ -35,7 +35,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var result = await _valuationCertificateBusiness.GetAll();
+            var result = await _valuationCertificateBusiness.GetAllOnlyDatabase();
 
             IEnumerable<ValuationCertificate> valuationCertificates = new List<ValuationCertificate>();
 
