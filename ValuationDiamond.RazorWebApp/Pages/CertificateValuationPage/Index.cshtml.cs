@@ -76,7 +76,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
             var pageNumber = PageNumber ?? 1;
             var pageSize = 3;
 
-            ValuationCertificates = await valuationCertificates.ToPagedListAsync(pageNumber, pageSize);
+            //ValuationCertificates = await valuationCertificates.ToPagedListAsync(pageNumber, pageSize);
 
             return Page();
         }

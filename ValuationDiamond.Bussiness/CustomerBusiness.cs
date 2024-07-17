@@ -15,6 +15,7 @@ namespace ValuationDiamond.Business
         Task<bool> CheckCustomerIdExist(int customerId);
         Task<IValuationDiamondResult> SaveCustomer(Customer customer);
         Task<IValuationDiamondResult> SearchCustomers(string searchField);
+        Task<(IEnumerable<Customer> Data, int TotalCount)> GetPagedCustomers(int pageIndex, int pageSize);
     }
 
     public class CustomerBusiness : ICustomerBusiness
@@ -24,6 +25,11 @@ namespace ValuationDiamond.Business
         public CustomerBusiness()
         {
             _unitOfWork = new UnitOfWork();
+        }
+
+        public async Task<(IEnumerable<Customer> Data, int TotalCount)> GetPagedCustomers(int pageIndex, int pageSize)
+        {
+            return await _unitOfWork.CustomerRepository.GetPagedCustomers(pageIndex, pageSize);
         }
 
         public async Task<IValuationDiamondResult> GetAllCustomer()
