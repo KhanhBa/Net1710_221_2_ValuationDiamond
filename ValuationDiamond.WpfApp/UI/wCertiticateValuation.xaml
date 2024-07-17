@@ -44,7 +44,7 @@
             <StackPanel Height="210">
                 <DataGrid x:Name="grdValuationCertificate" AutoGenerateColumns="False" ItemsSource="{Binding ValuationCertificates}" CanUserAddRows="False" Height="200" Margin="10" SelectionMode="Single" SelectionUnit="FullRow" MouseDoubleClick="grdCertificateValuation_MouseDouble_Click">
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
+                        <!--<datagridtextcolumn header="code" binding="{binding path=id}" visibility="hidden"/>-->
                         <DataGridTextColumn Header="Id" Binding="{Binding Path=ValuationId}" Visibility="Visible"/>
                         <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="100"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="100"  IsReadOnly="True"/>
