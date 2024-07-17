@@ -107,8 +107,8 @@ namespace ValuationDiamond.Business
             {
                 //
 
-                int result = await _unitOfWork.valuationDiamondRepository.CreateAsync(valuateDiamond);
-                if (result > 0)
+                var result = await _unitOfWork.valuationDiamondRepository.CreateAsync(valuateDiamond);
+                if (result != null)
                 {
                     return new ValuationDiamondResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
                 }

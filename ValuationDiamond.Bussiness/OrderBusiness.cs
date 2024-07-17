@@ -18,7 +18,7 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> CreateOrder(Order order);
         Task<IValuationDiamondResult> UpdateOrder(Order order);
         Task<IValuationDiamondResult> DeleteOrder(int orderId);
-        Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string searchField, string search, int pageIndex, int pageSize);
+        Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string orderCode, string staffName, string customer, int pageIndex, int pageSize);
         Task<(IEnumerable<Order> Data, int TotalCount)> GetPagedOrders(int pageIndex, int pageSize);
     }
 
@@ -62,36 +62,11 @@ namespace ValuationDiamond.Business
             }
         }
 
-        public async Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string searchField, string search, int pageIndex, int pageSize)
-        {         
-                //var orders = await _unitOfWork.OrderRepository.GetPagedOrders(pageIndex, pageSize);
-                //List<Order> list = new List<Order>();
-
-                //foreach (Order o in orders.Data)
-                //{
-                //    if (searchField.Equals("OrderCode", StringComparison.OrdinalIgnoreCase) && o.OrderCode.Contains(search, StringComparison.OrdinalIgnoreCase))
-                //    {
-                //        list.Add(o);
-                //    }
-                //    else if (searchField.Equals("StaffName", StringComparison.OrdinalIgnoreCase) && o.StaffName.Contains(search, StringComparison.OrdinalIgnoreCase))
-                //    {
-                //        list.Add(o);
-                //    }
-                //    else if (searchField.Equals("Customer", StringComparison.OrdinalIgnoreCase) && o.Customer.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
-                //    {
-                //        list.Add(o);
-                //    }
-                //}
-
-                ////if (list == null)
-                ////{
-                ////    return new ValuationDiamondResult(0, "No orders found");
-                ////}
-               
-                //return (list, orders.TotalCount);
-
-                return await _unitOfWork.OrderRepository.GetPagedSearchOrders(searchField, search, pageIndex, pageSize);           
+        public async Task<(IEnumerable<Order> Data, int TotalCount)> SearchOrders(string orderCode, string staffName, string customer, int pageIndex, int pageSize)
+        {
+            return await _unitOfWork.OrderRepository.GetPagedSearchOrders(orderCode, staffName, customer, pageIndex, pageSize);
         }
+
 
         public async Task<IValuationDiamondResult> ReadOrder(int orderId)
         {

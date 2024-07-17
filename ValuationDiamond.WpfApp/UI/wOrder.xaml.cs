@@ -109,8 +109,8 @@ namespace ValuationDiamond.WpfApp.UI
                 }
                 //var item = await _orderBusiness.ReadOrder(int.Parse(txtOrderId.Text));
 
-                if (txtOrderId.Text == "")
-                {
+                if (txtOrderId.Text == "0" || txtOrderId.Text == null)
+                { 
                     var order = new Order()
                     {
                         //OrderId = idTmp,
@@ -131,7 +131,7 @@ namespace ValuationDiamond.WpfApp.UI
                     var item = await _orderBusiness.ReadOrder(int.Parse(txtOrderId.Text));
                     var order = item.Data as Order;
                     //order.OrderId = int.Parse(txtOrderId.Text);
-                    order.PayStatus = txtPayStatus.IsChecked ?? false;
+                    order.PayStatus = txtPayStatus.IsChecked==false? false : true;
                     order.Status = txtStatus.Text;
                     order.Payment = txtPayment.Text;
                     order.Day = DateTime.Parse(txtDay.Text);
