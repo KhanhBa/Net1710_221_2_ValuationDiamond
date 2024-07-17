@@ -48,7 +48,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <img src="https://i.pinimg.com/564x/94/58/c3/9458c3be86694a4aabd1b7568753f164.jpg" alt="Dashboard Logo" style="width: 60px; height: 60px; margin-right: 10px;paddingLeft:10px">
+    <img src="https://i.pinimg.com/564x/94/58/c3/9458c3be86694a4aabd1b7568753f164.jpg" alt="Dashboard Logo" style="width: 60px; height: 60px; margin-right: 10px; padding-left: 10px">
     <a class="navbar-brand" >
         Dashboard
     </a>
@@ -63,6 +63,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/ServicePage">Service</a>
             </li>
+           
         </ul>
     </div>
 </nav>
@@ -70,6 +71,10 @@
 <p>
     <a asp-page="Create"><button type="button" class="btn btn-primary">Create New</button></a>
 </p>
+
+<form method="post" asp-page-handler="GeneratePdf">
+    <button type="submit" class="btn btn-primary">Generate PDF</button>
+</form>
 
 <div class="container-fluid mt-3">
     <div class="row">

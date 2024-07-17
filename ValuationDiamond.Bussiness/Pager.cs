@@ -12,7 +12,7 @@ namespace ValuationDiamond.Business
         public int PageSize { get; private set; }
         public int TotalCount { get; private set; }
         public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
-
+        
         public Pager(int totalCount, int currentPage, int pageSize)
         {
             TotalCount = totalCount;
