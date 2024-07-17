@@ -1,6 +1,8 @@
 ﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +19,18 @@ namespace ValuationDiamond.Business
         Task<IValuationDiamondResult> DeleteByID(int ID);
         Task<IValuationDiamondResult> Create(ValuationCertificate valuationCertificate);
         Task<IValuationDiamondResult> GetbyId(int id);
+        Task<IValuationDiamondResult> GetAllOnlyDatabase();
     }
     public class ValuationCertificateBusiness : IValuationCertificateBusiness
     {
         // private readonly ValuationCertificateDAO _certificateDAO;
         private readonly UnitOfWork _unitOfWork;
+        private readonly RedisManagement _redisManagement;
         public ValuationCertificateBusiness()
         {
             //   _certificateDAO = new ValuationCertificateDAO();
             _unitOfWork ??= new UnitOfWork();
+            _redisManagement ??= new RedisManagement();
         }
 
 
@@ -41,7 +46,10 @@ namespace ValuationDiamond.Business
                 }
                 //  var flag = await _certificateDAO.RemoveAsync(obj);
                 var flag = await _unitOfWork.CertificateRepository.RemoveAsync(obj);
-                if (flag) { return new ValuationDiamondResult(1, "Successfully"); }
+                if (flag)
+                {
+                    _redisManagement.DeleteData("ListCertificates");
+                    return new ValuationDiamondResult(1, "Successfully"); }
                 else { return new ValuationDiamondResult(-1, "Fail"); }
             }
             catch (Exception ex)
@@ -54,20 +62,63 @@ namespace ValuationDiamond.Business
         {
             try
             {
-                //var obj = await _certificateDAO.GetAllAsync();
-                var obj = await _unitOfWork.CertificateRepository.GetListValuationCertificate();
-                if (obj == null)
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+                var list = _redisManagement.GetData("ListCertificates");    
+                if(list==null||list=="[]")
                 {
-                    return new ValuationDiamondResult(-1, "List Null", null);
+                    //var obj = await _certificateDAO.GetAllAsync();
+                    var obj = await _unitOfWork.CertificateRepository.GetListValuationCertificate();
+
+                    if (obj == null)
+                    {
+                        return new ValuationDiamondResult(-1, "List Null", null);
+                    }
+                    else
+                    {
+                        stopwatch.Stop();
+                        Console.WriteLine($"Database: {stopwatch.ElapsedMilliseconds} ms");
+                        _redisManagement.SetData("ListCertificates",JsonConvert.SerializeObject(obj));
+                        return new ValuationDiamondResult(1, "List Data", obj);
+                    }
                 }
-                else { return new ValuationDiamondResult(1, "List Data", obj); }
+                else
+                {
+                    var result = JsonConvert.DeserializeObject<List<ValuationCertificate>>(list);
+                    Console.WriteLine($"Redis: {stopwatch.ElapsedMilliseconds} ms");
+                    return new ValuationDiamondResult(1, "List Data", result);
+                }
             }
             catch (Exception ex)
             {
                 return new ValuationDiamondResult(-1, ex.Message);
             }
         }
+        public async Task<IValuationDiamondResult> GetAllOnlyDatabase()
+        {
+            try
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();    
+                    //var obj = await _certificateDAO.GetAllAsync();
+                    var obj = await _unitOfWork.CertificateRepository.GetListValuationCertificate();
 
+                    if (obj == null)
+                    {
+                        return new ValuationDiamondResult(-1, "List Null", null);
+                    }
+                    else
+                    {
+                        stopwatch.Stop();
+                        Console.WriteLine($"Database: {stopwatch.ElapsedMilliseconds} ms");
+                        return new ValuationDiamondResult(1, "List Data", obj);
+                    }
+            }
+            catch (Exception ex)
+            {
+                return new ValuationDiamondResult(-1, ex.Message);
+            }
+        }
         public async Task<IValuationDiamondResult> Create(ValuationCertificate valuationCertificate)
         {
             try
@@ -78,7 +129,9 @@ namespace ValuationDiamond.Business
                 {
                     return new ValuationDiamondResult(-1, "Can not Create");
                 }
+                await _redisManagement.AddValuationCertificateToListAsync("ListCertificates", obj);
                 return new ValuationDiamondResult(1, "Create Successfully", obj);
+
             }
             catch (Exception ex)
             {
@@ -100,6 +153,7 @@ namespace ValuationDiamond.Business
                 //_context.Entry(o).CurrentValues.SetValues(order);
                 // await _certificateDAO.UpdateAsync(obj);
                 await _unitOfWork.CertificateRepository.UpdateAsync(valuationCertificate);
+                _redisManagement.DeleteData("ListCertificates");
                 return new ValuationDiamondResult(1, "Order updated successfully", valuationCertificate);
             }
             catch (Exception ex)

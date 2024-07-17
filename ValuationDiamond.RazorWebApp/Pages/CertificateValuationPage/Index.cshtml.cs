@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
 using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
 {
@@ -76,7 +77,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
             var pageNumber = PageNumber ?? 1;
             var pageSize = 3;
 
-            ValuationCertificates = await valuationCertificates.ToPagedListAsync(pageNumber, pageSize);
+            ValuationCertificates = valuationCertificates.ToPagedList(pageNumber, pageSize);
 
             return Page();
         }

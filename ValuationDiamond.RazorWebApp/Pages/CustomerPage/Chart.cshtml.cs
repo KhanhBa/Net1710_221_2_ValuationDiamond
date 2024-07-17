@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
-using X.PagedList;
 
 namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
 {
@@ -16,9 +15,13 @@ namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
             customerBusiness ??= new CustomerBusiness();
         }
 
-        public IPagedList<Customer> Customer { get; set; } = default!;
+        public Customer Customer { get; set; } = default!;
 
         public string ChartDataJson { get; set; } = default!;
+
+        public int TotalCustomers { get; set; }
+        public int ActiveCustomers { get; set; }
+        public int IncompleteCustomers { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -27,9 +30,20 @@ namespace ValuationDiamond.RazorWebApp.Pages.CustomerPage
 
             customers = result?.Data as List<Customer> ?? new List<Customer>();
 
+            TotalCustomers = customers.Count;
+            ActiveCustomers = customers.Count(c => c.Status == true);
+            IncompleteCustomers = customers.Count(c => string.IsNullOrEmpty(c.Name) ||
+                                                       string.IsNullOrEmpty(c.Cccd) ||
+                                                       string.IsNullOrEmpty(c.Email) ||
+                                                       string.IsNullOrEmpty(c.Password) ||
+                                                       string.IsNullOrEmpty(c.Address) ||
+                                                       string.IsNullOrEmpty(c.Phone) ||
+                                                       c.DoB == DateTime.MinValue ||
+                                                       string.IsNullOrEmpty(c.Avatar));
+
             var customerStatusCounts = customers.GroupBy(c => c.Status)
-                                               .Select(g => new { Status = g.Key, Count = g.Count() })
-                                               .ToList();
+                                                 .Select(g => new { Status = g.Key, Count = g.Count() })
+                                                 .ToList();
             ChartDataJson = JsonSerializer.Serialize(customerStatusCounts);
         }
     }

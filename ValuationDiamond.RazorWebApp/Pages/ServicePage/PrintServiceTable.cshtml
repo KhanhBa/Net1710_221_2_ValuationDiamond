@@ -1,0 +1,78 @@
+﻿@page
+@model ValuationDiamond.RazorWebApp.Pages.ServicePage.PrintServiceTableModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .table th, .table td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            .table th {
+                background-color: #f2f2f2;
+                color: #333333;
+                font-weight: bold;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 24px;
+                color: #333333;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Service Price List</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Service[0].Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Service[0].Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Service[0].Decription)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Service)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Decription)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
