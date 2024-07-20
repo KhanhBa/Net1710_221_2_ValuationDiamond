@@ -6,18 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
 using ValuationDiamond.Business;
 using ValuationDiamond.Data.Models;
+using ValuationDiamond.Data.Repository;
 
 namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 {
     public class EditModel : PageModel
     {
-        private readonly OrderDetailBusiness _business;
+        private readonly IOrderDetailBusiness _business;
+        private readonly IServiceBusiness _serviceBusiness;
+        private readonly IOrderBusiness _orderBusiness;
 
         public EditModel()
         {
             _business ??= new OrderDetailBusiness();
+            _serviceBusiness ??= new ServiceBusiness();
+            _orderBusiness ??= new OrderBusiness();
         }
 
         [BindProperty]
@@ -30,12 +36,17 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
                 return NotFound();
             }
 
+            ViewData["ServiceId"] = new SelectList(_serviceBusiness.GetAllService().Result.Data as List<Service>, "ServiceId", "ServiceId");
+            ViewData["OrderId"] = new SelectList(_orderBusiness.GetAllOrders().Result.Data as List<Order>, "OrderId", "OrderId");
+
             var orderdetail = await _business.GetById(id);
+
             if (orderdetail == null)
             {
                 return NotFound();
             }
             OrderDetail = orderdetail.Data as OrderDetail;
+
             return Page();
         }
 
@@ -50,7 +61,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.OrderDetailsPage
 
             try
             {
-                await _business.Save(OrderDetail);
+                await _business.Update(OrderDetail);
             }
             catch (DbUpdateConcurrencyException)
             {
