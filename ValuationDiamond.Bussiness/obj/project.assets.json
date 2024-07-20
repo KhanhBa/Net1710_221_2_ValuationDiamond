@@ -3949,23 +3949,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
+    "C:\\Users\\84398\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj",
+      "projectUniqueName": "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj",
       "projectName": "ValuationDiamond.Business",
-      "projectPath": "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\obj\\",
+      "projectPath": "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\ValuationDiamond.Business.csproj",
+      "packagesPath": "C:\\Users\\84398\\.nuget\\packages\\",
+      "outputPath": "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\84398\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3980,11 +3980,11 @@
         "net7.0": {
           "targetAlias": "net7",
           "projectReferences": {
-            "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
-              "projectPath": "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
+            "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj": {
+              "projectPath": "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Common\\ValuationDiamond.Common.csproj"
             },
-            "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj": {
-              "projectPath": "D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj"
+            "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj": {
+              "projectPath": "C:\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Data\\ValuationDiamond.Data.csproj"
             }
           }
         }
@@ -3993,6 +3993,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4026,16 +4031,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\PRN221\\GroupProject\\Net1710_221_2_ValuationDiamond\\ValuationDiamond.Bussiness\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -19,31 +19,42 @@ namespace ValuationDiamond.RazorWebApp.Pages.ValuationDiamondPage
             _business ??= new ValuationDiamondBusiness();
         }
 
-        public IList<ValuateDiamond> ValuateDiamond { get; set; } = default!;
+        public IList<ValuateDiamond> ValuateDiamond { get; set; } = new List<ValuateDiamond>();
 
         [BindProperty(SupportsGet = true)]
-        public string searchString { get; set; }
+        public string SearchString { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; } = 2;
 
         public async Task OnGetAsync()
         {
-            if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchString))
-            {
-                var result = await _business.Search(searchString);
-                if (result != null && result.Status > 0 && result.Data != null)
-                {
-                    ValuateDiamond = result.Data as List<ValuateDiamond>;
-                }
-            }
-            else
-            {
-                var result = await _business.GetAll();
-                if (result != null && result.Status > 0 && result.Data != null)
-                {
-                    ValuateDiamond = result.Data as List<ValuateDiamond>;
-                }
-            }
+            IValuationDiamondResult result = await _business.GetAll();
 
+            if (result != null && result.Status > 0 && result.Data != null)
+            {
+                var allDiamonds = result.Data as List<ValuateDiamond>;
 
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    allDiamonds = allDiamonds.Where(v =>
+                        (v.ValuationStaffName?.Contains(SearchString) ?? false) ||
+                        (v.Color?.Contains(SearchString) ?? false) ||
+                        (v.DiamondType?.Contains(SearchString) ?? false) ||
+                        (v.Shape?.Contains(SearchString) ?? false)).ToList();
+                }
+
+                int totalItems = allDiamonds.Count();
+                TotalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+                ValuateDiamond = allDiamonds
+                    .Skip((CurrentPage - 1) * PageSize)
+                    .Take(PageSize)
+                    .ToList();
+            }
         }
     }
 }
