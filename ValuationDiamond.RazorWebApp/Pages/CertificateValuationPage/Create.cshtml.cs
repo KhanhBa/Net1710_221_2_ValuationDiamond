@@ -20,12 +20,16 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
             _valuateDiamondBusiness = valuateDiamondBusiness;
         }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             var valuateDiamonds = (await _valuateDiamondBusiness.GetAll()).Data as List<ValuateDiamond>;
-            ViewData["ValuateDiamondId"] = new SelectList(valuateDiamonds.Select(x => x.ValuateDiamondId));
+            if (valuateDiamonds != null)
+            {
+                ViewData["ValuateDiamondId"] = new SelectList(valuateDiamonds, "ValuateDiamondId", "ValuateDiamondId");
+                ViewData["ValuateDiamondPrices"] = valuateDiamonds.ToDictionary(v => v.ValuateDiamondId, v => v.Price);
+            }
+
             return Page();
-          
         }
 
         [BindProperty]
@@ -33,14 +37,7 @@ namespace ValuationDiamond.RazorWebApp.Pages.CertificateValuationPage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                var valuateDiamonds = (await _valuateDiamondBusiness.GetAll()).Data as List<ValuateDiamond>;
-                ViewData["ValuateDiamondId"] = new SelectList(valuateDiamonds.Select(x => x.ValuateDiamondId));
-                return Page();
-            }
-
-            _valuationCertificateBusiness.Create(ValuationCertificate);
+            await _valuationCertificateBusiness.Create(ValuationCertificate);
             return RedirectToPage("./Index");
         }
     }

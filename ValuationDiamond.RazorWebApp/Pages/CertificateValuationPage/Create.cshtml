@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ValuationCertificate.Price" class="control-label"></label>
-                <input asp-for="ValuationCertificate.Price" class="form-control" />
+                <input asp-for="ValuationCertificate.Price" class="form-control" readonly />
                 <span asp-validation-for="ValuationCertificate.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -73,4 +73,17 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        // JavaScript object to store prices
+        var valuateDiamondPrices = @Html.Raw(Json.Serialize(ViewData["ValuateDiamondPrices"]));
+
+        // jQuery change event to update the Price field when a ValuateDiamondId is selected
+        $(document).ready(function () {
+            $('#ValuationCertificate_ValuateDiamondId').change(function () {
+                var selectedId = $(this).val();
+                var price = valuateDiamondPrices[selectedId] || 0;
+                $('#ValuationCertificate_Price').val(price);
+            });
+        });
+    </script>
 }
